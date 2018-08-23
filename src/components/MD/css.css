@@ -1,0 +1,67 @@
+/*
+Error: Invalid GBK character "\xE2"
+        on line 171 of _mixins.scss
+        from line 21 of .\material-design-lite.scss
+
+166:   letter-spacing: 0.08em;
+167: 
+168:   &:before {
+169:     position: absolute;
+170:     left: -0.5em;
+171:     content: '“';
+172:   }
+173: 
+174:   &:after {
+175:     content: '”';
+176:     margin-left: -0.05em;
+
+Backtrace:
+_mixins.scss:171
+.\material-design-lite.scss:21
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/util.rb:1048:in `rescue in block in find_encoding_error'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/util.rb:1045:in `block in find_encoding_error'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/util.rb:1044:in `each'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/util.rb:1044:in `each_with_index'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/util.rb:1044:in `find_encoding_error'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/util.rb:772:in `check_sass_encoding'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:444:in `check_encoding!'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:400:in `_to_tree'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:321:in `to_tree'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:327:in `block in visit_import'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:88:in `block in with_import'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:135:in `with_frame'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:88:in `with_import'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:326:in `visit_import'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:79:in `block in with_base'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:135:in `with_frame'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:79:in `with_base'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:162:in `visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:52:in `map'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:161:in `visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:10:in `visit'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/root_node.rb:36:in `css_tree'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:307:in `render_with_sourcemap'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/exec/sass_scss.rb:391:in `run'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/exec/sass_scss.rb:63:in `process_result'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/exec/base.rb:52:in `parse'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/exec/base.rb:19:in `parse!'
+D:/Programs/ruby/lib/ruby/gems/2.4.0/gems/sass-3.5.1/bin/sass:13:in `<top (required)>'
+D:/Programs/ruby/bin/sass:22:in `load'
+D:/Programs/ruby/bin/sass:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid GBK character \"\xE2\"\A         on line 171 of _mixins.scss\A         from line 21 of .\material-design-lite.scss\A \A 166:   letter-spacing: 0.08em;\A 167: \A 168:   &:before {\A 169:     position: absolute;\A 170:     left: -0.5em;\A 171:     content: '“';\A 172:   }\A 173: \A 174:   &:after {\A 175:     content: '”';\A 176:     margin-left: -0.05em;"; }
