@@ -4,9 +4,9 @@
             <label class="mdc-floating-label" for="username-input">Username</label>
             <div class="mdc-line-ripple"></div>
         </div> -->
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="sample3">
-        <label class="mdl-textfield__label" for="sample3">Text...</label>
+    <div :class="['mdl-textfield', 'mdl-js-textfield','mdl-textfield--floating-label']">
+        <input class="mdl-textfield__input" :type="options.type" :id="textfield.id" v-model="inputValue">
+        <label class="mdl-textfield__label" :for="textfield.id">{{ options.type}}</label>
     </div>
 </template>
 
@@ -14,15 +14,25 @@
 import "./textfield.js";
 
 export default {
-  name: "",
+  name: "textfield",
+  mounted() {
+    console.log(this.options);
+  },
   components: {},
-  props: {
-    options: Object
-  },
+  props: ["options"],
   data() {
-    return {};
+    return {
+      inputValue: ""
+    };
   },
-  computed: {},
+  computed: {
+    textfield: function() {
+      let textfield = { id: this.options.type + Date.now() };
+      textfield = Object.assign(textfield, this.options);
+      console.log("textfield", textfield);
+      return textfield;
+    }
+  },
   methods: {}
 };
 </script>
@@ -30,7 +40,4 @@ export default {
 <style lang="scss" src="./_textfield.scss">
 </style>
 <style lang="scss" scoped>
-* {
-  font-size: 1rem;
-}
 </style>

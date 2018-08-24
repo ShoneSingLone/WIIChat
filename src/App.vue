@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <!-- <button @click="to" :data-src="transitionName">change</button> -->
     <transition :name="transitionName">
       <keep-alive>
@@ -64,6 +64,7 @@ html,
 body,
 #app {
   height: 100%;
+  font-size: 16px;
 }
 
 /* 可以设置不同的进入和离开动画 */

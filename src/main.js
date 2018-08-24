@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import Meta from 'vue-meta'
 import './registerServiceWorker'
-import '@cm/mdlComponentHandler.js'
+// import '@cm/mdlComponentHandler.js'
+import '@cb/Core.scss'
 
 Vue.config.productionTip = false
 Vue.use(Meta)
