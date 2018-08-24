@@ -55,6 +55,7 @@ var componentHandler = {
   /**
    * Upgrades all registered components found in the current DOM. This is
    * automatically called on window load.
+   * 初始化，在window load完成时找找并初始化能够初始化的
    */
   upgradeAllRegistered: function() {},
   /**

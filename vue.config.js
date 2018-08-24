@@ -14,6 +14,8 @@ module.exports = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@n': resolve('./node_modules'),
+        '@cb': resolve('./src/components/Bootstrap/stylesheets'),
+        '@cm': resolve('./src/components/MD'),
         '@m': resolve('./modules')
       }
     },
