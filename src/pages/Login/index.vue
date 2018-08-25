@@ -23,9 +23,11 @@
       <div class="col-md-8 col-md-offset-2">
         <panel id="login-panel-3rd" :options="{haveHeading:true}">
           <template slot="heading">
-            没注册，只能GitHub账号登录
+            目前没开发注册功能，只能GitHub账号登录
           </template>
-          <section class="github-logo btn raised circle">
+          <section class="logo-wrapper">
+            <a href="javascript:void(0)" class="btn btn-default raised circle github-logo" @click="getAuthorization">
+            </a>
           </section>
         </panel>
       </div>
@@ -37,6 +39,7 @@
 import container from "@cb/Container";
 import row from "@cb/Row";
 import panel from "@cb/Panel";
+// import axios from "axios";
 
 export default {
   name: "login",
@@ -49,14 +52,19 @@ export default {
         name: "description",
         content: ""
       }
-    ],
-    link: [{ rel: "stylesheet", href: "/css/index.css" }],
-    script: [
-      {
-        innerHTML: '{"@context":"http://schema.org" }',
-        type: "application/ld+json"
-      }
     ]
+    // link: [{ rel: "stylesheet", href: "/css/index.css" }],
+    // script: [ { innerHTML: '{"@context":"http://schema.org" }', type: "application/ld+json" } ]
+  },
+  beforeRouteEnter: (to, from, next) => {
+    let { origin, pathname, search } = location;
+    //返回的是放在search里的code，为了配合vue-route，两次转换:正常pathname转hash
+    if (search && search.length > 0) {
+      let href = origin + pathname + "#/error" + search;
+      console.log("href", href);
+      return (location.href = href);
+    }
+    next();
   },
   created() {},
   components: {
@@ -75,7 +83,36 @@ export default {
     };
   },
   computed: {},
-  methods: {}
+  methods: {
+    toggleRipple(event) {
+      console.log(event);
+    },
+    async getAuthorization(event) {
+      console.log(event);
+      let githubAuthorizeUrl = new URL(
+        "https://github.com/login/oauth/authorize"
+      );
+      githubAuthorizeUrl.searchParams.append(
+        "client_id",
+        "de98ee996939961d39d9"
+      );
+      githubAuthorizeUrl.searchParams.append(
+        "redirect_uri",
+        "http://192.168.137.1:8080/"
+      );
+      githubAuthorizeUrl.searchParams.append("scope", "user");
+      location.href = githubAuthorizeUrl;
+      /*      try {
+        let result = await axios({
+          method: "get",
+          url: githubAuthorizeUrl
+        });
+        debugger;
+      } catch (error) {
+        console.log("error:\n", error);
+      } */
+    }
+  }
 };
 </script>
 
@@ -97,13 +134,15 @@ export default {
   }
 }
 #login-panel-3rd {
-  text-align: center;
-  .github-logo {
-    // outline: 1px solid rebeccapurple;
-    background-color: aqua;
-    height: 6rem;
-    width: 6rem;
-    background: url("./github.svg") center center / 5rem 5rem no-repeat;
+  text-align: left;
+  .logo-wrapper {
+    text-align: center;
+    .github-logo {
+      // outline: 1px solid rebeccapurple;
+      height: 6rem;
+      width: 6rem;
+      background: url("./github.svg") center center / 5rem 5rem no-repeat;
+    }
   }
 }
 </style>

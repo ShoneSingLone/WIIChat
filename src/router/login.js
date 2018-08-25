@@ -4,5 +4,6 @@ const login = () =>
 export default {
   path: '/login',
   name: 'login',
-  component: login,
+  component: login
 }
+// http: //localhost:8080/?code=c66cec5e36bea4ee7410

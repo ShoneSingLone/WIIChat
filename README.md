@@ -17,11 +17,11 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
   - [ ] 提问
   - [ ] 回答
 - [ ] 个人中心
-  - [ ] 贡献排行系统  
 - [ ] 周刊
 - [ ] 聊天
-- [ ] 数据分析
+- [ ] 数据分析(伪)
   - [ ] 查找潜水员：可以统计成员聊天的数据啥的，发言频率，主题词
+  - [ ] 贡献排行系统  
 
 ## 概要设计
 
@@ -31,8 +31,13 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 ## 实现
 
-panel 用了 md 的
-btn
+panel 用了 md 的 btn
+
+[Authorizing OAuth Apps](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
+
+location.href 通常被用来跳转到指定页面地址;
+location.replace 方法则可以实现用新的文档替换当前文档;
+location.replace 方法不会在 history 对象中生成一个新的记录。
 
 ## ~~测试~~
 

@@ -53,7 +53,6 @@ export default {
     $route(to, from) {
       const toDepth = to.path.split("/").length;
       const fromDepth = from.path.split("/").length;
-      this.transitionName = toDepth < fromDepth ? "slide-fade" : "slide-left";
     }
   }
 };
@@ -70,14 +69,20 @@ body,
 /* 可以设置不同的进入和离开动画 */
 /* 设置持续时间和动画函数 */
 .slide-fade-enter-active {
-  transition: all 0.3s ease;
+  transition: all 0.5s 0.5s ease-in-out;
 }
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(100%);
+  transform: scale(0);
   opacity: 0;
+}
+
+.slide-fade-enter-to .slide-fade-leave
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: scale(2);
+  opacity: 1;
 }
 </style>
