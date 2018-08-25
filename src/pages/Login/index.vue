@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import container from "@cb/Container";
 import row from "@cb/Row";
 import panel from "@cb/Panel";
@@ -57,6 +58,7 @@ export default {
     // script: [ { innerHTML: '{"@context":"http://schema.org" }', type: "application/ld+json" } ]
   },
   beforeRouteEnter: (to, from, next) => {
+    console.log("beforeRouteEnter");
     let { origin, pathname, search } = location;
     //返回的是放在search里的code，为了配合vue-route，两次转换:正常pathname转hash
     if (search && search.length > 0) {
@@ -64,53 +66,34 @@ export default {
       console.log("href", href);
       return (location.href = href);
     }
-    next();
+    next(vm => {
+      console.log("next", vm.userInfo);
+      if (vm.userInfo) {
+        vm.$router.push({ name: "home" });
+      }
+    });
   },
   created() {},
+  mounted() {},
   components: {
     container,
     row,
     panel
   },
   data() {
-    return {
-      optionText: {
-        type: "text"
-      },
-      optionPwd: {
-        type: "password"
-      }
-    };
+    return {};
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["userInfo", "redirectUri", "clientId", "githubAuthorizeUrl"])
+  },
   methods: {
+    ...mapActions([""]),
     toggleRipple(event) {
       console.log(event);
     },
     async getAuthorization(event) {
       console.log(event);
-      let githubAuthorizeUrl = new URL(
-        "https://github.com/login/oauth/authorize"
-      );
-      githubAuthorizeUrl.searchParams.append(
-        "client_id",
-        "de98ee996939961d39d9"
-      );
-      githubAuthorizeUrl.searchParams.append(
-        "redirect_uri",
-        "http://192.168.137.1:8080/"
-      );
-      githubAuthorizeUrl.searchParams.append("scope", "user");
-      location.href = githubAuthorizeUrl;
-      /*      try {
-        let result = await axios({
-          method: "get",
-          url: githubAuthorizeUrl
-        });
-        debugger;
-      } catch (error) {
-        console.log("error:\n", error);
-      } */
+      location.href = this.githubAuthorizeUrl;
     }
   }
 };
