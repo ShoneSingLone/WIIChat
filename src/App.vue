@@ -10,9 +10,10 @@
 </template>
 <script>
 export default {
+  name: "root",
   data: function() {
     return {
-      transitionName: "slide-fade",
+      transitionName: "fade",
       toggle: 0
     };
   },
@@ -24,21 +25,21 @@ export default {
           this.$router.push({
             name: "home.about",
             params: {},
-            query: { id: "home" }
+            query: {}
           });
         },
         1: () => {
           this.toggle = 2;
           this.$router.push({
-            name: "home",
+            name: "error",
             params: {},
-            query: {}
+            query: { msg: "msg in search query " }
           });
         },
         2: () => {
           this.toggle = 0;
           this.$router.push({
-            name: "home.about.subAbout",
+            name: "login",
             params: {},
             query: {}
           });
@@ -53,36 +54,17 @@ export default {
     $route(to, from) {
       const toDepth = to.path.split("/").length;
       const fromDepth = from.path.split("/").length;
+      console.log("$route change", toDepth, fromDepth);
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 html,
 body,
 #app {
   height: 100%;
   font-size: 16px;
-}
-
-/* 可以设置不同的进入和离开动画 */
-/* 设置持续时间和动画函数 */
-.slide-fade-enter-active {
-  transition: all 0.5s 0.5s ease-in-out;
-}
-.slide-fade-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: scale(0);
-  opacity: 0;
-}
-
-.slide-fade-enter-to .slide-fade-leave
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: scale(2);
-  opacity: 1;
 }
 </style>

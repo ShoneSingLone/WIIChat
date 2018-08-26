@@ -37,10 +37,8 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import container from "@cb/Container";
-import row from "@cb/Row";
-import panel from "@cb/Panel";
-// import axios from "axios";
+import { container, row, panel } from "@cb";
+console.log(container, row, panel);
 
 export default {
   name: "login",
@@ -60,7 +58,7 @@ export default {
   beforeRouteEnter: (to, from, next) => {
     console.log("beforeRouteEnter");
     let { origin, pathname, search } = location;
-    //返回的是放在search里的code，为了配合vue-route，两次转换:正常pathname转hash
+    //返回的是放在search里的code，为了配合vue-route，两次转换:正常pathname转hash:/#/balabalabala
     if (search && search.length > 0) {
       let href = origin + pathname + "#/error" + search;
       console.log("href", href);
@@ -116,6 +114,7 @@ export default {
     height: 1rem;
   }
 }
+
 #login-panel-3rd {
   text-align: left;
   .logo-wrapper {

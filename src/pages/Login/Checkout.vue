@@ -16,9 +16,7 @@
 </template>
 
 <script>
-import container from "@cb/Container";
-import row from "@cb/Row";
-import panel from "@cb/Panel";
+import { container, row, panel } from "@cb";
 import axios from "axios";
 import progress from "./Progress";
 
@@ -99,12 +97,16 @@ export default {
             name: "home"
           });
         } else {
-          let { error } = res.data;
-          console.log("error", error);
+          let { error } = res.data; //自定义，这个规范可以再商讨
+          throw new Error(error);
         }
       })
       .catch(error => {
         console.log("error", error);
+        this.$router.push({
+          name: "error",
+          query: { msg: error.message }
+        });
       });
   },
   components: {

@@ -4,7 +4,7 @@ const WebpackShellPlugin = require('webpack-shell-plugin')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-  // process.env.NODE_ENV: base or common
+// process.env.NODE_ENV: base or common
 
 let plugins = [],
   baseUrl = '/';
@@ -35,7 +35,7 @@ module.exports = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@n': resolve('./node_modules'),
-        '@cb': resolve('./src/components/Bootstrap/stylesheets'),
+        '@cb': resolve('./src/components/Bootstrap'),
         '@cm': resolve('./src/components/MD'),
         '@m': resolve('./modules')
       }

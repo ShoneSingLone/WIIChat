@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "",
+  name: "bs-container",
   components: {},
   data() {
     return {};

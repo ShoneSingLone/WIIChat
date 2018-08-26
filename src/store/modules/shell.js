@@ -31,6 +31,9 @@ const getters = {
   clientId(state) {
     return state.clientId
   },
+  githubAuthorizeUrl(state) {
+    return state.githubAuthorizeUrl
+  },
   userInfo(state) {
     if (!state.userInfo) {
       let token = localStorage.getItem("userToken");

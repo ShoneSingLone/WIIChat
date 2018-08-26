@@ -4,10 +4,9 @@ import router from './router'
 import store from './store'
 import Meta from 'vue-meta'
 import './registerServiceWorker'
-import '@cm/mdlComponentHandler.js'
-import '@cm/ripple/ripple.js'
-import '@cm/ripple/_ripple.scss'
-import '@cb/Core.scss'
+// import '@cb/stylesheets/Core.scss'
+// import "./assets/animation.scss";
+
 
 Vue.config.productionTip = false
 Vue.use(Meta)

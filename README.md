@@ -8,24 +8,27 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 ~~没有测试代码，嗯，没有测试...~~
 
+- [Workbox webpack Plugins](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#which_plugin_to_use)
+- [当 better-scroll 遇见 Vue:原生JS插件在Vue框架内的转换](https://zhuanlan.zhihu.com/p/27407024)
+
 ## 需求
 
 - [ ] 登录
+  - [ ] 注册
   - [ ] 第三方登录
+- [ ] 聊天
 - [ ] 问答
   - [ ] 问题展示
   - [ ] 提问
   - [ ] 回答
 - [ ] 个人中心
 - [ ] 周刊
-- [ ] 聊天
-- [ ] 数据分析(伪)
-  - [ ] 查找潜水员：可以统计成员聊天的数据啥的，发言频率，主题词
-  - [ ] 贡献排行系统  
+- [ ] 其他
+  - [ ] 数据分析(伪)（图表应用）
+    - [ ] 查找潜水员：可以统计成员聊天的数据啥的，发言频率，主题词
+    - [ ] 贡献排行系统  
 
 ## 概要设计
-
-- [Workbox webpack Plugins](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#which_plugin_to_use)
 
 ## 详细设计
 
