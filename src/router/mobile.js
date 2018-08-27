@@ -1,7 +1,7 @@
 const Home = () =>
-  import ( /* webpackChunkName: "home" */ '@/pages/Mobile')
+  import ( /* webpackChunkName: "home" */ '@/pages/Home')
 const Weekly = () =>
-  import ( /* webpackChunkName: "home" */ '@/pages/Mobile/Weekly')
+  import ( /* webpackChunkName: "home" */ '@/pages/Home/Weekly')
 
 export default {
   path: '/home',

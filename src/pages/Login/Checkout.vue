@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { container, row, panel } from "@cb";
+import { container, row, panel } from "@bs";
 import axios from "axios";
 import progress from "./Progress";
 

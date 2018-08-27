@@ -1,8 +1,9 @@
 <template>
-  <!-- <container>
-    <row>
-      <div class="col-md-8 col-md-offset-2">
-        <panel id="login-panel">
+
+  <container>
+    <!-- <row>
+      <bs-col :options="colOptions">
+        <div id="login-panel">
           <section class="header">
             <h1>Brumaire</h1>
           </section>
@@ -16,26 +17,30 @@
             <div class="line"></div>
             <button class="btn btn-lg btn-primary btn-block">Sign in</button>
           </form>
-        </panel>
-      </div>
-    </row>
+        </div>
+      </bs-col>
+    </row> -->
     <row>
-      <div class="col-md-8 col-md-offset-2">
-        <panel id="login-panel-3rd" :options="{haveHeading:true}">
+      asdfasdfas
+      <bs-col :options="colOptions">
+        <div id="login-panel-3rd" :options="{haveHeading:true}">
           <template slot="heading">
             目前没开发注册功能，只能GitHub账号登录
           </template>
+          asdfasdfas
           <section class="logo-wrapper">
             <a href="javascript:void(0)" class="btn btn-default raised circle github-logo" @click="getAuthorization">
             </a>
           </section>
-        </panel>
-      </div>
+          asdfasdfas
+        </div>
+      </bs-col>
     </row>
-  </container> -->
+  </container>
 </template>
 
 <script>
+import { Layout } from "@cpms";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -71,9 +76,15 @@ export default {
   },
   created() {},
   mounted() {},
-  components: {},
   data() {
-    return {};
+    return {
+      colOptions: {
+        sm: {
+          colspan: 8,
+          offset: 2
+        }
+      }
+    };
   },
   computed: {
     ...mapGetters(["userInfo", "redirectUri", "clientId", "githubAuthorizeUrl"])
@@ -87,6 +98,11 @@ export default {
       console.log(event);
       location.href = this.githubAuthorizeUrl;
     }
+  },
+  components: {
+    container: Layout.Container,
+    row: Layout.Row,
+    "bs-col": Layout.Col
   }
 };
 </script>

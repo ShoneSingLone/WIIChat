@@ -30,9 +30,14 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 ## 概要设计
 
+- 组件首字母大写、驼峰
+
 ## 详细设计
 
 ## 实现
+
+- UI 使用 `npm install @material -D`
+  - material design component 的layout使用grid，采用的是Bootstrap的container row cell 系统
 
 panel 用了 md 的 btn
 

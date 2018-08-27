@@ -20,7 +20,6 @@ if (process.env.NODE_ENV === 'production') {
   baseUrl = '/brumaire/';
 } else {
   // process.env.NODE_ENV: development
-
 }
 
 module.exports = {
@@ -35,10 +34,11 @@ module.exports = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@n': resolve('./node_modules'),
-        '@cb': resolve('./src/components/Bootstrap'),
-        '@cm': resolve('./src/components/MD'),
-        '@material': resolve('./src/components/@material'),
+        '@bs': resolve('./src/components/Bootstrap'),
+        '@md': resolve('./src/components/MD'),
+        '@material': resolve('./src/components/material'),
         '@cube': resolve('./src/components/cube-ui/src'),
+        '@cpms': resolve('./src/components/'),
         '@m': resolve('./modules')
       }
     },

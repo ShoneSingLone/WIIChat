@@ -1,23 +1,39 @@
 <template>
   <container>
     <row>
-      <div class="col-md-8 col-md-offset-2">
-        <panel id="login-panel">
+      <bs-col :options="{
+        sm: {
+          colspan: 8,
+          offset: 2
+        }
+      }">
+        <div id="login-div">
           <section class="header">
             <h1>{{msg}}</h1>
           </section>
-        </panel>
-      </div>
+        </div>
+      </bs-col>
 
     </row>
   </container>
 </template>
 
 <script>
-import { container, row, panel } from "@cb";
+import { Layout } from "@cpms";
 
 export default {
   name: "error",
+  metaInfo: {
+    title: "Error",
+    titleTemplate: "%s",
+    meta: [
+      { name: "keywords", content: "" },
+      {
+        name: "description",
+        content: ""
+      }
+    ]
+  },
   beforeRouteEnter: (to, from, next) => {
     let { query, params } = to;
     console.log(" query, params ", query, params);
@@ -27,20 +43,21 @@ export default {
       return next({ name: "checkout", params: { code } });
     next(vm => {
       vm.msg = query.msg;
+      setTimeout(() => {
+        vm.$router.push({ name: "login" });
+      }, 1000 * 5);
     });
   },
   mounted() {
-    setTimeout(() => {
-      this.$router.push({ name: "login" });
-    }, 1000 * 3);
+    console.log("Error mounted");
   },
   data() {
     return { msg: "" };
   },
   components: {
-    container,
-    row,
-    panel
+    container: Layout.Container,
+    row: Layout.Row,
+    "bs-col": Layout.Col
   }
 };
 </script>
