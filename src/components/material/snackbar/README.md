@@ -32,7 +32,7 @@ Snackbars provide brief messages about app processes at the bottom of the screen
 ## Installation
 
 ```
-npm install @material/snackbar
+npm install ../snackbar
 ```
 
 ## Usage
@@ -78,7 +78,7 @@ messages with optional action.
 ##### ES2015
 
 ```javascript
-import {MDCSnackbar, MDCSnackbarFoundation} from '@material/snackbar';
+import {MDCSnackbar, MDCSnackbarFoundation} from '../snackbar';
 ```
 
 ##### CommonJS
@@ -119,7 +119,7 @@ mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
 Snackbars can easily be initialized using their default constructors as well, similar to `attachTo`.
 
 ```javascript
-import {MDCSnackbar} from '@material/snackbar';
+import {MDCSnackbar} from '../snackbar';
 
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 ```
@@ -162,7 +162,7 @@ To respond to a snackbar action, assign a function to the optional `actionHandle
 ```
 
 ```js
-import {MDCSnackbar} from '@material/snackbar';
+import {MDCSnackbar} from '../snackbar';
 
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 const dataObj = {

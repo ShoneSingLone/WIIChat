@@ -1,15 +1,15 @@
 {
-  "_from": "@material/switch@^0.38.1",
-  "_id": "@material/switch@0.38.1",
+  "_from": "../switch@^0.38.1",
+  "_id": "../switch@0.38.1",
   "_inBundle": false,
   "_integrity": "sha512-8Azym74vsSv0EGXo4hKSagaPYqme0hw5cxzuXIVjmHojVAZhOLzUXTiSBXDwi3Lq8cyGvfqBebH7fEpZQ8II2A==",
-  "_location": "/@material/switch",
+  "_location": "/../switch",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/switch@^0.38.1",
-    "name": "@material/switch",
+    "raw": "../switch@^0.38.1",
+    "name": "../switch",
     "escapedName": "@material%2fswitch",
     "scope": "@material",
     "rawSpec": "^0.38.1",
@@ -19,9 +19,9 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/switch/-/switch-0.38.1.tgz",
+  "_resolved": "https://registry.npmjs.org/../switch/-/switch-0.38.1.tgz",
   "_shasum": "50889216ae473b5d9b048a1ae7185346b02f8581",
-  "_spec": "@material/switch@^0.38.1",
+  "_spec": "../switch@^0.38.1",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -29,11 +29,11 @@
   "bundleDependencies": false,
   "dependencies": {
     "../animation": "^0.34.0",
-    "@material/base": "^0.35.0",
-    "@material/elevation": "^0.38.0",
-    "@material/ripple": "^0.38.1",
-    "@material/rtl": "^0.36.0",
-    "@material/selection-control": "^0.38.1",
+    "../base": "^0.35.0",
+    "../elevation": "^0.38.0",
+    "../ripple": "^0.38.1",
+    "../rtl": "^0.36.0",
+    "../selection-control": "^0.38.1",
     "../theme": "^0.38.0"
   },
   "deprecated": false,
@@ -46,7 +46,7 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "@material/switch",
+  "name": "../switch",
   "publishConfig": {
     "access": "public"
   },

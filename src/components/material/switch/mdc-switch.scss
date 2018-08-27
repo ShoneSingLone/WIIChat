@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-@import "@material/elevation/mixins";
-@import "@material/rtl/mixins";
-@import "@material/ripple/common";
-@import "@material/ripple/mixins";
+@import "../elevation/mixins";
+@import "../rtl/mixins";
+@import "../ripple/common";
+@import "../ripple/mixins";
 @import "./functions";
 @import "./mixins";
 @import "./variables";

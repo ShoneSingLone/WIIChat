@@ -18,8 +18,8 @@
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /* eslint-disable no-unused-vars */
-import {MDCTabDimensions} from '@material/tab/adapter';
-import {MDCTab} from '@material/tab/index';
+import {MDCTabDimensions} from '../tab/adapter';
+import {MDCTab} from '../tab/index';
 /* eslint-enable no-unused-vars */
 
 /**

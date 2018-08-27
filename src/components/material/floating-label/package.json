@@ -1,15 +1,15 @@
 {
-  "_from": "@material/floating-label@^0.38.0",
-  "_id": "@material/floating-label@0.38.0",
+  "_from": "../floating-label@^0.38.0",
+  "_id": "../floating-label@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-ga+7ELYrkiRYMHqkLOnCKaQUvGowMYXqML3I7hBhs3eEchTjx42U7bfTSqbfdiNG1F9+cOcSOWTKug2VOkYlkg==",
-  "_location": "/@material/floating-label",
+  "_location": "/../floating-label",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/floating-label@^0.38.0",
-    "name": "@material/floating-label",
+    "raw": "../floating-label@^0.38.0",
+    "name": "../floating-label",
     "escapedName": "@material%2ffloating-label",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -17,23 +17,23 @@
     "fetchSpec": "^0.38.0"
   },
   "_requiredBy": [
-    "/@material/select",
-    "/@material/textfield",
+    "/../select",
+    "/../textfield",
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/floating-label/-/floating-label-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../floating-label/-/floating-label-0.38.0.tgz",
   "_shasum": "557771f8b9d05d0cd7ec6b3bb13ebb0d24d65ab5",
-  "_spec": "@material/floating-label@^0.38.0",
+  "_spec": "../floating-label@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@material/base": "^0.35.0",
-    "@material/rtl": "^0.36.0",
+    "../base": "^0.35.0",
+    "../rtl": "^0.36.0",
     "../theme": "^0.38.0",
-    "@material/typography": "^0.38.0"
+    "../typography": "^0.38.0"
   },
   "deprecated": false,
   "description": "The Material Components for the web floating-label component",
@@ -46,7 +46,7 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "@material/floating-label",
+  "name": "../floating-label",
   "publishConfig": {
     "access": "public"
   },

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <md-button @click.native="to" :data-src="transitionName">{{transitionName}}</md-button>
+    <!-- <mdc-button @click.native="to" :data-src="transitionName">{{transitionName}}</mdc-button> -->
     <transition :name="transitionName">
       <keep-alive>
         <router-view></router-view>
@@ -59,7 +59,7 @@ export default {
     }
   },
   components: {
-    "md-button": Button
+    "mdc-button": Button
   }
 };
 </script>
@@ -74,6 +74,6 @@ body,
   font-size: 16px;
 }
 * {
-  outline: 1px solid rebeccapurple;
+  // outline: 1px solid rebeccapurple;
 }
 </style>

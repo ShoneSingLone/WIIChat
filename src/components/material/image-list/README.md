@@ -33,7 +33,7 @@ each containing an image and optionally supporting content (i.e. a text label).
 ## Installation
 
 ```
-npm install @material/image-list
+npm install ../image-list
 ```
 
 ## Basic Usage
@@ -59,7 +59,7 @@ The HTML structure for a Standard Image List is as follows:
 ### Styles
 
 ```scss
-@import "@material/image-list/mdc-image-list";
+@import "../image-list/mdc-image-list";
 ```
 
 The HTML structure above would be combined with an invocation of the `mdc-image-list-standard-columns` mixin,

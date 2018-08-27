@@ -34,7 +34,7 @@ Shadows provide important visual cues about objects’ depth and directional mov
 ## Installation
 
 ```
-npm install @material/elevation
+npm install ../elevation
 ```
 
 ## Usage

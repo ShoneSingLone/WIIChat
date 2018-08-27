@@ -12,3 +12,5 @@ export const Button = () =>
     import ( /* webpackChunkName: "mdc-button" */ './material/button/')
 export const Card = () =>
     import ( /* webpackChunkName: "mdc-card" */ './material/card/')
+export const Textfield = () =>
+    import ( /* webpackChunkName: "mdc-textfield" */ './material/textfield/index.vue')

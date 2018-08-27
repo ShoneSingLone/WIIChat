@@ -1,47 +1,44 @@
 <template>
 
   <container>
-    <!-- <row>
-      <bs-col :options="colOptions">
-        <div id="login-panel">
-          <section class="header">
-            <h1>Brumaire</h1>
-          </section>
-          <form class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <div class="line"></div>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-            <div class="line"></div>
-            <button class="btn btn-lg btn-primary btn-block">Sign in</button>
-          </form>
-        </div>
-      </bs-col>
-    </row> -->
     <row>
-      asdfasdfas
       <bs-col :options="colOptions">
-        <div id="login-panel-3rd" :options="{haveHeading:true}">
-          <template slot="heading">
-            目前没开发注册功能，只能GitHub账号登录
-          </template>
-          asdfasdfas
-          <section class="logo-wrapper">
-            <a href="javascript:void(0)" class="btn btn-default raised circle github-logo" @click="getAuthorization">
-            </a>
+        <card :options="{
+
+        }" id="login-card">
+          <section class="header">
+            <h1 class="title">Brumaire</h1>
           </section>
-          asdfasdfas
-        </div>
+          <sigin-form></sigin-form>
+        </card>
+      </bs-col>
+    </row>
+    <row>
+      <bs-col :options="colOptions">
+        <card id="login-card-3rd">
+          <div class="logo-wrapper">
+            <mdc-button class="github-logo button--raised" @click.native="clickSuccess"></mdc-button>
+          </div>
+        </card>
       </bs-col>
     </row>
   </container>
 </template>
 
 <script>
-import { Layout } from "@cpms";
+import { Layout, Card, Button } from "@cpms";
+import SigIn from "./SigIn";
+
 import { mapGetters, mapActions } from "vuex";
+
+let components = {
+  container: Layout.Container,
+  row: Layout.Row,
+  "bs-col": Layout.Col,
+  Card,
+  "sigin-form": SigIn,
+  "mdc-button": Button
+};
 
 export default {
   name: "login",
@@ -97,43 +94,57 @@ export default {
     async getAuthorization(event) {
       console.log(event);
       location.href = this.githubAuthorizeUrl;
+    },
+    clickSuccess() {
+      console.log("getAuthorization");
     }
   },
-  components: {
-    container: Layout.Container,
-    row: Layout.Row,
-    "bs-col": Layout.Col
-  }
+  components
 };
 </script>
 
 <style lang="scss" scoped>
-#login-panel {
+#login-card {
   margin-top: 3rem;
+  padding: 1rem;
   .header {
+    position: relative;
     // outline: 1px solid rebeccapurple;
     text-align: center;
-    width: 150px;
-    height: 150px;
+    width: 12rem;
+    height: 12rem;
     margin: 1rem auto 0;
-    padding-top: 74px;
+    // padding-top: 74px;
     fill: currentColor;
     background: url("./logo.svg") top center / 10rem 10rem no-repeat;
-  }
-  .line {
-    height: 1rem;
+    .title {
+      position: absolute;
+      bottom: 0;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
-
-#login-panel-3rd {
+.middle {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+#login-card-3rd {
+  // outline: 1px solid red;
+  position: relative;
   text-align: left;
+  height: 10rem;
+  padding: 2rem;
   .logo-wrapper {
+    // outline: 1px solid blue;
     text-align: center;
     .github-logo {
-      // outline: 1px solid rebeccapurple;
+      // outline: 1px solid chocolate;
+      display: inline-block;
       height: 6rem;
       width: 6rem;
-      background: url("./github.svg") center center / 5rem 5rem no-repeat;
+      background: url("./github.svg") center center / cover no-repeat;
+      border-radius: 50%;
     }
   }
 }

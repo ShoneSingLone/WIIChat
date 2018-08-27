@@ -1,15 +1,15 @@
 {
-  "_from": "@material/linear-progress@^0.38.0",
-  "_id": "@material/linear-progress@0.38.0",
+  "_from": "../linear-progress@^0.38.0",
+  "_id": "../linear-progress@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-fu9w3RjoFrEJ3Ky9tz/E1wkL9bfh2zVRHJWPHDLIx/uos49994OV8BbvefqtS1//Poi25KfXx9GKiXQteOO02Q==",
-  "_location": "/@material/linear-progress",
+  "_location": "/../linear-progress",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/linear-progress@^0.38.0",
-    "name": "@material/linear-progress",
+    "raw": "../linear-progress@^0.38.0",
+    "name": "../linear-progress",
     "escapedName": "@material%2flinear-progress",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -19,9 +19,9 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/linear-progress/-/linear-progress-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../linear-progress/-/linear-progress-0.38.0.tgz",
   "_shasum": "a18b2ffc95dfbd7b830aa72ec05bedc393e415f6",
-  "_spec": "@material/linear-progress@^0.38.0",
+  "_spec": "../linear-progress@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -29,7 +29,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "../animation": "^0.34.0",
-    "@material/base": "^0.35.0",
+    "../base": "^0.35.0",
     "../theme": "^0.38.0"
   },
   "deprecated": false,
@@ -41,7 +41,7 @@
     "linear progress"
   ],
   "license": "Apache-2.0",
-  "name": "@material/linear-progress",
+  "name": "../linear-progress",
   "publishConfig": {
     "access": "public"
   },

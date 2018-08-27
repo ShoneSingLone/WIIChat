@@ -1,15 +1,15 @@
 {
-  "_from": "@material/notched-outline@^0.38.0",
-  "_id": "@material/notched-outline@0.38.0",
+  "_from": "../notched-outline@^0.38.0",
+  "_id": "../notched-outline@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-XDTVXyQ2TR/9Qa66F1UYBSbf5f0IVFJFjiF8TXyIkoqrP6l7Wauj+UvJpinwCPk/6KoZtj29sh6ToGQiHdVIJA==",
-  "_location": "/@material/notched-outline",
+  "_location": "/../notched-outline",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/notched-outline@^0.38.0",
-    "name": "@material/notched-outline",
+    "raw": "../notched-outline@^0.38.0",
+    "name": "../notched-outline",
     "escapedName": "@material%2fnotched-outline",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -17,13 +17,13 @@
     "fetchSpec": "^0.38.0"
   },
   "_requiredBy": [
-    "/@material/select",
-    "/@material/textfield",
+    "/../select",
+    "/../textfield",
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/notched-outline/-/notched-outline-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../notched-outline/-/notched-outline-0.38.0.tgz",
   "_shasum": "75ae05a79cdd6a3761d8ddf3afd763c1450c22c8",
-  "_spec": "@material/notched-outline@^0.38.0",
+  "_spec": "../notched-outline@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -31,7 +31,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "../animation": "^0.34.0",
-    "@material/base": "^0.35.0",
+    "../base": "^0.35.0",
     "../theme": "^0.38.0"
   },
   "deprecated": false,
@@ -45,7 +45,7 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "@material/notched-outline",
+  "name": "../notched-outline",
   "publishConfig": {
     "access": "public"
   },

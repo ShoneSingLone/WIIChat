@@ -13,13 +13,13 @@
 // limitations under the License.
 
 @import "../animation/functions";
-@import "@material/elevation/mixins";
-@import "@material/elevation/variables";
-@import "@material/ripple/mixins";
-@import "@material/ripple/variables";
+@import "../elevation/mixins";
+@import "../elevation/variables";
+@import "../ripple/mixins";
+@import "../ripple/variables";
 @import "../theme/functions";
 @import "../theme/mixins";
-@import "@material/rtl/mixins";
+@import "../rtl/mixins";
 @import "./variables";
 
 @mixin mdc-fab-accessible($container-color) {

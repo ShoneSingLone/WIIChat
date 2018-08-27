@@ -1,15 +1,15 @@
 {
-  "_from": "@material/menu@^0.38.0",
-  "_id": "@material/menu@0.38.0",
+  "_from": "../menu@^0.38.0",
+  "_id": "../menu@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-dq+ZoyxaBBk/J+TCQJ5GQM73GEYLiKJD+M+Ub1WMbgKUb7WQhQuhgVB51YJEcCL8grzEosnbK51SgnyuXODKKg==",
-  "_location": "/@material/menu",
+  "_location": "/../menu",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/menu@^0.38.0",
-    "name": "@material/menu",
+    "raw": "../menu@^0.38.0",
+    "name": "../menu",
     "escapedName": "@material%2fmenu",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -19,9 +19,9 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/menu/-/menu-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../menu/-/menu-0.38.0.tgz",
   "_shasum": "648ced4184ee72940712d4e5a0255b1f5e3cf4b4",
-  "_spec": "@material/menu@^0.38.0",
+  "_spec": "../menu@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -29,10 +29,10 @@
   "bundleDependencies": false,
   "dependencies": {
     "../animation": "^0.34.0",
-    "@material/base": "^0.35.0",
-    "@material/elevation": "^0.38.0",
+    "../base": "^0.35.0",
+    "../elevation": "^0.38.0",
     "../theme": "^0.38.0",
-    "@material/typography": "^0.38.0"
+    "../typography": "^0.38.0"
   },
   "deprecated": false,
   "description": "The Material Components for the web menu component",
@@ -44,7 +44,7 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "@material/menu",
+  "name": "../menu",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/material-components/material-components-web.git"

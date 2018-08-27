@@ -18,7 +18,7 @@
 @import "../animation/variables";
 @import "../theme/mixins";
 @import "../theme/variables";
-@import "@material/typography/mixins";
+@import "../typography/mixins";
 
 @mixin mdc-drawer-toolbar-spacer_() {
   .mdc-drawer__toolbar-spacer {

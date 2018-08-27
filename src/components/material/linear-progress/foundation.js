@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {MDCFoundation} from '@material/base/index';
+import {MDCFoundation} from '../base/index';
 import {transformStyleProperties} from '../animation/index';
 
 import {cssClasses, strings} from './constants';

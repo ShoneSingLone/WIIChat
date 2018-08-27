@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '@material/base/index';
+import {MDCComponent} from '../base/index';
 
 import MDCGridListFoundation from './foundation';
 

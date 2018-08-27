@@ -15,12 +15,12 @@
 //
 
 @import "../animation/functions";
-@import "@material/checkbox/functions";
-@import "@material/checkbox/variables";
-@import "@material/ripple/common";
-@import "@material/ripple/mixins";
+@import "../checkbox/functions";
+@import "../checkbox/variables";
+@import "../ripple/common";
+@import "../ripple/mixins";
 @import "../theme/mixins";
-@import "@material/typography/mixins";
+@import "../typography/mixins";
 @import "../mixins";
 @import "../variables";
 

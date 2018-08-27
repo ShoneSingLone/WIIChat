@@ -1,17 +1,19 @@
 <template>
-    <transition>
-    </transition>
+  <transition>
+    
+  </transition>
 </template>
 
 <script>
+let components = {};
 export default {
   name: "",
-  components: {},
   data() {
     return {};
   },
   computed: {},
-  methods: {}
+  methods: {},
+  components
 };
 </script>
 

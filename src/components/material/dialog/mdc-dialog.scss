@@ -15,11 +15,11 @@
 //
 
 @import "../animation/functions";
-@import "@material/elevation/mixins";
+@import "../elevation/mixins";
 @import "../theme/mixins";
-@import "@material/rtl/mixins";
-@import "@material/typography/mixins";
-@import "@material/typography/variables";
+@import "../rtl/mixins";
+@import "../typography/mixins";
+@import "../typography/variables";
 
 // postcss-bem-linter: define dialog
 

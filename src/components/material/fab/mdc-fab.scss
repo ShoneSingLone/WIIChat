@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@import "@material/ripple/common";
-@import "@material/ripple/mixins";
-@import "@material/ripple/variables";
-@import "@material/typography/mixins";
+@import "../ripple/common";
+@import "../ripple/mixins";
+@import "../ripple/variables";
+@import "../typography/mixins";
 @import "./mixins";
 
 // postcss-bem-linter: define fab

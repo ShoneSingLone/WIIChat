@@ -32,13 +32,13 @@ Floating labels display the type of input a field requires. Every Text Field and
 ### Styles
 
 ```scss
-@import "@material/floating-label/mdc-floating-label";
+@import "../floating-label/mdc-floating-label";
 ```
 
 ### JavaScript Instantiation
 
 ```js
-import {MDCFloatingLabel} from '@material/floating-label';
+import {MDCFloatingLabel} from '../floating-label';
 
 const floatingLabel = new MDCFloatingLabel(document.querySelector('.mdc-floating-label'));
 ```

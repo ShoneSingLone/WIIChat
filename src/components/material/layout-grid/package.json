@@ -1,15 +1,15 @@
 {
-  "_from": "@material/layout-grid@^0.34.0",
-  "_id": "@material/layout-grid@0.34.0",
+  "_from": "../layout-grid@^0.34.0",
+  "_id": "../layout-grid@0.34.0",
   "_inBundle": false,
   "_integrity": "sha512-LJ3LHCumfGftl1ihO0LW9JKsnR71nnlvpzhHdUlK6o1GPul+EEUUdOFN1zxI+Ik9iS++1na/Dg8f/1sdQUxj6w==",
-  "_location": "/@material/layout-grid",
+  "_location": "/../layout-grid",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/layout-grid@^0.34.0",
-    "name": "@material/layout-grid",
+    "raw": "../layout-grid@^0.34.0",
+    "name": "../layout-grid",
     "escapedName": "@material%2flayout-grid",
     "scope": "@material",
     "rawSpec": "^0.34.0",
@@ -19,9 +19,9 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/layout-grid/-/layout-grid-0.34.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../layout-grid/-/layout-grid-0.34.0.tgz",
   "_shasum": "f730bdd962401b691ab7538e7d2b4d91764f4052",
-  "_spec": "@material/layout-grid@^0.34.0",
+  "_spec": "../layout-grid@^0.34.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -37,7 +37,7 @@
     "layout"
   ],
   "license": "Apache-2.0",
-  "name": "@material/layout-grid",
+  "name": "../layout-grid",
   "publishConfig": {
     "access": "public"
   },

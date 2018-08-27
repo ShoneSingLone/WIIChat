@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import MDCComponent from '../base/component';
+import MDCComponent from '@material/base/component';
 import MDCRippleAdapter from './adapter';
 import MDCRippleFoundation from './foundation';
 import * as util from './util';

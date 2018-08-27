@@ -15,7 +15,7 @@
 @import "./mixins";
 @import "./variables";
 @import "../theme/mixins";
-@import "@material/typography/mixins";
+@import "../typography/mixins";
 
 .mdc-image-list {
   display: flex;

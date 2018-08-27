@@ -28,7 +28,7 @@ user interaction.
 ## Installation
 
 ```
-npm install @material/drawer
+npm install ../drawer
 ```
 
 ## Permanent drawer usage
@@ -160,7 +160,7 @@ correct drawer behaviors into idiomatic components.
 ##### ES2015
 
 ```javascript
-import {MDCPersistentDrawer, MDCPersistentDrawerFoundation, util} from '@material/drawer';
+import {MDCPersistentDrawer, MDCPersistentDrawerFoundation, util} from '../drawer';
 ```
 
 ##### CommonJS
@@ -204,7 +204,7 @@ mdc.drawer.MDCPersistentDrawer.attachTo(document.querySelector('.mdc-drawer--per
 Persistent drawers can easily be initialized using their default constructors as well, similar to `attachTo`.
 
 ```javascript
-import {MDCPersistentDrawer} from '@material/drawer';
+import {MDCPersistentDrawer} from '../drawer';
 
 const drawer = new MDCPersistentDrawer(document.querySelector('.mdc-drawer--persistent'));
 ```
@@ -351,7 +351,7 @@ correct drawer behaviors into idiomatic components.
 ##### ES2015
 
 ```javascript
-import {MDCTemporaryDrawer, MDCTemporaryDrawerFoundation, util} from '@material/drawer';
+import {MDCTemporaryDrawer, MDCTemporaryDrawerFoundation, util} from '../drawer';
 ```
 
 ##### CommonJS
@@ -395,7 +395,7 @@ mdc.drawer.MDCTemporaryDrawer.attachTo(document.querySelector('.mdc-drawer--temp
 Temporary drawers can easily be initialized using their default constructors as well, similar to `attachTo`.
 
 ```javascript
-import {MDCTemporaryDrawer} from '@material/drawer';
+import {MDCTemporaryDrawer} from '../drawer';
 
 const drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
 ```

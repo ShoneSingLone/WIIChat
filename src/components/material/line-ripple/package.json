@@ -1,15 +1,15 @@
 {
-  "_from": "@material/line-ripple@^0.38.0",
-  "_id": "@material/line-ripple@0.38.0",
+  "_from": "../line-ripple@^0.38.0",
+  "_id": "../line-ripple@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-HdfU0J1Q3CT2Z/H4aBEKGRTd7K33WhhQkieI4NGGyKSx4uwiRyr61i44Oo+YHK+fVqPjh+aMSjQU3wAfu3vSvA==",
-  "_location": "/@material/line-ripple",
+  "_location": "/../line-ripple",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/line-ripple@^0.38.0",
-    "name": "@material/line-ripple",
+    "raw": "../line-ripple@^0.38.0",
+    "name": "../line-ripple",
     "escapedName": "@material%2fline-ripple",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -17,13 +17,13 @@
     "fetchSpec": "^0.38.0"
   },
   "_requiredBy": [
-    "/@material/select",
-    "/@material/textfield",
+    "/../select",
+    "/../textfield",
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/line-ripple/-/line-ripple-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../line-ripple/-/line-ripple-0.38.0.tgz",
   "_shasum": "e70fec82bfd0b718efcbc72c52210e45bd31bcf9",
-  "_spec": "@material/line-ripple@^0.38.0",
+  "_spec": "../line-ripple@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -31,7 +31,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "../animation": "^0.34.0",
-    "@material/base": "^0.35.0",
+    "../base": "^0.35.0",
     "../theme": "^0.38.0"
   },
   "deprecated": false,
@@ -45,7 +45,7 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "@material/line-ripple",
+  "name": "../line-ripple",
   "publishConfig": {
     "access": "public"
   },

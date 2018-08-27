@@ -1,15 +1,15 @@
 {
-  "_from": "@material/list@^0.38.1",
-  "_id": "@material/list@0.38.1",
+  "_from": "../list@^0.38.1",
+  "_id": "../list@0.38.1",
   "_inBundle": false,
   "_integrity": "sha512-by19/KoEqAESGLTC8FuiClsHz7SUUCk9u7vWaQ23NSznMfabG/kBpf82WZfgJcUvCodNQyNSmFuxVkFttd6crg==",
-  "_location": "/@material/list",
+  "_location": "/../list",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/list@^0.38.1",
-    "name": "@material/list",
+    "raw": "../list@^0.38.1",
+    "name": "../list",
     "escapedName": "@material%2flist",
     "scope": "@material",
     "rawSpec": "^0.38.1",
@@ -19,20 +19,20 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/list/-/list-0.38.1.tgz",
+  "_resolved": "https://registry.npmjs.org/../list/-/list-0.38.1.tgz",
   "_shasum": "9ae3cb5f1cf2e55bd093581be8c6090044fd4d0c",
-  "_spec": "@material/list@^0.38.1",
+  "_spec": "../list@^0.38.1",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@material/base": "^0.35.0",
-    "@material/ripple": "^0.38.1",
-    "@material/rtl": "^0.36.0",
+    "../base": "^0.35.0",
+    "../ripple": "^0.38.1",
+    "../rtl": "^0.36.0",
     "../theme": "^0.38.0",
-    "@material/typography": "^0.38.0"
+    "../typography": "^0.38.0"
   },
   "deprecated": false,
   "description": "The Material Components for the web list component",
@@ -43,7 +43,7 @@
     "list"
   ],
   "license": "Apache-2.0",
-  "name": "@material/list",
+  "name": "../list",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/material-components/material-components-web.git"

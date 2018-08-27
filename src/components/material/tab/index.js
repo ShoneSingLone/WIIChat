@@ -18,8 +18,8 @@
 import MDCComponent from '@material/base/component';
 
 /* eslint-disable no-unused-vars */
-import {MDCRipple, MDCRippleFoundation, RippleCapableSurface} from '@material/ripple/index';
-import {MDCTabIndicator, MDCTabIndicatorFoundation} from '@material/tab-indicator/index';
+import {MDCRipple, MDCRippleFoundation, RippleCapableSurface} from '../ripple/index';
+import {MDCTabIndicator, MDCTabIndicatorFoundation} from '../tab-indicator/index';
 import {MDCTabAdapter, MDCTabDimensions} from './adapter';
 /* eslint-enable no-unused-vars */
 

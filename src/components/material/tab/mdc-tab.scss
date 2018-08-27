@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-@import "@material/ripple/common";
-@import "@material/ripple/mixins";
-@import "@material/rtl/mixins";
-@import "@material/typography/mixins";
-@import "@material/tab-indicator/mixins";
+@import "../ripple/common";
+@import "../ripple/mixins";
+@import "../rtl/mixins";
+@import "../typography/mixins";
+@import "../tab-indicator/mixins";
 @import "./mixins";
 @import "./variables";
 

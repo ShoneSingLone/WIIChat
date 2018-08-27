@@ -26,7 +26,7 @@ Each Tab governs the visibility of one group of content.
 ## Installation
 
 ```
-npm install @material/tab
+npm install ../tab
 ```
 
 ## Basic Usage
@@ -49,13 +49,13 @@ npm install @material/tab
 ### Styles
 
 ```scss
-@import "@material/tab/mdc-tab";
+@import "../tab/mdc-tab";
 ```
 
 ### JavaScript Instantiation
 
 ```js
-import {MDCTab} from '@material/tab';
+import {MDCTab} from '../tab';
 
 const tab = new MDCTab(document.querySelector('.mdc-tab'));
 ```

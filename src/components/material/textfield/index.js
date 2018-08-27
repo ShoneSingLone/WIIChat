@@ -17,20 +17,20 @@
 
 import MDCComponent from '@material/base/component';
 /* eslint-disable no-unused-vars */
-import {MDCRipple, MDCRippleFoundation, RippleCapableSurface} from '@material/ripple/index';
+import {MDCRipple, MDCRippleFoundation, RippleCapableSurface} from '../ripple/index';
 /* eslint-enable no-unused-vars */
-import {getMatchesProperty} from '@material/ripple/util';
+import {getMatchesProperty} from '../ripple/util';
 
 
 import {cssClasses, strings} from './constants';
 import {MDCTextFieldAdapter, FoundationMapType} from './adapter';
 import MDCTextFieldFoundation from './foundation';
 /* eslint-disable no-unused-vars */
-import {MDCLineRipple, MDCLineRippleFoundation} from '@material/line-ripple/index';
+import {MDCLineRipple, MDCLineRippleFoundation} from '../line-ripple/index';
 import {MDCTextFieldHelperText, MDCTextFieldHelperTextFoundation} from './helper-text/index';
 import {MDCTextFieldIcon, MDCTextFieldIconFoundation} from './icon/index';
-import {MDCFloatingLabel, MDCFloatingLabelFoundation} from '@material/floating-label/index';
-import {MDCNotchedOutline, MDCNotchedOutlineFoundation} from '@material/notched-outline/index';
+import {MDCFloatingLabel, MDCFloatingLabelFoundation} from '../floating-label/index';
+import {MDCNotchedOutline, MDCNotchedOutlineFoundation} from '../notched-outline/index';
 /* eslint-enable no-unused-vars */
 
 /**

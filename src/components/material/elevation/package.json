@@ -1,15 +1,15 @@
 {
-  "_from": "@material/elevation@^0.38.0",
-  "_id": "@material/elevation@0.38.0",
+  "_from": "../elevation@^0.38.0",
+  "_id": "../elevation@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-uceP/4qL6U1cyY4mc/CHF6msceQwICAt2LD+hTAEKFTTFSLNsvZxqB+Oa7Yq7O5Wl9iBt2RAHtCiT5R/ACUa2Q==",
-  "_location": "/@material/elevation",
+  "_location": "/../elevation",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/elevation@^0.38.0",
-    "name": "@material/elevation",
+    "raw": "../elevation@^0.38.0",
+    "name": "../elevation",
     "escapedName": "@material%2felevation",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -17,21 +17,21 @@
     "fetchSpec": "^0.38.0"
   },
   "_requiredBy": [
-    "/@material/button",
-    "/@material/card",
-    "/@material/dialog",
-    "/@material/drawer",
-    "/@material/fab",
-    "/@material/menu",
-    "/@material/switch",
-    "/@material/tab-bar",
-    "/@material/toolbar",
-    "/@material/top-app-bar",
+    "/../button",
+    "/../card",
+    "/../dialog",
+    "/../drawer",
+    "/../fab",
+    "/../menu",
+    "/../switch",
+    "/../tab-bar",
+    "/../toolbar",
+    "/../top-app-bar",
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/elevation/-/elevation-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../elevation/-/elevation-0.38.0.tgz",
   "_shasum": "c7f8d0c9a28073b0ec62cb76248b76d5ff467bf8",
-  "_spec": "@material/elevation@^0.38.0",
+  "_spec": "../elevation@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -50,7 +50,7 @@
     "elevation"
   ],
   "license": "Apache-2.0",
-  "name": "@material/elevation",
+  "name": "../elevation",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/material-components/material-components-web.git"

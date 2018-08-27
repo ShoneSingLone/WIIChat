@@ -1,15 +1,15 @@
 {
-  "_from": "@material/grid-list@^0.38.0",
-  "_id": "@material/grid-list@0.38.0",
+  "_from": "../grid-list@^0.38.0",
+  "_id": "../grid-list@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-F8hwlIIRlhGj93AWTPYOYT84YPDH6Z/3BB46tTI7SkLfmUns4klZmOKq/pY07PCHmDeg/6gyk9BKl1QTYT4tYA==",
-  "_location": "/@material/grid-list",
+  "_location": "/../grid-list",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/grid-list@^0.38.0",
-    "name": "@material/grid-list",
+    "raw": "../grid-list@^0.38.0",
+    "name": "../grid-list",
     "escapedName": "@material%2fgrid-list",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -19,19 +19,19 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/grid-list/-/grid-list-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../grid-list/-/grid-list-0.38.0.tgz",
   "_shasum": "221c22de7f553e1a6abe10ced570fd94511cb735",
-  "_spec": "@material/grid-list@^0.38.0",
+  "_spec": "../grid-list@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@material/base": "^0.35.0",
-    "@material/rtl": "^0.36.0",
+    "../base": "^0.35.0",
+    "../rtl": "^0.36.0",
     "../theme": "^0.38.0",
-    "@material/typography": "^0.38.0"
+    "../typography": "^0.38.0"
   },
   "deprecated": false,
   "description": "The Material Components for the web grid list component",
@@ -42,7 +42,7 @@
     "grid list"
   ],
   "license": "Apache-2.0",
-  "name": "@material/grid-list",
+  "name": "../grid-list",
   "publishConfig": {
     "access": "public"
   },

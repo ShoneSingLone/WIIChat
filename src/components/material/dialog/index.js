@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '@material/base/index';
-import {MDCRipple} from '@material/ripple/index';
+import {MDCComponent} from '../base/index';
+import {MDCRipple} from '../ripple/index';
 
 import MDCDialogFoundation from './foundation';
 import * as util from './util';

@@ -31,7 +31,7 @@ applying angled corners to unelevated surfaces.
 ## Installation
 
 ```
-npm install @material/shape
+npm install ../shape
 ```
 
 ## Basic Usage
@@ -59,7 +59,7 @@ unelevated component.
 ### Styles
 
 ```scss
-@import "@material/shape/mixins";
+@import "../shape/mixins";
 
 .my-shape-container {
   @include mdc-shape-angled-corner(#fff, 10px);
@@ -73,7 +73,7 @@ unelevated component.
 Outlined angled corners involve the same markup and styles as above, with the addition of including a mixin for outline:
 
 ```scss
-@import "@material/shape/mixins";
+@import "../shape/mixins";
 
 .my-shape-container {
   @include mdc-shape-angled-corner(#fff, 10px);

@@ -18,13 +18,13 @@
 @import "./mixins";
 @import "./variables";
 @import "../animation/variables";
-@import "@material/line-ripple/mdc-line-ripple";
-@import "@material/notched-outline/mdc-notched-outline";
-@import "@material/floating-label/mdc-floating-label";
-@import "@material/typography/mixins";
-@import "@material/ripple/common";
-@import "@material/ripple/mixins";
-@import "@material/rtl/mixins";
+@import "../line-ripple/mdc-line-ripple";
+@import "../notched-outline/mdc-notched-outline";
+@import "../floating-label/mdc-floating-label";
+@import "../typography/mixins";
+@import "../ripple/common";
+@import "../ripple/mixins";
+@import "../rtl/mixins";
 
 // postcss-bem-linter: define select
 .mdc-select {

@@ -15,11 +15,11 @@
 //
 
 @import "../animation/variables";
-@import "@material/base/mixins";
-@import "@material/rtl/mixins";
+@import "../base/mixins";
+@import "../rtl/mixins";
 @import "../theme/variables";
 @import "../theme/mixins";
-@import "@material/typography/mixins";
+@import "../typography/mixins";
 @import "./mixins";
 @import "./variables";
 

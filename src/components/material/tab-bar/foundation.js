@@ -21,8 +21,8 @@ import {strings, numbers} from './constants';
 import MDCTabBarAdapter from './adapter';
 
 /* eslint-disable no-unused-vars */
-import MDCTabFoundation from '@material/tab/foundation';
-import {MDCTabDimensions} from '@material/tab/adapter';
+import MDCTabFoundation from '../tab/foundation';
+import {MDCTabDimensions} from '../tab/adapter';
 /* eslint-enable no-unused-vars */
 
 /**

@@ -42,7 +42,7 @@ sliders used on the web, and thus have been endorsed by the Material Design team
 ## Installation
 
 ```
-npm install @material/slider
+npm install ../slider
 ```
 
 ## Usage
@@ -89,7 +89,7 @@ npm install @material/slider
 Then in JS
 
 ```js
-import {MDCSlider} from '@material/slider';
+import {MDCSlider} from '../slider';
 
 const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 slider.listen('MDCSlider:change', () => console.log(`Value changed to ${slider.value}`));
@@ -99,10 +99,10 @@ You can also include MDCSlider via its UMD version located at `dist/mdc.slider[.
 
 ```js
 // CommonJS
-const {MDCSlider} = require('@material/slider/dist/mdc.slider');
+const {MDCSlider} = require('../slider/dist/mdc.slider');
 
 // AMD
-require(['/path/to/@material/slider/dist/mdc.slider'], ({MDCSlider}) => {
+require(['/path/to/../slider/dist/mdc.slider'], ({MDCSlider}) => {
   // Use MDCSlider
 });
 
@@ -223,7 +223,7 @@ instance that was affected.
 
 ### Using the foundation class
 
-The `@material/slider` package ships with an `MDCSliderFoundation` class that framework authors can
+The `../slider` package ships with an `MDCSliderFoundation` class that framework authors can
 use to build a custom MDCSlider component for their framework.
 
 #### Adapter API

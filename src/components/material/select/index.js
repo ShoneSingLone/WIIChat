@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '@material/base/index';
-import {MDCFloatingLabel} from '@material/floating-label/index';
-import {MDCLineRipple} from '@material/line-ripple/index';
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple/index';
-import {MDCNotchedOutline} from '@material/notched-outline/index';
+import {MDCComponent} from '../base/index';
+import {MDCFloatingLabel} from '../floating-label/index';
+import {MDCLineRipple} from '../line-ripple/index';
+import {MDCRipple, MDCRippleFoundation} from '../ripple/index';
+import {MDCNotchedOutline} from '../notched-outline/index';
 
 import MDCSelectFoundation from './foundation';
 import MDCSelectAdapter from './adapter';

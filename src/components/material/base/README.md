@@ -17,7 +17,7 @@ Most of the time, you shouldn't need to depend on `mdc-base` directly. It is use
 First install the module:
 
 ```
-npm install @material/base
+npm install ../base
 ```
 
 Then include it in your code in one of the following ways:
@@ -25,7 +25,7 @@ Then include it in your code in one of the following ways:
 #### ES2015+
 
 ```javascript
-import {MDCComponent, MDCFoundation} from '@material/base';
+import {MDCComponent, MDCFoundation} from '../base';
 ```
 #### CommonJS
 
@@ -62,7 +62,7 @@ MDCFoundation provides the basic mechanisms for implementing foundation classes.
 - Provide `init()` and `destroy()` lifecycle methods
 
 ```javascript
-import {MDCFoundation} from '@material/base';
+import {MDCFoundation} from '../base';
 
 export default class MyFoundation extends MDCFoundation {
   static get cssClasses() {

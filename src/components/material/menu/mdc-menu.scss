@@ -15,10 +15,10 @@
 //
 
 @import "../animation/variables";
-@import "@material/elevation/mixins";
+@import "../elevation/mixins";
 @import "../theme/mixins";
 @import "../theme/variables";
-@import "@material/typography/mixins";
+@import "../typography/mixins";
 
 $mdc-menu-fade-in-duration: .03s;
 $mdc-menu-fade-out-duration: .075s;

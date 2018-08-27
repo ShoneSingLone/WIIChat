@@ -12,7 +12,7 @@ MDC Form Field aligns an MDC Web form field (for example, a checkbox) with its l
 ## Installation
 
 ```
-npm install @material/form-field
+npm install ../form-field
 ```
 
 ## Demos
@@ -48,8 +48,8 @@ Use the `mdc-form-field` element to wrap any combination of adjacent _input_ and
 If you are using MDC Form Field with an MDC Web component that has a [ripple](../mdc-ripple) effect, you can instantiate `MDCFormField` and set its [`input` property](#mdcformfield-properties-and-methods) to activate the ripple effect upon interacting with the label. Here is an example with [MDC Checkbox](../mdc-checkbox):
 
 ```js
-import {MDCFormField} from '@material/form-field';
-import {MDCCheckbox} from '@material/checkbox';
+import {MDCFormField} from '../form-field';
+import {MDCCheckbox} from '../checkbox';
 
 const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
 const checkbox = new MDCCheckbox(document.querySelector('.mdc-checkbox'));

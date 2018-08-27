@@ -15,8 +15,8 @@
 //
 
 @import "../theme/mixins";
-@import "@material/ripple/mixins";
-@import "@material/rtl/mixins";
+@import "../ripple/mixins";
+@import "../rtl/mixins";
 @import "./variables";
 
 @mixin mdc-switch-toggled-on-color($color) {

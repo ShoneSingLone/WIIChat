@@ -31,7 +31,7 @@ Lists are continuous, vertical indexes of text or images.
 
 ## Installation
 ```
-npm install @material/list
+npm install ../list
 ```
 
 ## Basic Usage

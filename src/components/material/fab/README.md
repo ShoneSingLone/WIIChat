@@ -32,7 +32,7 @@ A floating action button represents the primary action in an application.
 ## Installation
 
 ```
-npm install @material/fab
+npm install ../fab
 ```
 
 ## Basic Usage
@@ -62,7 +62,7 @@ We recommend you load [Material Icons](https://material.io/icons/) from Google F
 ### Styles
 
 ```scss
-@import "@material/fab/mdc-fab";
+@import "../fab/mdc-fab";
 ```
 
 ### JavaScript Instantiation
@@ -70,7 +70,7 @@ We recommend you load [Material Icons](https://material.io/icons/) from Google F
 The FAB will work without JavaScript, but you can enhance it to have a ripple effect by instantiating `MDCRipple` on the root element. See [MDC Ripple](../mdc-ripple) for details.
 
 ```js
-import {MDCRipple} from '@material/ripple';
+import {MDCRipple} from '../ripple';
 
 const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
 ```

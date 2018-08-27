@@ -1,15 +1,15 @@
 {
-  "_from": "@material/drawer@^0.38.0",
-  "_id": "@material/drawer@0.38.0",
+  "_from": "../drawer@^0.38.0",
+  "_id": "../drawer@0.38.0",
   "_inBundle": false,
   "_integrity": "sha512-fs+AVly2IUuuwjJWU/luXp/g1zacunLYz5635DWlomK8NkyBjPVnbjUhpdyF1sfDq+Rl1PT933jVPLWOi7VFXg==",
-  "_location": "/@material/drawer",
+  "_location": "/../drawer",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/drawer@^0.38.0",
-    "name": "@material/drawer",
+    "raw": "../drawer@^0.38.0",
+    "name": "../drawer",
     "escapedName": "@material%2fdrawer",
     "scope": "@material",
     "rawSpec": "^0.38.0",
@@ -19,9 +19,9 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/drawer/-/drawer-0.38.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../drawer/-/drawer-0.38.0.tgz",
   "_shasum": "06ba72afc92215d8a743b5fe554465ae12695ca2",
-  "_spec": "@material/drawer@^0.38.0",
+  "_spec": "../drawer@^0.38.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -29,11 +29,11 @@
   "bundleDependencies": false,
   "dependencies": {
     "../animation": "^0.34.0",
-    "@material/base": "^0.35.0",
-    "@material/elevation": "^0.38.0",
-    "@material/rtl": "^0.36.0",
+    "../base": "^0.35.0",
+    "../elevation": "^0.38.0",
+    "../rtl": "^0.36.0",
     "../theme": "^0.38.0",
-    "@material/typography": "^0.38.0"
+    "../typography": "^0.38.0"
   },
   "deprecated": false,
   "description": "The Material Components Web drawer component",
@@ -46,7 +46,7 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "@material/drawer",
+  "name": "../drawer",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/material-components/material-components-web.git"

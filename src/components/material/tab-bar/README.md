@@ -26,7 +26,7 @@ The Tab Bar contains the Tab Scroller and Tab components.
 ## Installation
 
 ```
-npm install @material/tab-bar
+npm install ../tab-bar
 ```
 
 ## Basic Usage
@@ -57,16 +57,16 @@ npm install @material/tab-bar
 ### Styles
 
 ```scss
-@import "@material/tab-bar/mdc-tab-bar";
-@import "@material/tab-scroller/mdc-tab-scroller";
-@import "@material/tab-indicator/mdc-tab-indicator";
-@import "@material/tab/mdc-tab";
+@import "../tab-bar/mdc-tab-bar";
+@import "../tab-scroller/mdc-tab-scroller";
+@import "../tab-indicator/mdc-tab-indicator";
+@import "../tab/mdc-tab";
 ```
 
 ### JavaScript Instantiation
 
 ```js
-import {MDCTabBar} from '@material/tab-bar';
+import {MDCTabBar} from '../tab-bar';
 
 const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
 ```

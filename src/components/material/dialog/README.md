@@ -36,7 +36,7 @@ a dialog should be.
 ## Installation
 
 ```
-npm install @material/dialog
+npm install ../dialog
 ```
 
 ## Dialog usage
@@ -142,13 +142,13 @@ correct dialog behaviors into idiomatic components.
 ##### ES2015
 
 ```javascript
-import {MDCDialog, MDCDialogFoundation, util} from '@material/dialog';
+import {MDCDialog, MDCDialogFoundation, util} from '../dialog';
 ```
 
 ##### CommonJS
 
 ```javascript
-const mdcDialog = require('@material/dialog');
+const mdcDialog = require('../dialog');
 const MDCDialog = mdcDialog.MDCDialog;
 const MDCDialogFoundation = mdcDialog.MDCDialogFoundation;
 const util = mdcDialog.util;
@@ -157,7 +157,7 @@ const util = mdcDialog.util;
 ##### AMD
 
 ```javascript
-require(['path/to/@material/dialog'], mdcDialog => {
+require(['path/to/../dialog'], mdcDialog => {
   const MDCDialog = mdcDrawer.MDCDialog;
   const MDCDialogFoundation = mdcDialog.MDCDialogFoundation;
   const util = mdcDialog.util;
@@ -187,7 +187,7 @@ mdc.dialog.MDCDialog.attachTo(document.querySelector('#my-mdc-dialog'));
 Dialogs can easily be initialized using their default constructors as well, similar to `attachTo`.
 
 ```javascript
-import {MDCDialog} from '@material/dialog';
+import {MDCDialog} from '../dialog';
 
 const dialog = new MDCDialog(document.querySelector('#my-mdc-dialog'));
 ```

@@ -1,15 +1,15 @@
 {
-  "_from": "@material/shape@^0.35.0",
-  "_id": "@material/shape@0.35.0",
+  "_from": "../shape@^0.35.0",
+  "_id": "../shape@0.35.0",
   "_inBundle": false,
   "_integrity": "sha512-WMmGLWrqRymMn8gaPybDWRIx7zNurUmaUa/OoxB++HSiLdLZf8hdEffiWLgqc5u97eRpb4IRaIi/jzcPbWxiUw==",
-  "_location": "/@material/shape",
+  "_location": "/../shape",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@material/shape@^0.35.0",
-    "name": "@material/shape",
+    "raw": "../shape@^0.35.0",
+    "name": "../shape",
     "escapedName": "@material%2fshape",
     "scope": "@material",
     "rawSpec": "^0.35.0",
@@ -19,9 +19,9 @@
   "_requiredBy": [
     "/material-components-web"
   ],
-  "_resolved": "https://registry.npmjs.org/@material/shape/-/shape-0.35.0.tgz",
+  "_resolved": "https://registry.npmjs.org/../shape/-/shape-0.35.0.tgz",
   "_shasum": "2bd20063cef04034f9e050a2d96027bb3f645d6f",
-  "_spec": "@material/shape@^0.35.0",
+  "_spec": "../shape@^0.35.0",
   "_where": "D:\\GitHub\\WIIChat\\node_modules\\material-components-web",
   "bugs": {
     "url": "https://github.com/material-components/material-components-web/issues"
@@ -36,7 +36,7 @@
     "shape"
   ],
   "license": "Apache-2.0",
-  "name": "@material/shape",
+  "name": "../shape",
   "publishConfig": {
     "access": "public"
   },

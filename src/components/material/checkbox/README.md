@@ -33,7 +33,7 @@ Checkboxes allow the user to select one or more items from a set.
 ## Installation
 
 ```
-npm install @material/checkbox
+npm install ../checkbox
 ```
 
 ## Basic Usage
@@ -65,8 +65,8 @@ We recommend using MDC Checkbox with [MDC Form Field](../mdc-form-field) for enh
 ### Styles
 
 ```scss
-@import "@material/form-field/mdc-form-field";
-@import "@material/checkbox/mdc-checkbox";
+@import "../form-field/mdc-form-field";
+@import "../checkbox/mdc-checkbox";
 ```
 
 ### JavaScript Instantiation
@@ -74,8 +74,8 @@ We recommend using MDC Checkbox with [MDC Form Field](../mdc-form-field) for enh
 The checkbox will work without JavaScript, but you can enhance it with a ripple interaction effect by instantiating `MDCCheckbox` on the `mdc-checkbox` element. To activate the ripple effect upon interacting with the label, you must also instantiate `MDCFormField` on the `mdc-form-field` element and set the `MDCCheckbox` instance as its `input`.
 
 ```js
-import {MDCFormField} from '@material/form-field';
-import {MDCCheckbox} from '@material/checkbox';
+import {MDCFormField} from '../form-field';
+import {MDCCheckbox} from '../checkbox';
 
 const checkbox = new MDCCheckbox(document.querySelector('.mdc-checkbox'));
 const formField = new MDCFormField(document.querySelector('.mdc-form-field'));

@@ -39,7 +39,7 @@ designed to work with any icon set.
 ## Installation
 
 ```
-npm install @material/icon-toggle
+npm install ../icon-toggle
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ In order to use MDC Icon Toggle, you will need to import an icon set, such as
 Then in JS
 
 ```js
-import {MDCIconToggle} from '@material/icon-toggle';
+import {MDCIconToggle} from '../icon-toggle';
 
 MDCIconToggle.attachTo(document.querySelector('.mdc-icon-toggle'));
 ```
