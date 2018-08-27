@@ -1,5 +1,5 @@
 <template>
-  <container>
+  <!-- <container>
     <row>
       <div class="col-md-8 col-md-offset-2">
         <panel id="login-panel">
@@ -32,13 +32,11 @@
         </panel>
       </div>
     </row>
-  </container>
+  </container> -->
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { container, row, panel } from "@cb";
-console.log(container, row, panel);
 
 export default {
   name: "login",
@@ -73,11 +71,7 @@ export default {
   },
   created() {},
   mounted() {},
-  components: {
-    container,
-    row,
-    panel
-  },
+  components: {},
   data() {
     return {};
   },

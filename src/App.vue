@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <button @click="to" :data-src="transitionName">change</button> -->
+    <button @click="to" :data-src="transitionName">change</button>
     <transition :name="transitionName">
       <keep-alive>
         <router-view></router-view>
@@ -8,6 +8,7 @@
     </transition>
   </div>
 </template>
+
 <script>
 export default {
   name: "root",

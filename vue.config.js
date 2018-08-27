@@ -37,6 +37,8 @@ module.exports = {
         '@n': resolve('./node_modules'),
         '@cb': resolve('./src/components/Bootstrap'),
         '@cm': resolve('./src/components/MD'),
+        '@material': resolve('./src/components/@material'),
+        '@cube': resolve('./src/components/cube-ui/src'),
         '@m': resolve('./modules')
       }
     },

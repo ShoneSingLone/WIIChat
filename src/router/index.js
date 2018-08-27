@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 小写开始为Router
-import home from './home'
+import mobile from './mobile'
 
 // 大写开始为Component
 import Login from '@/pages/Login'
@@ -28,5 +28,5 @@ export default new Router({
     path: '/error',
     name: 'error',
     component: ErrorPage,
-  }, home]
+  }, mobile]
 })
