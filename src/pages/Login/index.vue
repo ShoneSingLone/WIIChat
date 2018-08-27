@@ -10,12 +10,6 @@
             <h1 class="title">Brumaire</h1>
           </section>
           <sigin-form></sigin-form>
-        </card>
-      </bs-col>
-    </row>
-    <row>
-      <bs-col :options="colOptions">
-        <card id="login-card-3rd">
           <div class="logo-wrapper">
             <mdc-button class="github-logo button--raised" @click.native="clickSuccess"></mdc-button>
           </div>
@@ -124,17 +118,6 @@ export default {
       transform: translateX(-50%);
     }
   }
-}
-.middle {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-}
-#login-card-3rd {
-  // outline: 1px solid red;
-  position: relative;
-  text-align: left;
-  height: 10rem;
-  padding: 2rem;
   .logo-wrapper {
     // outline: 1px solid blue;
     text-align: center;
@@ -147,5 +130,16 @@ export default {
       border-radius: 50%;
     }
   }
+}
+.middle {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+#login-card-3rd {
+  // outline: 1px solid red;
+  position: relative;
+  text-align: left;
+  height: 10rem;
+  padding: 2rem;
 }
 </style>
