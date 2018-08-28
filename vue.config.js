@@ -37,7 +37,7 @@ module.exports = {
         '@bs': resolve('./src/components/Bootstrap'),
         '@md': resolve('./src/components/MD'),
         '@material': resolve('./src/components/material'),
-        '@cube': resolve('./src/components/cube-ui/src'),
+        '@cube': resolve('./src/components/cube-ui/src/components'),
         '@cpms': resolve('./src/components/'),
         '@m': resolve('./modules')
       }

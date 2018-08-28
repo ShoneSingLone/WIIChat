@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import { MDCRipple } from "@material/ripple";
+
 export default {
   name: "bs-container",
+  mounted() {
+    debugger;
+    new MDCRipple(this.$el);
+  },
   components: {},
   data() {
     return {};
@@ -19,10 +25,12 @@ export default {
 <style lang="scss">
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+
 // Container widths
 //
 // Set the container width, and override it for fixed navbars in media queries.
 .container {
+  min-width: 360px;
   @include container-fixed;
 
   @media (min-width: $screen-sm-min) {

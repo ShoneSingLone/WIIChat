@@ -15,8 +15,7 @@
 <script>
 export default {
   name: "bs-panel",
-  mounted() {
-  },
+  mounted() {},
   components: {},
   props: ["options"],
   data() {

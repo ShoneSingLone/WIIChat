@@ -16,8 +16,8 @@
     "fetchSpec": "latest"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
   "_resolved": "https://registry.npmjs.org/cube-ui/-/cube-ui-1.10.13.tgz",
   "_shasum": "1ac5e5e03ff70411748e4e559ee42d57c5c5d144",

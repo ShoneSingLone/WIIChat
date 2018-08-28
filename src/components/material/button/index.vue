@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { MDCRipple } from "../ripple";
+import { MDCRipple } from "@material/ripple";
 
 export default {
   name: "md-button",
@@ -14,6 +14,7 @@ export default {
     return {};
   },
   mounted() {
+    debugger
     new MDCRipple(this.$refs.button);
   },
   computed: {},

@@ -9,7 +9,7 @@ export const Layout = {
 }
 
 export const Button = () =>
-    import ( /* webpackChunkName: "mdc-button" */ './material/button/')
+    import ( /* webpackChunkName: "mdc-button" */ '@cube/button/button.vue')
 export const Card = () =>
     import ( /* webpackChunkName: "mdc-card" */ './material/card/')
 export const Textfield = () =>

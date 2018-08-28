@@ -1,22 +1,22 @@
 <template>
-    <!-- <div class="mdc-text-field mdc-text-field--box username">
+  <!-- <div class="mdc-text-field mdc-text-field--box username">
             <input type="text" class="mdc-text-field__input" id="username-input" name="username">
             <label class="mdc-floating-label" for="username-input">Username</label>
             <div class="mdc-line-ripple"></div>
         </div> -->
-    <div :class="['mdl-textfield', 'mdl-js-textfield','mdl-textfield--floating-label']">
-        <input class="mdl-textfield__input" :type="options.type" :id="textfield.id" v-model="inputValue">
-        <label class="mdl-textfield__label" :for="textfield.id">{{ options.type}}</label>
-    </div>
+  <div :class="['mdl-textfield', 'mdl-js-textfield','mdl-textfield--floating-label']">
+    <input class="mdl-textfield__input" :type="options.type" :id="textfield.id" v-model="inputValue">
+    <label class="mdl-textfield__label" :for="textfield.id">{{ options.type}}</label>
+  </div>
 </template>
 
 <script>
-import "./textfield.js";
+import { MDCTextField } from "@material/textfield";
 
 export default {
   name: "textfield",
   mounted() {
-    console.log(this.options);
+    new MDCTextField(this.$el);
   },
   components: {},
   props: ["options"],
@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./_textfield.scss">
+<style lang="scss" src="./textfield">
 </style>
 <style lang="scss" scoped>
 </style>

@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Meta from 'vue-meta'
+import "reset-css";
 import './registerServiceWorker'
 import "./assets/animation.scss";
 

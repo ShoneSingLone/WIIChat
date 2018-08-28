@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       colOptions: {
-        sm: {
+        md: {
           colspan: 8,
           offset: 2
         }
