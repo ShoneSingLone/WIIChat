@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <c-button @click.native="to" :data-src="transitionName">{{transitionName}}</c-button>
+    <!-- <c-button @click.native="to" :data-src="transitionName">{{transitionName}}</c-button> -->
     <transition :name="transitionName">
       <keep-alive>
         <router-view></router-view>
@@ -11,6 +11,7 @@
 
 <script>
 import Button from "@cps/Button";
+let count = 0;
 
 export default {
   name: "root",
@@ -21,34 +22,16 @@ export default {
     };
   },
   methods: {
-    to(event) {
-      const toggle = {
-        0: () => {
-          this.toggle = 2;
-          this.$router.push({
-            name: "home",
-            params: {},
-            query: { path: "home" }
-          });
-        },
-        1: () => {
-          this.toggle = 0;
-          this.$router.push({
-            name: "error",
-            params: {},
-            query: { msg: Date.now() }
-          });
-        },
-        2: () => {
-          this.toggle = 1;
-          this.$router.push({
-            name: "login",
-            params: {},
-            query: { path: "login" }
-          });
-        }
-      };
-      toggle[this.toggle]();
+    to() {
+      count++;
+      // let routeNameArray = ["error", "components", "login"];
+      let routeNameArray = ["components"];
+      let subIndex = count % routeNameArray.length;
+      this.$router.push({
+        name: routeNameArray[subIndex],
+        params: {},
+        query: { subIndex }
+      });
     }
   },
   watch: {

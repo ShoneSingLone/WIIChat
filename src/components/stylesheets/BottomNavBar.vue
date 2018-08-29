@@ -1,35 +1,38 @@
 <template>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" name="exampleInputEmail1" placeholder="Email" ref="input" v-model="inputValue" v-bind="$props" :type="_type" :disabled="disabled" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus" @focus="handleFocus" @blur="handleBlur" @change="changeHander">
-  </div>
-
-<!--   <div class="c-input" :class="{'c-input_active': isFocus}">
-    <div class="c-input-prepend" v-if="$slots.prepend">
-      <slot name="prepend"></slot>
-    </div>
-    <input class="c-input-field" ref="input" v-model="inputValue" v-bind="$props" :type="_type" :disabled="disabled" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus" @focus="handleFocus" @blur="handleBlur" @change="changeHander">
-    <div class="c-input-append" v-if="$slots.append || _showClear || _showPwdEye">
-      <div class="c-input-clear" v-if="_showClear" @click="handleClear">
-        <i class="cubeic-wrong"></i>
-      </div>
-      <div class="c-input-eye" v-if="_showPwdEye" @click="handlePwdEye">
-        <i :class="eyeClass"></i>
-      </div>
-      <slot name="append"></slot>
-    </div>
-  </div> -->
+  <transition>
+    <c-row class="bottom-nav-bar">
+      <c-col :options="options">
+        <header>
+          <span class="label label-default">bottom-nav-bar</span>
+        </header>
+      </c-col>
+    </c-row>
+  </transition>
 </template>
 
 <script>
+const components = {
+  "c-container": () =>
+    import(/* webpackChunkName: "c-container" */ "@cps/Container"),
+  "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
+  "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
+  "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input"),
+  "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
+  "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
+  "c-tool-bar": () => import(/* webpackChunkName: "c-modals" */ "@cps/ToolBar"),
+  "c-bottom-nav-bar": () =>
+    import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
+};
 const EVENT_INPUT = "input";
 const EVENT_CHANGE = "change";
 const EVENT_BLUR = "blur";
 const EVENT_FOCUS = "focus";
 
 export default {
-  name: "c-input",
+  name: "c-bottom-nav-bar",
+  components,
   props: {
+    options: { type: Object },
     value: [String, Number],
     type: {
       type: String,
@@ -151,72 +154,15 @@ export default {
 };
 </script>
 <style lang="scss" >
-@import "./style/index";
-
-.c-input {
-  display: flex;
-  align-items: center;
-  font-size: $fontsize-medium;
-  line-height: 1.429;
-  background-color: $color-background;
-}
-
-.c-input-field {
-  display: block;
-  flex: 1;
+@import "vm";
+.bottom-nav-bar {
+  // outline: 1px solid rebeccapurple;
+  position: absolute;
+  bottom: 0;
+  height: 5rem;
   width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  color: $input-color;
-  line-height: inherit;
-  background-color: inherit;
-  border-radius: 2px;
-  outline: none;
-
-  + .c-input-append {
-    margin-left: -5px;
-  }
-}
-
-.c-input_active {
-  &::after {
-    border-color: $color-orange;
-  }
-}
-
-.c-input-prepend,
-.c-input-append {
-  display: flex;
-  align-items: center;
-}
-
-.c-input-prepend {
-  + .c-input-field {
-    margin-left: -5px;
-  }
-}
-
-.c-input-clear,
-.c-input-eye {
-  width: 1em;
-  height: 1em;
-  line-height: 1;
-  padding: 10px;
-  box-sizing: content-box;
-  color: $color-orange;
-
-  > i {
-    display: inline-block;
-    transform: scale(1.2);
-  }
-}
-
-.c-input-eye {
-  > {
-    .cubeic-eye-invisible,
-    .cubeic-eye-visible {
-      transform: scale(1.4);
-    }
-  }
+  z-index: 3;
+  background: white;
+  @include elevation8();
 }
 </style>

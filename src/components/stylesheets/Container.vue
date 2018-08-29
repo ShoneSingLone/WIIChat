@@ -18,8 +18,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "style/variables";
-@import "style/mixins";
+@import "vm";
+
 
 // Container widths
 //

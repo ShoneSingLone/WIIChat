@@ -1,24 +1,40 @@
 <template>
-  <div>
-    <div>
-      <div class="col-md-8 col-md-offset-2">
-        <div id="login-panel-waiting" :options="{haveHeading:true}">
-          <template slot="heading">
-            正在处理登录相关信息，稍等...
-          </template>
-          <section class="">
-            <div :options="progress" :width="progress.width"></div>
-          </section>
-        </div>
-      </div>
-    </div>
-  </div>
+  <c-container>
+    <c-row>
+      <c-col :options="{
+        sm: {
+          colspan: 8,
+          offset: 2
+        }
+      }">
+        <c-modals :isShow="true" title="正在处理登录相关信息，稍等...">
+          <div slot="body" class="msg-wrapper">
+            <c-progress :width="progressWidth" />
+          </div>
+        </c-modals>
+      </c-col>
+    </c-row>
+  </c-container>
+
 </template>
 
 <script>
 import axios from "axios";
-import progress from "./Progress";
+import Container from "@cps/Container";
+import Row from "@cps/Row";
+import Col from "@cps/Col";
+import Button from "@cps/Button";
+import Modals from "@cps/Modals";
+import Progress from "@cps/Progress";
 
+let components = {
+  "c-container": Container,
+  "c-row": Row,
+  "c-col": Col,
+  "c-button": Button,
+  "c-modals": Modals,
+  "c-progress": Progress
+};
 
 /**
  * 2.
@@ -49,16 +65,27 @@ export default {
   },
   created() {},
   mounted() {
+    debugger;
     let code = this.$route.params.code;
     if (!code) {
       this.$router.push({
         name: "error",
-        params: {
+        query: {
           msg: "获取第三方权限有误"
         }
       });
     }
     let url = this.hostName;
+    console.log("hostName", this.hostName);
+    this.progressWidth = 0;
+    let upupup = () => {
+      setTimeout(() => {
+        this.progressWidth++;
+        setTimeout(upupup, 1000 * 0.5);
+      }, 1000 * 0.5);
+    };
+    upupup();
+
     axios({
       method: "post",
       url,
@@ -102,6 +129,7 @@ export default {
         }
       })
       .catch(error => {
+        clearTimeout(upupup);
         console.log("error", error);
         this.$router.push({
           name: "error",
@@ -109,19 +137,9 @@ export default {
         });
       });
   },
-  components: {},
+  components,
   data() {
-    return {
-      optionText: {
-        type: "text"
-      },
-      optionPwd: {
-        type: "password"
-      },
-      progress: {
-        width: 50
-      }
-    };
+    return { progressWidth: 0 };
   },
   computed: {
     ...mapGetters(["hostName"])

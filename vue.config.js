@@ -34,7 +34,7 @@ module.exports = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@n': resolve('./node_modules'),
-        '@cps': resolve('./src/components/'),
+        '@cps': resolve('./src/components/stylesheets'),
         '@m': resolve('./modules')
       }
     },

@@ -17,8 +17,8 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "./style/variables";
-@import "./style/mixins";
+@import "vm";
+
 // Row
 //
 // Rows contain and clear the floats of your columns.

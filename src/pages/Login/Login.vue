@@ -1,20 +1,40 @@
 <template>
 
-  <container>
-    <row>
+  <c-container>
+    <c-row>
       <c-col :options="colOptions">
         <section class="card">
           <div class="title-wrapper">
             <h1 class="title">Brumaire</h1>
           </div>
-          <sigin-form></sigin-form>
+          <form class="form-wrapper">
+            <div class="line"></div>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+            <div class="line"></div>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <div class="line"></div>
+            <c-button :options="{
+                        class:{
+                          lg:true,
+                          primary:true,
+                          block:true
+                        },
+                        type:'submit'
+                      }" class="btn">Login in</c-button>
+          </form>
+        </section>
+        <section class="card">
+          <span class="form-signin-heading">没开发注册功能，目前只能用GitHub授权登录</span>
+
           <div class="logo-wrapper">
-            <c-button class="github-logo circle" @click="clickSuccess"></c-button>
+            <a href="javascript:void(0);" class="github-logo circle" @click="getAuthorization"></a>
           </div>
         </section>
       </c-col>
-    </row>
-  </container>
+    </c-row>
+  </c-container>
 </template>
 
 <script>
@@ -25,17 +45,15 @@ import { mapGetters, mapActions } from "vuex";
 import Container from "@cps/Container";
 import Row from "@cps/Row";
 import Col from "@cps/Col";
-import Input from "@cps/Input";
 import Button from "@cps/Button";
 import SigIn from "./SigIn";
 
 let components = {
-  container: Container,
-  row: Row,
+  "c-container": Container,
+  "c-row": Row,
   "c-col": Col,
-  // Card,
-  "sigin-form": SigIn,
-  "c-button": Button
+  "c-button": Button,
+  "sigin-form": SigIn
 };
 
 export default {
@@ -74,7 +92,7 @@ export default {
   data() {
     return {
       colOptions: {
-        md: {
+        lg: {
           colspan: 8,
           offset: 2
         }
@@ -102,8 +120,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/components/style/mixins";
-
+@import "src/components/stylesheets/vm";
 .card {
   margin-top: 3rem;
   padding: 1rem;
@@ -111,12 +128,10 @@ export default {
 
   .title-wrapper {
     position: relative;
-    // outline: 1px solid rebeccapurple;
     text-align: center;
     width: 12rem;
-    height: 12rem;
+    height: 15rem;
     margin: 1rem auto 0;
-    // padding-top: 74px;
     fill: currentColor;
     background: url("./logo.svg") top center / 10rem 10rem no-repeat;
     .title {
@@ -126,13 +141,30 @@ export default {
       transform: translateX(-50%);
     }
   }
+  .form-wrapper {
+    .line {
+      height: 1rem;
+    }
+  }
   .logo-wrapper {
-    // outline: 1px solid blue;
+    margin-top: 1rem;
     text-align: center;
     .github-logo {
+      display: inline-block;
+      border-radius: 50%;
       height: 6rem;
       width: 6rem;
-      background: url("./github.svg") center center / 5rem 5rem no-repeat;
+      background: url("./github.svg") center center / cover no-repeat;
+      &.circle {
+        @include elevationtransition();
+        @include elevation4();
+        &:hover {
+          @include elevation6();
+        }
+        &:active {
+          @include elevation8();
+        }
+      }
     }
   }
 }
