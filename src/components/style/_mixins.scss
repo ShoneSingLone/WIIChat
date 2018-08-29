@@ -1,0 +1,393 @@
+@mixin border-1px() {
+    border: 1/16rem solid
+}
+
+// Clearfix
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+//
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+@mixin clearfix() {
+
+    &:before,
+    &:after {
+        content: " "; // 1
+        display: table; // 2
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+/*!
+ Material Components for the Web
+ Copyright (c) 2018 Google Inc.
+ License: Apache-2.0
+*/
+@mixin elevation0 {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation1 {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation2 {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation3 {
+    box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation4 {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation5 {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation6 {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation7 {
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation8 {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation9 {
+    box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.2), 0px 9px 12px 1px rgba(0, 0, 0, 0.14), 0px 3px 16px 2px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation10 {
+    box-shadow: 0px 6px 6px -3px rgba(0, 0, 0, 0.2), 0px 10px 14px 1px rgba(0, 0, 0, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation11 {
+    box-shadow: 0px 6px 7px -4px rgba(0, 0, 0, 0.2), 0px 11px 15px 1px rgba(0, 0, 0, 0.14), 0px 4px 20px 3px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation12 {
+    box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation13 {
+    box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 13px 19px 2px rgba(0, 0, 0, 0.14), 0px 5px 24px 4px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation14 {
+    box-shadow: 0px 7px 9px -4px rgba(0, 0, 0, 0.2), 0px 14px 21px 2px rgba(0, 0, 0, 0.14), 0px 5px 26px 4px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation15 {
+    box-shadow: 0px 8px 9px -5px rgba(0, 0, 0, 0.2), 0px 15px 22px 2px rgba(0, 0, 0, 0.14), 0px 6px 28px 5px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation16 {
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation17 {
+    box-shadow: 0px 8px 11px -5px rgba(0, 0, 0, 0.2), 0px 17px 26px 2px rgba(0, 0, 0, 0.14), 0px 6px 32px 5px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation18 {
+    box-shadow: 0px 9px 11px -5px rgba(0, 0, 0, 0.2), 0px 18px 28px 2px rgba(0, 0, 0, 0.14), 0px 7px 34px 6px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation19 {
+    box-shadow: 0px 9px 12px -6px rgba(0, 0, 0, 0.2), 0px 19px 29px 2px rgba(0, 0, 0, 0.14), 0px 7px 36px 6px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation20 {
+    box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2), 0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation21 {
+    box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2), 0px 21px 33px 3px rgba(0, 0, 0, 0.14), 0px 8px 40px 7px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation22 {
+    box-shadow: 0px 10px 14px -6px rgba(0, 0, 0, 0.2), 0px 22px 35px 3px rgba(0, 0, 0, 0.14), 0px 8px 42px 7px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation23 {
+    box-shadow: 0px 11px 14px -7px rgba(0, 0, 0, 0.2), 0px 23px 36px 3px rgba(0, 0, 0, 0.14), 0px 9px 44px 8px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevation24 {
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+}
+
+@mixin elevationtransition {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: box-shadow;
+}
+
+// // Mixins
+// // --------------------------------------------------
+// // Utilities
+// @import "mixins/hide-text";
+// @import "mixins/opacity";
+// @import "mixins/image";
+// @import "mixins/labels";
+// @import "mixins/reset-filter";
+// @import "mixins/resize";
+// @import "mixins/responsive-visibility";
+// @import "mixins/size";
+// @import "mixins/tab-focus";
+// @import "mixins/reset-text";
+// @import "mixins/text-emphasis";
+// @import "mixins/text-overflow";
+// @import "mixins/vendor-prefixes";
+// // Components
+// @import "mixins/alerts";
+// @import "mixins/buttons";
+// @import "mixins/panels";
+// @import "mixins/pagination";
+// @import "mixins/list-group";
+// @import "mixins/nav-divider";
+// @import "mixins/forms";
+// @import "mixins/progress-bar";
+// @import "mixins/table-row";
+// // Skins
+// @import "mixins/background-variant";
+// @import "mixins/border-radius";
+// @import "mixins/gradients";
+// // Layout
+// @import "mixins/clearfix";
+// @import "mixins/center-block";
+// @import "mixins/nav-vertical-align";
+// @import "mixins/grid-framework";
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+    @for $i from (1 + 1) through $grid-columns {
+        $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+    }
+
+    #{$list} {
+        position: relative;
+        // Prevent columns from collapsing when empty
+        min-height: 1px;
+        // Inner gutter via padding
+        padding-left: ceil(($grid-gutter-width / 2));
+        padding-right: floor(($grid-gutter-width / 2));
+    }
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+    @for $i from (1 + 1) through $grid-columns {
+        $list: "#{$list}, .col-#{$class}-#{$i}";
+    }
+
+    #{$list} {
+        float: left;
+    }
+}
+
+// calculate
+@mixin calc-grid-column($index, $class, $type) {
+    @if ($type==width) and ($index > 0) {
+        .col-#{$class}-#{$index} {
+            width: percentage(($index / $grid-columns));
+        }
+    }
+
+    @if ($type==push) and ($index > 0) {
+        .col-#{$class}-push-#{$index} {
+            left: percentage(($index / $grid-columns));
+        }
+    }
+
+    @if ($type==push) and ($index==0) {
+        .col-#{$class}-push-0 {
+            left: auto;
+        }
+    }
+
+    @if ($type==pull) and ($index > 0) {
+        .col-#{$class}-pull-#{$index} {
+            right: percentage(($index / $grid-columns));
+        }
+    }
+
+    @if ($type==pull) and ($index==0) {
+        .col-#{$class}-pull-0 {
+            right: auto;
+        }
+    }
+
+    @if ($type==offset) {
+        .col-#{$class}-offset-#{$index} {
+            margin-left: percentage(($index / $grid-columns));
+        }
+    }
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin loop-grid-columns($columns, $class, $type) {
+    @for $i from 0 through $columns {
+        @include calc-grid-column($i, $class, $type);
+    }
+}
+
+// Create grid for specific class
+@mixin make-grid($class) {
+    @include float-grid-columns($class);
+    @include loop-grid-columns($grid-columns, $class, width);
+    @include loop-grid-columns($grid-columns, $class, pull);
+    @include loop-grid-columns($grid-columns, $class, push);
+    @include loop-grid-columns($grid-columns, $class, offset);
+}
+
+// @import "mixins/grid";
+// Grid system
+//
+// Generate semantic grid columns with these mixins.
+// Centered container element
+@mixin container-fixed($gutter: $grid-gutter-width) {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: floor(($gutter / 2));
+    padding-right: ceil(($gutter / 2));
+    @include clearfix;
+}
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+    margin-left: ceil(($gutter / -2));
+    margin-right: floor(($gutter / -2));
+    @include clearfix;
+}
+
+// Generate the extra small columns
+@mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    float: left;
+    width: percentage(($columns / $grid-columns));
+    min-height: 1px;
+    padding-left: ($gutter / 2);
+    padding-right: ($gutter / 2);
+}
+
+@mixin make-xs-column-offset($columns) {
+    margin-left: percentage(($columns / $grid-columns));
+}
+
+@mixin make-xs-column-push($columns) {
+    left: percentage(($columns / $grid-columns));
+}
+
+@mixin make-xs-column-pull($columns) {
+    right: percentage(($columns / $grid-columns));
+}
+
+// Generate the small columns
+@mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    min-height: 1px;
+    padding-left: ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-sm-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-sm-column-offset($columns) {
+    @media (min-width: $screen-sm-min) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-sm-column-push($columns) {
+    @media (min-width: $screen-sm-min) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-sm-column-pull($columns) {
+    @media (min-width: $screen-sm-min) {
+        right: percentage(($columns / $grid-columns));
+    }
+}
+
+// Generate the medium columns
+@mixin make-md-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    min-height: 1px;
+    padding-left: ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-md-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-md-column-offset($columns) {
+    @media (min-width: $screen-md-min) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-md-column-push($columns) {
+    @media (min-width: $screen-md-min) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-md-column-pull($columns) {
+    @media (min-width: $screen-md-min) {
+        right: percentage(($columns / $grid-columns));
+    }
+}
+
+// Generate the large columns
+@mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    min-height: 1px;
+    padding-left: ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-lg-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-lg-column-offset($columns) {
+    @media (min-width: $screen-lg-min) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-lg-column-push($columns) {
+    @media (min-width: $screen-lg-min) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+
+@mixin make-lg-column-pull($columns) {
+    @media (min-width: $screen-lg-min) {
+        right: percentage(($columns / $grid-columns));
+    }
+}

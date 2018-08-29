@@ -1,19 +1,14 @@
 <template>
-  <button class="cube-btn" :type="type" :class="btnClass" @click="handleClick">
+  <div class="btn" :type="type" :class="btnClass" @click="handleClick">
     <i :class="icon" v-if="icon"></i>
     <slot></slot>
-  </button>
+  </div>
 </template>
 
 <script>
-import { MDCRipple } from "@material/ripple";
-const COMPONENT_NAME = "cube-button";
-
 export default {
-  name: COMPONENT_NAME,
-  mounted() {
-    new MDCRipple(this.$el);
-  },
+  name: "c-button",
+  mounted() {},
   props: {
     icon: {
       type: String,
@@ -73,4 +68,46 @@ export default {
   }
 };
 </script>
-// 
+<style lang="scss">
+@import "src/components/style/index";
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: unset;
+  outline: unset;
+  white-space: nowrap;
+  @include elevation2();
+  @include elevationtransition();
+
+  &.circle {
+    border-radius: 50%;
+    outline: unset;
+  }
+
+  &:active,
+  &.active {
+    outline: unset;
+    @include elevation24();
+  }
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $btn-default-color;
+    text-decoration: none;
+    @include elevation4();
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: $cursor-disabled;
+    opacity: 0.65;
+  } // [converter] extracted a& to a.btn
+}
+</style>

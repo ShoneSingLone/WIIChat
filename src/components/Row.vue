@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "bs-row",
+  name: "c-row",
   components: {},
   data() {
     return {};
@@ -17,8 +17,8 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+@import "./style/variables";
+@import "./style/mixins";
 // Row
 //
 // Rows contain and clear the floats of your columns.

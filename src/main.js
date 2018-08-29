@@ -3,9 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Meta from 'vue-meta'
-import "reset-css";
 import './registerServiceWorker'
-import "./assets/animation.scss";
+//style
+// import "reset-css";
+import "@components/style/custom.scss";
 
 Vue.config.productionTip = false
 Vue.use(Meta)

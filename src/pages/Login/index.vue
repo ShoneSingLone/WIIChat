@@ -2,36 +2,40 @@
 
   <container>
     <row>
-      <bs-col :options="colOptions">
-        <card :options="{
-
-        }" id="login-card">
-          <section class="header">
+      <c-col :options="colOptions">
+        <section class="card">
+          <div class="title-wrapper">
             <h1 class="title">Brumaire</h1>
-          </section>
+          </div>
           <sigin-form></sigin-form>
           <div class="logo-wrapper">
-            <mdc-button class="github-logo button--raised" @click.native="clickSuccess"></mdc-button>
+            <c-button class="github-logo circle" @click="clickSuccess"></c-button>
           </div>
-        </card>
-      </bs-col>
+        </section>
+      </c-col>
     </row>
   </container>
 </template>
 
 <script>
-import { Layout, Card, Button } from "@cpms";
-import SigIn from "./SigIn";
+// const Button = () => import(/* webpackChunkName: "c-button" */ "@components/button");
 
 import { mapGetters, mapActions } from "vuex";
 
+import Container from "@components/Container";
+import Row from "@components/Row";
+import Col from "@components/Col";
+import Input from "@components/Input";
+import Button from "@components/Button";
+import SigIn from "./SigIn";
+
 let components = {
-  container: Layout.Container,
-  row: Layout.Row,
-  "bs-col": Layout.Col,
-  Card,
+  container: Container,
+  row: Row,
+  "c-col": Col,
+  // Card,
   "sigin-form": SigIn,
-  "mdc-button": Button
+  "c-button": Button
 };
 
 export default {
@@ -98,10 +102,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#login-card {
+@import "src/components/style/mixins";
+
+.card {
   margin-top: 3rem;
   padding: 1rem;
-  .header {
+  @include elevation2();
+
+  .title-wrapper {
     position: relative;
     // outline: 1px solid rebeccapurple;
     text-align: center;
@@ -122,24 +130,14 @@ export default {
     // outline: 1px solid blue;
     text-align: center;
     .github-logo {
-      // outline: 1px solid chocolate;
-      display: inline-block;
       height: 6rem;
       width: 6rem;
-      background: url("./github.svg") center center / cover no-repeat;
-      border-radius: 50%;
+      background: url("./github.svg") center center / 5rem 5rem no-repeat;
     }
   }
 }
 .middle {
   margin: 0.5rem 0;
   padding: 0.5rem;
-}
-#login-card-3rd {
-  // outline: 1px solid red;
-  position: relative;
-  text-align: left;
-  height: 10rem;
-  padding: 2rem;
 }
 </style>

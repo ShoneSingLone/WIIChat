@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <mdc-button @click.native="to" :data-src="transitionName">{{transitionName}}</mdc-button> -->
+    <c-button @click.native="to" :data-src="transitionName">{{transitionName}}</c-button>
     <transition :name="transitionName">
       <keep-alive>
         <router-view></router-view>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { Button } from "@cpms";
+import Button from "@components/Button";
 
 export default {
   name: "root",
@@ -59,7 +59,7 @@ export default {
     }
   },
   components: {
-    "mdc-button": Button
+    "c-button": Button
   }
 };
 </script>
@@ -68,6 +68,7 @@ export default {
 html,
 body,
 #app {
+  min-width: 360px;
   padding: 0;
   margin: 0;
   height: 100%;

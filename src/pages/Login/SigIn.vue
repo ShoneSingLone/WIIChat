@@ -3,21 +3,27 @@
     <form class="form-signin">
       <h2 class="form-signin-heading">Please sign in</h2>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" required="" autofocus="">
-      <div class="line"></div>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" required="">
-      <div class="line"></div>
-      <mdc-button class="btn btn-lg btn-primary btn-block">Sign in</mdc-button>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+      <c-button :options="{
+        class:{
+          lg:true,
+          primary:true,
+          block:true
+        },
+        type:'submit'
+      }"class="btn">Sign in</c-button>
     </form>
   </transition>
 </template>
 
 <script>
-import { Textfield, Button } from "@cpms";
+import Input from "@components/Input";
+import Button from "@components/Button";
 let components = {
-  textfield: Textfield,
-  "mdc-button": Button
+  textfield: Input,
+  "c-button": Button
 };
 
 export default {

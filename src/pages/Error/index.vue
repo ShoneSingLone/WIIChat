@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Layout } from "@cpms";
+import { Layout } from "@components";
 
 export default {
   name: "error",

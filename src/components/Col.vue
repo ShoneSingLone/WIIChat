@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "bs-col",
+  name: "c-col",
   mounted() {
     let isCompute = !!(this && this.options);
     if (isCompute) {
@@ -41,8 +41,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+@import "style/variables";
+@import "style/mixins";
 
 // Columns
 //
