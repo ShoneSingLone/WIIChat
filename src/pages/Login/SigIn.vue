@@ -13,14 +13,15 @@
           block:true
         },
         type:'submit'
-      }"class="btn">Sign in</c-button>
+      }" class="btn">Sign in</c-button>
     </form>
   </transition>
 </template>
 
 <script>
-import Input from "@components/Input";
-import Button from "@components/Button";
+import Input from "@cps/Input";
+import Button from "@cps/Button";
+
 let components = {
   textfield: Input,
   "c-button": Button

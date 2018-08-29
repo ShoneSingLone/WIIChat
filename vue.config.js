@@ -34,11 +34,7 @@ module.exports = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@n': resolve('./node_modules'),
-        '@bs': resolve('./src/components/Bootstrap'),
-        '@md': resolve('./src/components/MD'),
-        '@material': resolve('./src/components/material'),
-        '@cube': resolve('./src/components/cube-ui/src/components'),
-        '@components': resolve('./src/components/'),
+        '@cps': resolve('./src/components/'),
         '@m': resolve('./modules')
       }
     },

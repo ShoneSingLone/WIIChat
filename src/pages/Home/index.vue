@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <panel>
+    <div>
       <header>根据内容控制显隐以及功能
         <span class="label label-default">New</span>
       </header>
-    </panel>
+    </div>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { panel } from "@bs";
 
 export default {
   name: "home",
@@ -22,7 +21,6 @@ export default {
   computed: {},
   methods: {},
   components: {
-    panel
   }
 };
 </script>

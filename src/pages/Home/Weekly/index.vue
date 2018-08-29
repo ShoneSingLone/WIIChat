@@ -15,7 +15,19 @@
 </template>
 
 <script>
-import { container, row, panel } from "@bs";
+import Container from "@cps/Container";
+import Row from "@cps/Row";
+import Col from "@cps/Col";
+import Input from "@cps/Input";
+import Button from "@cps/Button";
+
+let components = {
+  container: Container,
+  row: Row,
+  "c-col": Col,
+  "c-input": Input,
+  "c-button": Button
+};
 
 export default {
   name: "weekly",
@@ -35,11 +47,7 @@ export default {
   },
   computed: {},
   methods: {},
-  components: {
-    container,
-    row,
-    panel
-  }
+  components
 };
 </script>
 

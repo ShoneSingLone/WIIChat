@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Layout } from "@components";
+import { Layout } from "@c";
 
 export default {
   name: "error",

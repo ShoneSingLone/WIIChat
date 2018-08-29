@@ -18,15 +18,15 @@
 </template>
 
 <script>
-// const Button = () => import(/* webpackChunkName: "c-button" */ "@components/button");
+// const Button = () => import(/* webpackChunkName: "c-button" */ "@cps/button");
 
 import { mapGetters, mapActions } from "vuex";
 
-import Container from "@components/Container";
-import Row from "@components/Row";
-import Col from "@components/Col";
-import Input from "@components/Input";
-import Button from "@components/Button";
+import Container from "@cps/Container";
+import Row from "@cps/Row";
+import Col from "@cps/Col";
+import Input from "@cps/Input";
+import Button from "@cps/Button";
 import SigIn from "./SigIn";
 
 let components = {

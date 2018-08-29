@@ -1,5 +1,10 @@
 <template>
-  <div class="c-input" :class="{'c-input_active': isFocus}">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" name="exampleInputEmail1" placeholder="Email" ref="input" v-model="inputValue" v-bind="$props" :type="_type" :disabled="disabled" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus" @focus="handleFocus" @blur="handleBlur" @change="changeHander">
+  </div>
+
+<!--   <div class="c-input" :class="{'c-input_active': isFocus}">
     <div class="c-input-prepend" v-if="$slots.prepend">
       <slot name="prepend"></slot>
     </div>
@@ -13,7 +18,7 @@
       </div>
       <slot name="append"></slot>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>

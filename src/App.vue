@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Button from "@components/Button";
+import Button from "@cps/Button";
 
 export default {
   name: "root",

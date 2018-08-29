@@ -1,24 +1,24 @@
 <template>
-  <container>
-    <row>
+  <div>
+    <div>
       <div class="col-md-8 col-md-offset-2">
-        <panel id="login-panel-waiting" :options="{haveHeading:true}">
+        <div id="login-panel-waiting" :options="{haveHeading:true}">
           <template slot="heading">
             正在处理登录相关信息，稍等...
           </template>
           <section class="">
-            <md-progress :options="progress" :width="progress.width" />
+            <div :options="progress" :width="progress.width"></div>
           </section>
-        </panel>
+        </div>
       </div>
-    </row>
-  </container>
+    </div>
+  </div>
 </template>
 
 <script>
-import { container, row, panel } from "@bs";
 import axios from "axios";
 import progress from "./Progress";
+
 
 /**
  * 2.
@@ -109,12 +109,7 @@ export default {
         });
       });
   },
-  components: {
-    container,
-    row,
-    panel,
-    "md-progress": progress
-  },
+  components: {},
   data() {
     return {
       optionText: {
