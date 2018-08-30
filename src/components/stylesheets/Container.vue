@@ -1,25 +1,41 @@
 <template>
-  <div class="container">
+  <div :class="containerClass">
     <slot></slot>
   </div>
 </template>
-
 <script>
 export default {
   name: "c-container",
-  mounted() {},
+  mounted() {
+    //某些需要在mounted之后完成的初始化
+    this.$emit("mounted", this.$el);
+    console.log("Container mounted");
+  },
   components: {},
+  props: {
+    options: {
+      class: {
+        type: String
+      }
+    }
+  },
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    containerClass() {
+      if (this.options && this.options.class) {
+        return "container-fluid";
+      }
+      return "container";
+    }
+  },
   methods: {}
 };
 </script>
 
 <style lang="scss">
 @import "vm";
-
 
 // Container widths
 //

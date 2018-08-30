@@ -5,6 +5,7 @@ import store from './store'
 import Meta from 'vue-meta'
 import './registerServiceWorker'
 //style
+import 'reset-css'
 import "@cps/ResetDandDependencies.scss";
 
 Vue.config.productionTip = false

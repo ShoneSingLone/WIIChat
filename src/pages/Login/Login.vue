@@ -74,14 +74,24 @@ export default {
   beforeRouteEnter: (to, from, next) => {
     console.log("beforeRouteEnter");
     let { origin, pathname, search } = location;
-    //返回的是放在search里的code，为了配合vue-route，两次转换:正常pathname转hash:/#/balabalabala
     if (search && search.length > 0) {
+      //更仔细一点应该是search里面至少是有code或者只有code
+      //返回的是放在search里的code，为了配合vue-route，两次转换:正常pathname转hash:/#/balabalabala
+      let searchObj = new URLSearchParams(search);
+      console.log(searchObj);
       let href = origin + pathname + "#/error" + search;
       console.log("href", href);
       return (location.href = href);
     }
     next(vm => {
       console.log("next", vm.userInfo);
+      // 目的是如果这个是因为地址404过来的就应该报一个错
+      if (to.redirectedFrom) {
+        return vm.$router.push({
+          name: "error",
+          query: { msg: "no way '404:没有这个地址'" }
+        });
+      }
       if (vm.userInfo) {
         vm.$router.push({ name: "home" });
       }

@@ -1,17 +1,17 @@
 const Home = () =>
   import ( /* webpackChunkName: "home" */ '@/pages/Home/Home')
-const Weekly = () =>
-  import ( /* webpackChunkName: "home" */ '@/pages/Home/Weekly/Weekly')
+const Article = () =>
+  import ( /* webpackChunkName: "home" */ '@/pages/Home/Article/Article')
 
 export default {
   path: '/home',
   name: 'home',
-  redirect: '/home/weekly',
+  redirect: '/home/Article',
   component: Home,
   children: [{
-    path: 'weekly',
-    name: 'home.weekly',
-    component: Weekly
+    path: 'Article',
+    name: 'home.Article',
+    component: Article
   }, {
     path: 'about/about/',
     name: 'home.about.subAbout',

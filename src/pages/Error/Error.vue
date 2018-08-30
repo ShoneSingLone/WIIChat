@@ -14,7 +14,7 @@
             </h1>
           </div>
           <div slot="footer">
-            <c-button :options="{class:{primary:true}}" @click="toLogin">回到Login界面({{downCount}}s)</c-button>
+            <c-button :options="{class:{primary:true}}" @click="goBack">哪里来哪里去({{waitTiem}}s)</c-button>
           </div>
         </c-modals>
       </c-col>
@@ -52,37 +52,47 @@ export default {
       }
     ]
   },
+  mounted() {
+    // console.log("Error mounted");
+  },
   beforeRouteEnter: (to, from, next) => {
+    // console.log("Error: beforeRouteEnter");
     let { query, params } = to;
-    console.log(" query, params ", query, params);
+    // console.log(" query, params ", query, params);
     // GitHub redirect code
     let code = query.code;
-    if (code && code.length > 0)
+    if (code && code.length > 0) {
       return next({ name: "checkout", params: { code } });
-    next(vm => {
-      vm.msg = query.msg;
-    });
+    } else {
+      next(vm => {
+        // console.log("Error: beforeRouteEnter next");
+        vm.msg = query.msg;
+        vm.waitTiem = query.waitTiem ? query.waitTiem : 5;
+        vm.fromPathName = from.name ? from.name : "login";
+        vm.downC();
+      });
+    }
   },
-  mounted() {
-    console.log("Error mounted");
-    let vm = this;
-    vm.downCount = 5;
-    let downC = function() {
-      setTimeout(() => {
-        if (vm.downCount === 0) {
-          vm.$router.push({ name: "login" });
-        } else {
-          vm.downCount--;
-          setTimeout(downC, 1000 * 1);
-        }
-      }, 1000 * 1);
-    };
-    downC();
+  beforeRouteUpdate(to, from, next) {
+    // console.log("Error: beforeRouteUpdate");
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    // console.log("Error: beforeRouteLeave");
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    next();
   },
   data() {
     return {
       msg: "",
-      downCount: 5
+      waitTiem: 5,
+      fromPathName: "login",
+      dcTimer: {}
     };
   },
   computed: {
@@ -95,8 +105,19 @@ export default {
     }
   },
   methods: {
-    toLogin() {
-      this.$router.push({ name: "login" });
+    goBack() {
+      clearTimeout(this.dcTimer);
+      this.$router.push({ name: this.fromPathName });
+    },
+    downC() {
+      this.dcTimer = setTimeout(() => {
+        if (this.waitTiem === 0) {
+          this.$router.push({ name: "login" });
+        } else {
+          this.waitTiem--;
+          this.dcTimer = setTimeout(this.downC, 1000 * 1);
+        }
+      }, 1000 * 1);
     }
   },
   components

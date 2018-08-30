@@ -1,12 +1,20 @@
 <template>
   <transition>
-    <c-row class="bottom-nav-bar">
-      <c-col :options="options">
-        <header>
-          <span class="label label-default">bottom-nav-bar</span>
-        </header>
-      </c-col>
-    </c-row>
+    <c-container class="bottom-nav-bar" :options="{class:'fluid'}">
+      <c-row>
+        <c-col :options="options">
+          <nav>
+            <ul class="tab">
+              <li :class="['item',{'active':currentItem===index}]" v-for="(item, index) in tabItems" :key="index">
+                <span class="glyphicon" :class="getIconClass(item.icon)"></span>
+                <span class="icon-label">{{item.label}}</span>
+                <a class="modals" href="javascript:void(0)" @click="navTo(item,index)"></a>
+              </li>
+            </ul>
+          </nav>
+        </c-col>
+      </c-row>
+    </c-container>
   </transition>
 </template>
 
@@ -31,100 +39,48 @@ const EVENT_FOCUS = "focus";
 export default {
   name: "c-bottom-nav-bar",
   components,
-  props: {
-    options: { type: Object },
-    value: [String, Number],
-    type: {
-      type: String,
-      default: "text"
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    placeholder: String,
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    autofocus: {
-      type: Boolean,
-      default: false
-    },
-    autocomplete: {
-      type: [Boolean, String],
-      default: false
-    },
-    name: String,
-    id: String,
-    form: String,
-    minlength: Number,
-    maxlength: Number,
-    resize: String,
-    min: Number,
-    max: Number,
-    step: Number,
-    tabindex: String,
-    clearable: {
-      type: Boolean,
-      default: false
-    },
-    eye: {
-      type: [Boolean, Object],
-      default: false
-    }
+  props: {},
+  mounted() {
+    console.log("BottomNavBar mounted");
+    this.navTo(this.tabItems[0], 0);
   },
   data() {
     return {
-      inputValue: this.value,
-      isFocus: false,
-      formatedEye: {
-        open: false,
-        reverse: false
-      }
+      options: {
+        class: {
+          md: {
+            colspan: 12
+          }
+        }
+      },
+      tabItems: [
+        { icon: "grain", label: "Chat" },
+        { icon: "list-alt", label: "Article" },
+        { icon: "edit", label: "Question" },
+        { icon: "user", label: "User" }
+      ],
+      currentItem: 0
     };
   },
-  computed: {
-    _type() {
-      const type = this.type;
-      if (type === "password" && this.eye && this.pwdVisible) {
-        return "text";
-      }
-      return type;
-    },
-    _showClear() {
-      return (
-        this.clearable && this.inputValue && !this.readonly && !this.disabled
-      );
-    },
-    _showPwdEye() {
-      return this.type === "password" && this.eye && !this.disabled;
-    },
-    pwdVisible() {
-      const eye = this.formatedEye;
-      return eye.reverse ? !eye.open : eye.open;
-    },
-    eyeClass() {
-      return this.formatedEye.open
-        ? "cubeic-eye-visible"
-        : "cubeic-eye-invisible";
-    }
-  },
-  watch: {
-    value(newValue) {
-      this.inputValue = newValue;
-    },
-    inputValue(newValue) {
-      this.$emit(EVENT_INPUT, newValue);
-    },
-    eye: {
-      handler() {
-        this.formateEye();
-      },
-      immediate: true
-    }
-  },
+  computed: {},
+  watch: {},
   methods: {
+    getIconClass(iconName) {
+      return `glyphicon-${iconName}`;
+    },
+    navTo(item, index) {
+      console.log(item, index);
+      this.currentItem = index;
+      if (index === 3) {
+        // this.$router.push({ name: "error", query: { msg: "just a joke" } });
+      }
+      if (index === 1) {
+        console.log(
+          "this.$el.getBoundingClientRect",
+          this.$el.getBoundingClientRect()
+        );
+      }
+    },
     changeHander(e) {
       this.$emit(EVENT_CHANGE, e);
     },
@@ -153,16 +109,78 @@ export default {
   }
 };
 </script>
-<style lang="scss" >
+<style lang="scss">
 @import "vm";
+
 .bottom-nav-bar {
+  * {
+    // outline: 1px solid rebeccapurple;
+  }
   // outline: 1px solid rebeccapurple;
   position: absolute;
   bottom: 0;
-  height: 5rem;
   width: 100%;
   z-index: 3;
   background: white;
   @include elevation8();
+  .tab {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 7rem;
+    text-align: center;
+    .item {
+      position: relative;
+      text-align: center;
+      flex: 1;
+      margin-top: 1rem;
+      font-size: $font-size-h6;
+      font-weight: bold;
+      // border: 1px solid $brand-primary;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      transition: all 0.5s ease-in-out;
+
+      .glyphicon {
+        display: inline-block;
+        margin: 0.5rem auto;
+        // outline: 1px solid red;
+        height: 3rem;
+        width: 3rem;
+        line-height: 3rem;
+        border-radius: 50%;
+      }
+      .icon-label {
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        line-height: 1rem;
+      }
+      .modals {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      &.active {
+        color: $brand-primary;
+
+        .glyphicon {
+          border: 1px solid $brand-primary;
+          @include elevation4();
+        }
+        .icon-label {
+          text-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+            0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        }
+      }
+    }
+  }
 }
 </style>

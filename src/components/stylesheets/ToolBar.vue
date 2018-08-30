@@ -1,12 +1,14 @@
 <template>
   <transition>
-    <c-row class="tool-bar">
-      <c-col :options="options">
-        <header>
-          <span class="label label-default">tool-bar</span>
-        </header>
-      </c-col>
-    </c-row>
+    <c-container class="tool-bar" :options="{class:'fluid'}">
+      <c-row>
+        <c-col :options="options">
+          <header>
+            <span class="label label-default">tool-bar</span>
+          </header>
+        </c-col>
+      </c-row>
+    </c-container>
   </transition>
 </template>
 
@@ -30,9 +32,11 @@ const EVENT_FOCUS = "focus";
 
 export default {
   name: "c-tool-bar",
+  mounted() {
+    console.log("ToolBar mounted");
+  },
   components,
   props: {
-    options: { type: Object },
     value: [String, Number],
     type: {
       type: String,
@@ -76,6 +80,13 @@ export default {
   },
   data() {
     return {
+      options: {
+        class: {
+          md: {
+            colspan: 12
+          }
+        }
+      },
       inputValue: this.value,
       isFocus: false,
       formatedEye: {
@@ -163,6 +174,7 @@ export default {
   width: 100%;
   z-index: 1;
   background: white;
+
   @include elevation8();
 }
 </style>

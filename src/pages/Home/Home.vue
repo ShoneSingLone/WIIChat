@@ -1,17 +1,19 @@
 <template>
-  <c-container class="home">
-    <c-tool-bar :options="colOptions"></c-tool-bar>
-    <c-row>
-      <c-col :options="colOptions">
-        <transition>
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
-        </transition>
-      </c-col>
-    </c-row>
-    <c-bottom-nav-bar :options="colOptions"></c-bottom-nav-bar>
-  </c-container>
+  <div class="home">
+    <c-tool-bar></c-tool-bar>
+    <c-container ref="main">
+      <c-row>
+        <c-col :options="colOptions">
+          <transition name="slide">
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </transition>
+        </c-col>
+      </c-row>
+    </c-container>
+    <c-bottom-nav-bar></c-bottom-nav-bar>
+  </div>
 </template>
 
 <script>
@@ -30,10 +32,11 @@ const components = {
 
 export default {
   name: "home",
+  mounted() {},
   data() {
     return {
       colOptions: {
-        lg: {
+        md: {
           colspan: 8,
           offset: 2
         }
@@ -48,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-
-
+  height: 100%;
+  overflow: hidden;
 }
 </style>

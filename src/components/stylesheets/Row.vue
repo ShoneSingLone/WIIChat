@@ -5,14 +5,20 @@
 </template>
 
 <script>
+let components = {};
 export default {
   name: "c-row",
-  components: {},
+  mounted() {
+    console.log("Row mounted");
+    //某些需要在mounted之后完成的初始化
+    this.$emit("mounted", this.$el);
+  },
   data() {
     return {};
   },
   computed: {},
-  methods: {}
+  methods: {},
+  components
 };
 </script>
 
