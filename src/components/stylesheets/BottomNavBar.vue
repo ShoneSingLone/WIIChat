@@ -42,6 +42,14 @@ export default {
   props: {},
   mounted() {
     console.log("BottomNavBar mounted");
+    let vm = this;
+    this.$nextTick()
+      .then(() => {
+        vm.$emit("mounted", vm.$el);
+      })
+      .catch(error => {
+        console.error(error);
+      });
     this.navTo(this.tabItems[0], 0);
   },
   data() {
@@ -161,9 +169,9 @@ export default {
       }
       .modals {
         position: absolute;
-        top: 0;
+        top: -1rem;
         right: 0;
-        bottom: 0;
+        bottom: -2rem;
         left: 0;
       }
 
@@ -172,7 +180,7 @@ export default {
 
         .glyphicon {
           border: 1px solid $brand-primary;
-          @include elevation4();
+          @include elevation12();
         }
         .icon-label {
           text-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),

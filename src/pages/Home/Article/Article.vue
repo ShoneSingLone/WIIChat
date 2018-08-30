@@ -1,26 +1,8 @@
 <template>
-  <c-container>
-    <c-row ref="wrapper" v-on:mounted="rowMounted">
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
-      <c-col :options="colOptions">{{msg}}</c-col>
+  <c-container class="article wrapper" :style="{height:homeHeight+'px'}">
+    <c-row v-on:mounted="rowMounted">
       <c-col :options="colOptions" v-for="(item, index) in 100" :key="index" v-on:mounted="colMounted">
-        <div @click="scrollRe(item, index)">s-col{{index}}</div>
+        <div @click="scrollRe(item, index)">s-col{{index}}-{{msg}}</div>
       </c-col>
     </c-row>
   </c-container>
@@ -28,6 +10,7 @@
 
 <script>
 import BScroll from "better-scroll";
+import { mapGetters } from "vuex";
 
 const components = {
   "c-container": () =>
@@ -38,6 +21,7 @@ const components = {
   "c-scroll": () => import(/* webpackChunkName: "c-button" */ "@cps/Scroll")
 };
 
+let isFirst = true;
 export default {
   name: "Article",
   metaInfo: {
@@ -67,51 +51,62 @@ export default {
       }
     };
   },
-  computed: {},
+  computed: { ...mapGetters("home", ["homeHeight"]) },
   methods: {
     scrollRe(item, index) {
       console.log("click");
+
+      if (isFirst) {
+        this.scroll.scrollTo(50, 100);
+      }
+      isFirst = false;
     },
     rowMounted(rowEle) {
-      this.$set(
-        this,
-        "scroll",
-        new BScroll(this.$el, {
-          probeType: 1,
-          click: true,
-          scrollX: false,
-          mouseWheel: {
-            speed: 20,
-            invert: false,
-            easeTime: 300
-          }
-        })
-      );
-      this.scroll.on("scroll", pos => {
-        this.msg = "scroll" + pos;
-      });
-      this.scroll.on("touchEnd", pos => {
-        this.msg = "touchEnd" + pos;
-      });
-      this.scroll.on("beforeScrollStart", pos => {
-        this.msg = "beforeScrollStart" + pos;
-      });
-      this.scroll.on("scrollStart", pos => {
-        this.msg = "scrollStart" + pos;
-      });
-      this.scroll.on("scroll", pos => {
-        this.msg = "scroll" + pos;
-      });
-      this.scroll.on("scrollCancel", pos => {
-        this.msg = "scrollCancel" + pos;
-      });
-      this.scroll.on("pullingDown", pos => {
-        this.msg = "pullingDown" + pos;
-      });
-      this.scroll.on("pullingUp", pos => {
-        this.msg = "pullingUp" + pos;
-      });
-      this.msg = "scroll refres+";
+      let vm = this;
+      setTimeout(() => {
+        vm.$set(
+          this,
+          "scroll",
+          new BScroll(vm.$el, {
+            startX: 0,
+            startY: 0,
+            probeType: 1,
+            click: true,
+            mouseWheel: {
+              speed: 2,
+              invert: false,
+              easeTime: 300
+            }
+          })
+        );
+        vm.scroll.on("scroll", pos => {
+          console.log("scroll", pos);
+        });
+        vm.scroll.on("touchEnd", pos => {
+          console.log("touchEnd", pos);
+        });
+        vm.scroll.on("beforeScrollStart", pos => {
+          console.log("beforeScrollStart", pos);
+        });
+        vm.scroll.on("scrollStart", pos => {
+          console.log("scrollStart", pos);
+        });
+        vm.scroll.on("scroll", pos => {
+          console.log("scroll", pos);
+        });
+        vm.scroll.on("scrollCancel", pos => {
+          console.log("scrollCancel", pos);
+        });
+        vm.scroll.on("pullingDown", pos => {
+          console.log("pullingDown", pos);
+        });
+        vm.scroll.on("pullingUp", pos => {
+          console.log("pullingUp", pos);
+        });
+        vm.scroll.on("refresh", pos => {
+          console.log("refresh", pos);
+        });
+      }, 1000 * 1);
     },
     colMounted(colEle) {}
   },
@@ -120,8 +115,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.article-list {
-  height: 100%;
-  overflow: auto;
+.article {
+  &.wrapper {
+    height: 500px;
+    overflow: hidden;
+  }
 }
 </style>

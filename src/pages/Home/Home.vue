@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <c-tool-bar></c-tool-bar>
+    <c-tool-bar v-on:mounted="toolMounted"></c-tool-bar>
+    <c-bottom-nav-bar v-on:mounted="navMounted"></c-bottom-nav-bar>
+    <!-- 以上position为absolute，不影响布局，但是会影响Vue初始化 -->
     <c-container ref="main">
       <c-row>
         <c-col :options="colOptions">
@@ -12,7 +14,6 @@
         </c-col>
       </c-row>
     </c-container>
-    <c-bottom-nav-bar></c-bottom-nav-bar>
   </div>
 </template>
 
@@ -29,10 +30,14 @@ const components = {
   "c-bottom-nav-bar": () =>
     import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
 };
+import { mapActions } from "vuex";
 
 export default {
   name: "home",
-  mounted() {},
+  mounted() {
+    console.log("Home mounted");
+    this.setHomeRect(this.$el.getBoundingClientRect());
+  },
   data() {
     return {
       colOptions: {
@@ -44,7 +49,18 @@ export default {
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    ...mapActions("home", ["setHomeRect", "setToolBarRect", "setNavBarRect"]),
+    toolMounted(toolEle) {
+      console.log(toolEle);
+      debugger;
+      let toorect = toolEle.getBoundingClientRect();
+      this.setToolBarRect(toorect);
+    },
+    navMounted(navEle) {
+      this.setNavBarRect(navEle.getBoundingClientRect());
+    }
+  },
   components
 };
 </script>

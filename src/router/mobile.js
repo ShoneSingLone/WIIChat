@@ -12,10 +12,5 @@ export default {
     path: 'Article',
     name: 'home.Article',
     component: Article
-  }, {
-    path: 'about/about/',
-    name: 'home.about.subAbout',
-    component: () =>
-      import ( /* webpackChunkName: "about" */ '@/views/About.vue')
   }]
 }

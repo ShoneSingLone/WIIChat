@@ -11,7 +11,14 @@ export default {
   mounted() {
     console.log("Row mounted");
     //某些需要在mounted之后完成的初始化
-    this.$emit("mounted", this.$el);
+    let vm = this;
+    this.$nextTick()
+      .then(() => {
+        vm.$emit("mounted", vm.$el);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   },
   data() {
     return {};

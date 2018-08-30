@@ -6,10 +6,12 @@
 // Core variables and mixins
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+
 // Reset and dependencies
 // @import "bootstrap/normalize";
 @import "bootstrap/print";
 @import "bootstrap/glyphicons";
+
 // Core CSS
 @import "bootstrap/scaffolding";
 @import "bootstrap/type";
@@ -19,17 +21,18 @@
 @import "bootstrap/forms";
 @import "bootstrap/buttons";
 @import "bootstrap/progress-bars";
+
 // Components w/ JavaScript
 @import "bootstrap/modals";
 
 .fade {
     &-enter-active {
-        transition: all 1s 1s ease-in;
+        transition: all 0.5s 0.5s ease-in;
         opacity: 0;
     }
 
     &-leave-active {
-        transition: all 1s ease-out;
+        transition: all 0.5s ease-out;
     }
 
     &-enter,
@@ -47,7 +50,7 @@
 
 .slide {
     &-enter-active {
-        transition: all 0.5s 1s ease-in;
+        transition: all 0.5s 0.5s ease-in;
         opacity: 0;
     }
 

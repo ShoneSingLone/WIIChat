@@ -10,6 +10,7 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 - [Workbox webpack Plugins](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#which_plugin_to_use)
 - [当 better-scroll 遇见 Vue:原生JS插件在Vue框架内的转换](https://zhuanlan.zhihu.com/p/27407024)
+- better-scroll使用的要点：wrapper大小时限定的；DOM结构已经固定；wrapper里的第一个元素，一般是UL
 
 ## 需求
 
