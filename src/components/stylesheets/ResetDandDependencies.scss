@@ -70,3 +70,24 @@
         opacity: 1;
     }
 }
+
+.test {
+    &-enter-active {
+        transition: all 0.5s 0.5s ease-in;
+        opacity: 0;
+    }
+
+    &-leave-active {
+        transition: all 0.5s ease-out;
+    }
+
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+    }
+
+    &-enter-to,
+    &-leave {
+        opacity: 1;
+    }
+}

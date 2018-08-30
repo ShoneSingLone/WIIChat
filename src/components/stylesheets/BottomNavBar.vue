@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition :name="transitionName">
     <c-container class="bottom-nav-bar" :options="{class:'fluid'}">
       <c-row>
         <c-col :options="options">
@@ -42,18 +42,14 @@ export default {
   props: {},
   mounted() {
     console.log("BottomNavBar mounted");
-    let vm = this;
-    this.$nextTick()
-      .then(() => {
-        vm.$emit("mounted", vm.$el);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    setTimeout(() => {
+      this.$emit("mounted", this.$el);
+    }, 1000 * 1);
     this.navTo(this.tabItems[0], 0);
   },
   data() {
     return {
+      transitionName: "",
       options: {
         class: {
           md: {

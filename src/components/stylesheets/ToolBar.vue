@@ -34,14 +34,9 @@ export default {
   name: "c-tool-bar",
   mounted() {
     console.log("ToolBar mounted");
-    let vm = this;
-    this.$nextTick()
-      .then(() => {
-        vm.$emit("mounted", vm.$el);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    setTimeout(() => {
+      this.$emit("mounted", this.$el);
+    }, 1000 * 1);
   },
   components,
   props: {

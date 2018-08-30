@@ -1,24 +1,36 @@
-const state = {
-  homeRect: {
-    bottom: 667.2000122070312,
-    height: 667.2000122070312,
-    left: 0,
-    right: 375.20001220703125,
-    top: 0,
-    width: 375.20001220703125,
-    x: 0,
-    y: 0
-  },
-  toolRect: {
-    height: 670
-  },
-  navRect: {
-    height: 670
-  }
+let rectDemo = {
+  bottom: 667.2000122070312,
+  height: 667.2000122070312,
+  left: 0,
+  right: 375.20001220703125,
+  top: 0,
+  width: 375.20001220703125,
+  x: 0,
+  y: 0
 }
+const state = {
+  initCompleteCounter: 0, //3 homeRect toolRect navRect都获取完成就可以计算route-view
+  homeRect: Object.assign(rectDemo),
+  toolRect: Object.assign(rectDemo, {
+    height: 50
+  }),
+  navRect: Object.assign(rectDemo, {
+    height: 70
+  })
+}
+
 const getters = {
   homeHeight(state) {
     return parseInt(state.homeRect.height);
+  },
+  toolHeight(state) {
+    return parseInt(state.toolRect.height);
+  },
+  navHeight(state) {
+    return parseInt(state.navRect.height);
+  },
+  isInitCompleted(state) {
+    return state.initCompleteCounter === 3;
   }
 }
 
@@ -27,13 +39,37 @@ const actions = {
     commit
   }, rect) {
     return commit('setHomeRect', rect)
+  },
+  async setToolBarRect({
+    commit
+  }, rect) {
+    return commit('setToolBarRect', rect)
+  },
+  async setNavBarRect({
+    commit
+  }, rect) {
+    return commit('setNavBarRect', rect)
   }
+  // 以上三者只应该在Home初始化各调用一次
 }
 
 const mutations = {
+  setToolBarRect(state,
+    rect
+  ) {
+    state.initCompleteCounter++
+    state.toolRect = rect;
+  },
+  setNavBarRect(state,
+    rect
+  ) {
+    state.initCompleteCounter++
+    state.navRect = rect;
+  },
   setHomeRect(state,
     rect
   ) {
+    state.initCompleteCounter++
     state.homeRect = rect;
   }
 }

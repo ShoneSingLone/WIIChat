@@ -6,7 +6,7 @@
     <c-container ref="main">
       <c-row>
         <c-col :options="colOptions">
-          <transition name="slide">
+          <transition :name="transitionName">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>
@@ -40,6 +40,7 @@ export default {
   },
   data() {
     return {
+      transitionName: "fade",
       colOptions: {
         md: {
           colspan: 8,
@@ -52,10 +53,8 @@ export default {
   methods: {
     ...mapActions("home", ["setHomeRect", "setToolBarRect", "setNavBarRect"]),
     toolMounted(toolEle) {
-      console.log(toolEle);
-      debugger;
-      let toorect = toolEle.getBoundingClientRect();
-      this.setToolBarRect(toorect);
+      this.$store
+      this.setToolBarRect(toolEle.getBoundingClientRect());
     },
     navMounted(navEle) {
       this.setNavBarRect(navEle.getBoundingClientRect());

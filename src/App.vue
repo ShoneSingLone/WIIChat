@@ -17,7 +17,7 @@ export default {
   name: "root",
   data: function() {
     return {
-      transitionName: "fade",
+      transitionName: "",
       toggle: 0
     };
   },
