@@ -3,7 +3,12 @@
     <c-container class="article wrapper" :style="containerStyle">
       <c-row>
         <c-col :options="colOptions" v-for="(item, index) in 100" :key="index">
-          <div @click="scrollRe(item, index)">s-col{{index}}-{{msg}}</div>
+          <c-card>
+            <h3 slot="header">
+              <a href="javascript:void(0)" @click="scrollRe(item, index)">On the road again</a>
+            </h3>
+            is a card witch show some article's infomation
+          </c-card>
         </c-col>
       </c-row>
     </c-container>
@@ -21,22 +26,12 @@ const components = {
   "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
   "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
   "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
-  "c-scroll": () => import(/* webpackChunkName: "c-button" */ "@cps/Scroll")
+  "c-scroll": () => import(/* webpackChunkName: "c-scroll" */ "@cps/Scroll"),
+  "c-card": () => import(/* webpackChunkName: "c-card" */ "@cps/Card")
 };
 
 export default {
   name: "Article",
-  metaInfo: {
-    title: "Article",
-    titleTemplate: "%s",
-    meta: [
-      { name: "keywords", content: "" },
-      {
-        name: "description",
-        content: ""
-      }
-    ]
-  },
   mounted() {
     console.time("Article mounted");
     dateTest = Date.now();
@@ -87,15 +82,16 @@ export default {
                 bounce: {
                   top: true,
                   bottom: true
+                },
+                pullDownRefresh: {
+                  threshold: 50,
+                  stop: 20
+                },
+                pullUpLoad: {
+                  threshold: 50
                 }
               })
             );
-            this.scroll.on("scroll", pos => {
-              console.log("scroll", pos);
-            });
-            this.scroll.on("touchEnd", pos => {
-              console.log("touchEnd", pos);
-            });
             this.scroll.on("beforeScrollStart", pos => {
               console.log("beforeScrollStart", pos);
             });
@@ -104,6 +100,9 @@ export default {
             });
             this.scroll.on("scroll", pos => {
               console.log("scroll", pos);
+            });
+            this.scroll.on("touchEnd", pos => {
+              console.log("touchEnd", pos);
             });
             this.scroll.on("scrollCancel", pos => {
               console.log("scrollCancel", pos);
@@ -134,6 +133,7 @@ export default {
   &.wrapper {
     height: 670px;
     overflow: visible;
+    color: #337ab7;
   }
 }
 </style>

@@ -1,6 +1,6 @@
-# Brumaire
+# Brumaire不正经描述文档
 
-名字什么的很难想，就按星座来吧（略略略）
+名字什么的真的很难想，要不就按星座来吧（略略略）
 
 ## 背景
 
@@ -8,9 +8,8 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 ~~没有测试代码，嗯，没有测试...~~
 
-- [Workbox webpack Plugins](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#which_plugin_to_use)
 - [当 better-scroll 遇见 Vue:原生JS插件在Vue框架内的转换](https://zhuanlan.zhihu.com/p/27407024)
-- better-scroll使用的要点：wrapper大小时限定的；DOM结构已经固定；wrapper里的第一个元素，一般是UL
+- better-scroll使用的要点：wrapper大小时必须是限定的（明确的）；DOM结构已经固定；wrapper里的第一个元素，一般是UL。另外，动画也是有影响的，具体有空真真正正拜读一下前辈源码。先就这样吧...
 
 ## 需求
 
@@ -18,33 +17,58 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
   - [ ] 注册
   - [ ] 第三方登录
 - [ ] 聊天
+  - [ ] timeLine的方式，即顶级的是时间线，然后在时间线上抛出一个话题，愿意讨论的成员（可以通过邀请来提醒）会进入这个话题下讨论而不会扰乱顶级的时间线，（没几分钟就99+还全是吹水，你说吓人不吓人）
 - [ ] 问答
   - [ ] 问题展示
   - [ ] 提问
   - [ ] 回答
 - [ ] 个人中心
-- [ ] 周刊
+- [ ] ~~周刊~~Article：可以聚合，也可以自己产出，提倡————由一个问题引发的论文（误）建设性提问，发散性回答，可作为答案，也可以作为个人文章。
 - [ ] 其他
   - [ ] 数据分析(伪)（图表应用）
     - [ ] 查找潜水员：可以统计成员聊天的数据啥的，发言频率，主题词
     - [ ] 贡献排行系统  
+- [ ] 感觉自己要撸一个搜索引擎似的，阔怕。反正需求放这儿，爱撸不撸
+- [ ] 后台总要有一个吧
 
 ## 概要设计
 
-- 组件首字母大写、驼峰
-- `c-button`c代表custom
+就想做一个渐进式Web应用
+
+- PWA了解一下
+- [Workbox webpack Plugins](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#which_plugin_to_use)
+
+### 登录
+
+- 讲道理，不登录也是可以进入Home界面，但是默认重定向到Login界面；
+- 注册是没有的，反正我的账号是直接改的数据库。
+- 主要是（目前唯一）GitHub授权第三方登录。
+
+### Article
+
+- Weekly部分需要从GitHub Download到数据库才好做分析
+  - 什么时候刷新呢？
+  - 非常暴力，直接覆盖刷新（先就这样吧）
+- APP就从数据库读取就行
+  - 是不是要考虑IndexedDB的使用（是不是任性，默认都支持？）
+
+### 聊天
+
+[仿微信IM软件的客户端数据库设计](https://segmentfault.com/q/1010000004294504)
 
 ## 详细设计
 
 ## 实现
 
+- 组件首字母大写、驼峰
+- `c-button`c代表custom
 - UI 使用 `npm install @material -D`
   - material design component 的layout使用grid，采用的是Bootstrap的container row cell 系统
 - [喜欢的MDC为什么不用？太先进了，受不了受不了](http://www.ruanyifeng.com/blog/2017/05/css-variables.html)
+- [Mongoose 分页查询优化、获取数据总长度](https://www.cnblogs.com/fayin/p/7028466.html)
+- [MongoDB 分页查询的方法及性能](https://www.cnblogs.com/capqueen/p/MongoDBPagination.html)
 
 panel 用了 md 的 btn
-
-登录：[Authorizing OAuth Apps](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
 
 location.href 通常被用来跳转到指定页面地址;
 location.replace 方法则可以实现用新的文档替换当前文档;

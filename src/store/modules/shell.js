@@ -1,6 +1,7 @@
 let clientId = "de98ee996939961d39d9";
 let redirectUri = (location.port ? 'http://192.168.137.1:8080' : 'https://shonesinglone.github.io/brumaire');
 let hostName = (location.port ? 'http://192.168.137.1:3000' : 'https://shonesinglone.leanapp.cn') + '/n/wiichat';
+let themeColorDOM = null;
 
 let githubAuthorizeUrl = new URL(
   "https://github.com/login/oauth/authorize"
@@ -10,6 +11,9 @@ githubAuthorizeUrl.searchParams.append("redirect_uri", redirectUri);
 githubAuthorizeUrl.searchParams.append("scope", "user");
 
 const state = {
+  meta: {
+    themeColor: '#337ab7',
+  },
   isMobile: true,
   windowScrollY: 0,
   userInfo: false,
@@ -19,6 +23,9 @@ const state = {
   hostName
 }
 const getters = {
+  metaThemeColor(state) {
+    return state.meta.themeColor;
+  },
   windowScrollY(state) {
     return state.windowScrollY
   },
@@ -52,6 +59,18 @@ const getters = {
   }
 }
 const actions = {
+  setThemeColor({
+    commit
+  }, color) {
+    // LAZY SINGLE
+    try {
+      themeColorDOM = themeColorDOM ? themeColorDOM : document.getElementById('theme-color');
+      themeColorDOM.setAttribute('content', color)
+    } catch (error) {
+      // TODO:append a meta name=theme-color content=color
+    }
+    return commit('setThemeColor', color)
+  },
   setWindowScrollY({
     commit
   }, y) {
@@ -76,6 +95,9 @@ const actions = {
   }
 }
 const mutations = {
+  setThemeColor(state, color) {
+    state.meta.themeColor = color
+  },
   setWindowScrollY(state, y) {
     state.windowScrollY = y
   },

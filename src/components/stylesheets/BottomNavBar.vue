@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 const components = {
   "c-container": () =>
     import(/* webpackChunkName: "c-container" */ "@cps/Container"),
@@ -39,7 +41,6 @@ const EVENT_FOCUS = "focus";
 export default {
   name: "c-bottom-nav-bar",
   components,
-  props: {},
   mounted() {
     console.log("BottomNavBar mounted");
     setTimeout(() => {
@@ -47,6 +48,7 @@ export default {
     }, 1000 * 1);
     this.navTo(this.tabItems[0], 0);
   },
+  props: {},
   data() {
     return {
       transitionName: "",
@@ -69,6 +71,7 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    ...mapActions(["setThemeColor"]),
     getIconClass(iconName) {
       return `glyphicon-${iconName}`;
     },
@@ -76,9 +79,11 @@ export default {
       console.log(item, index);
       this.currentItem = index;
       if (index === 3) {
+        this.setThemeColor("red");
         // this.$router.push({ name: "error", query: { msg: "just a joke" } });
       }
       if (index === 1) {
+        this.setThemeColor("#337ab7");
         console.log(
           "this.$el.getBoundingClientRect",
           this.$el.getBoundingClientRect()
@@ -155,6 +160,7 @@ export default {
         width: 3rem;
         line-height: 3rem;
         border-radius: 50%;
+        transition: all 0.5s ease-in-out;
       }
       .icon-label {
         width: 100%;
@@ -176,6 +182,7 @@ export default {
 
         .glyphicon {
           border: 1px solid $brand-primary;
+          transform: scale(1.1);
           @include elevation12();
         }
         .icon-label {

@@ -51,9 +51,10 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions(["setThemeColor"]),
     ...mapActions("home", ["setHomeRect", "setToolBarRect", "setNavBarRect"]),
     toolMounted(toolEle) {
-      this.$store
+      this.$store;
       this.setToolBarRect(toolEle.getBoundingClientRect());
     },
     navMounted(navEle) {
