@@ -30,7 +30,7 @@ const components = {
   "c-bottom-nav-bar": () =>
     import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
 };
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "home",
@@ -49,7 +49,9 @@ export default {
       }
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters("article", ["movingDirectionY"])
+  },
   methods: {
     ...mapActions(["setThemeColor"]),
     ...mapActions("home", ["setHomeRect", "setToolBarRect", "setNavBarRect"]),

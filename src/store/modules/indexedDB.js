@@ -1,4 +1,4 @@
-debugger;
+// debugger;
 (async () => {
   //没有IndexedDB另说，暂时不管
   if (window.indexedDB) {

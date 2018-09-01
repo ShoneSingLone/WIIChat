@@ -2,12 +2,15 @@
   <transition name="s-fade">
     <c-container class="article wrapper" :style="containerStyle">
       <c-row>
-        <c-col :options="colOptions" v-for="(item, index) in 100" :key="index">
+        <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
           <c-card>
             <h3 slot="header">
-              <a href="javascript:void(0)" @click="scrollRe(item, index)">On the road again</a>
+              <a href="javascript:void(0)" @click="scrollRe(article, index)">{{article.title}}</a>
             </h3>
-            is a card witch show some article's infomation
+            {{article.body}}
+            <div slot="footer">
+              更新时间： {{article.updated_at}}
+            </div>
           </c-card>
         </c-col>
       </c-row>
@@ -17,7 +20,7 @@
 
 <script>
 import BScroll from "better-scroll";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 let dateTest = 0;
 
 const components = {
@@ -32,6 +35,16 @@ const components = {
 
 export default {
   name: "Article",
+  created() {
+    if (this.articleList.length < 1) {
+      console.time("getArticleList");
+      this.getArticleList({
+        url: this.hostName,
+        sort: { updated_at: -1 }
+      });
+      console.timeEnd("getArticleList");
+    }
+  },
   mounted() {
     console.time("Article mounted");
     dateTest = Date.now();
@@ -51,19 +64,25 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["hostName"]),
     ...mapGetters("home", [
       "homeHeight",
       "toolHeight",
       "navHeight",
       "isInitCompleted"
-    ])
+    ]),
+    ...mapGetters("article", ["articleList"])
   },
   methods: {
-    scrollRe(item, index) {
-      console.log("click");
+    ...mapActions("article", ["getArticleList", "setMovingDirectionY"]),
+    scrollRe(article, index) {
+      console.log("click", article, index);
     }
   },
   watch: {
+    articleList(newV, oldV) {
+      // setTimeout(() => { debugger; this.scroll.refresh(); }, 1000 * 1);
+    },
     isInitCompleted(newV) {
       if (newV) {
         this.containerStyle = {
@@ -89,32 +108,33 @@ export default {
                 },
                 pullUpLoad: {
                   threshold: 50
-                }
+                },
+                observeDOM: true
               })
             );
             this.scroll.on("beforeScrollStart", pos => {
-              console.log("beforeScrollStart", pos);
+              // console.log("beforeScrollStart", pos);
             });
             this.scroll.on("scrollStart", pos => {
-              console.log("scrollStart", pos);
+              // console.log("scrollStart", pos);
             });
             this.scroll.on("scroll", pos => {
-              console.log("scroll", pos);
+              // console.log("scroll", pos);
             });
-            this.scroll.on("touchEnd", pos => {
-              console.log("touchEnd", pos);
+            this.scroll.on("touchEnd", () => {
+              this.setMovingDirectionY(this.scroll.movingDirectionY);
             });
             this.scroll.on("scrollCancel", pos => {
-              console.log("scrollCancel", pos);
+              // console.log("scrollCancel", pos);
             });
             this.scroll.on("pullingDown", pos => {
-              console.log("pullingDown", pos);
+              // console.log("pullingDown", pos);
             });
             this.scroll.on("pullingUp", pos => {
-              console.log("pullingUp", pos);
+              // console.log("pullingUp", pos);
             });
             this.scroll.on("refresh", pos => {
-              console.log("refresh", pos);
+              // console.log("refresh", pos);
             });
           }, 1000 * 0.02);
         });
