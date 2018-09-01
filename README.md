@@ -62,6 +62,8 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 - 数据库flag更新日期，client在有网情况下都会请求这个flag，如果不一致则请求数据库数据，否则使用本地缓存即可
   - 还要考虑请求数据后的用户更新：如何保证当前状态的平稳更新？
 
+### asdf
+
 ## 实现
 
 - 组件首字母大写、驼峰
@@ -77,6 +79,14 @@ panel 用了 md 的 btn
 location.href 通常被用来跳转到指定页面地址;
 location.replace 方法则可以实现用新的文档替换当前文档;
 location.replace 方法不会在 history 对象中生成一个新的记录。
+
+### Article
+
+beforePullUp 和 beforePullDown流程是一样的
+
+- 为进入触发区 beforePullUp：false && pullUpTrigger：false
+- 进入触发区未触发 beforePullUp：true && pullUpTrigger：false
+- 触发 beforePullUp：true && pullUpTrigger：true
 
 ## ~~测试~~
 

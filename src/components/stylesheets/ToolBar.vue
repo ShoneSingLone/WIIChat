@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition :name="transitionName">
     <c-container class="tool-bar" :options="{class:'fluid'}">
       <c-row>
         <c-col :options="options">
@@ -83,6 +83,7 @@ export default {
   },
   data() {
     return {
+      transitionName: "out-down",
       options: {
         class: {
           md: {

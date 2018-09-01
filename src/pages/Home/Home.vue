@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <c-tool-bar v-on:mounted="toolMounted"></c-tool-bar>
-    <c-bottom-nav-bar v-on:mounted="navMounted"></c-bottom-nav-bar>
+    <c-tool-bar v-on:mounted="toolMounted" v-show="showTool"></c-tool-bar>
+    <c-bottom-nav-bar v-on:mounted="navMounted" v-show="showNav"></c-bottom-nav-bar>
     <!-- 以上position为absolute，不影响布局，但是会影响Vue初始化 -->
-    <c-container ref="main">
-      <c-row>
-        <c-col :options="colOptions">
+    <c-container ref="main" class="home">
+      <c-row class="home">
+        <c-col :options="colOptions" class="home">
           <transition :name="transitionName">
             <keep-alive>
               <router-view></router-view>
@@ -50,7 +50,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("article", ["movingDirectionY"])
+    ...mapGetters("article", ["movingDirectionY"]),
+    showTool() {
+      // 当滑动的时候有这一种情况还有其他的再说
+      return this.movingDirectionY === -1;
+    },
+    showNav() {
+      // 当滑动的时候有这一种情况还有其他的再说
+      return this.movingDirectionY === -1;
+    }
   },
   methods: {
     ...mapActions(["setThemeColor"]),

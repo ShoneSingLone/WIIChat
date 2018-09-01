@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/Brumaire",
   "display": "standalone",
   "background_color": "#f0f0f0",
   "theme_color": "#337ab7"

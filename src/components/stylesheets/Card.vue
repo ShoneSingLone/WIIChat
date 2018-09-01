@@ -46,7 +46,7 @@ export default {
 @import "vm";
 
 .card {
-  @include elevation4();
+  @include elevation6();
   padding: 1rem;
   margin-top: 1rem;
 }

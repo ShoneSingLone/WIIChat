@@ -51,7 +51,7 @@ export default {
   props: {},
   data() {
     return {
-      transitionName: "",
+      transitionName: "out-up",
       options: {
         class: {
           md: {
