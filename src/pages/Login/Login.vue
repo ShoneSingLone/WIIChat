@@ -86,7 +86,7 @@ export default {
     next(vm => {
       console.log("next", vm.userInfo);
       // 目的是如果这个是因为地址404过来的就应该报一个错
-      if (to.redirectedFrom) {
+      if (to.redirectedFrom && to.redirectedFrom !== "/") {
         return vm.$router.push({
           name: "error",
           query: { msg: "no way '404:没有这个地址'" }
@@ -102,9 +102,11 @@ export default {
   data() {
     return {
       colOptions: {
-        lg: {
-          colspan: 8,
-          offset: 2
+        class: {
+          md: {
+            colspan: 8,
+            offset: 2
+          }
         }
       }
     };

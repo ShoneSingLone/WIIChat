@@ -4,6 +4,7 @@ import Highlight from 'highlight.js';
 import jquery from 'jquery';
 
 let imgUrlCache = []
+let imgUrlCacheIndex = 0;
 
 
 /*************对显示的数据做初始化的一些配置。主要是Markdown的处理 **/
@@ -58,7 +59,8 @@ renderer.image = function (href, title, text) {
   if (title) {
     out += ' title="' + title + '"';
   }
-  imgUrlCache.push({
+  imgUrlCache[imgUrlCacheIndex] = imgUrlCache[imgUrlCacheIndex] || [];
+  imgUrlCache[imgUrlCacheIndex].push({
     title: title || Date.now(),
     href
   })
@@ -135,12 +137,10 @@ const actions = {
         onUploadProgress: function (progressEvent) {
           console.log("onUploadProgress", progressEvent);
           console.time("progress");
-          // Do whatever you want with the native progress event
         },
         onDownloadProgress: function (progressEvent) {
           console.log("onDownloadProgress", progressEvent);
           console.timeEnd("progress");
-          // Do whatever you want with the native progress event
         },
         params: {}
       });
@@ -151,19 +151,20 @@ const actions = {
       } = result;
       if (status === 200 && res.success) {
         let originArticles = res.data;
-        if (originArticles.length === 0) commit("setArticleNoMore");
-        let articleArray = originArticles.map((originArticle) => {
+        if (originArticles.length === 0) {
+          commit("setArticleNoMore");
+        }
+        let articleArray = originArticles.map((originArticle, index) => {
           let content = Marked(originArticle.body);
-          console.log(imgUrlCache);
           let html = jquery(content).html();
           let text = jquery(content).text();
           let desc = text.length > 120 ? text.substring(0, 120) + "..." : text;
           return {
-            imgUrl: "https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/docks.jpg",
+            imgUrl: imgUrlCache && imgUrlCache[imgUrlCacheIndex] && imgUrlCache[imgUrlCacheIndex][0] && imgUrlCache[imgUrlCacheIndex][0].href || "https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/docks.jpg",
             desc,
             html,
             content, //由markdown转换为HTML的字符
-            imgUrlCache,
+            imgUrlCache: imgUrlCache[imgUrlCacheIndex++],
             ...originArticle
           }
         });
@@ -174,6 +175,15 @@ const actions = {
       console.dir(error)
     }
   },
+  async getDetail(article) {
+    let content = Marked(article.body);
+    let html = jquery(content).html();
+    return {
+      html,
+      content, //由markdown转换为HTML的字符
+      ...article
+    }
+  }
 }
 const mutations = {
   setMovingDirectionY(state,

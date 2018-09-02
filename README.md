@@ -34,7 +34,7 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 ## 概要设计
 
-就想做一个渐进式Web应用
+就想做一个渐进式Web应用（喜欢PWA的理由，凡事完美不可求，成不亦可一蹴而就，但要报以持之以恒不断改进臻至完美之心）
 
 - PWA了解一下
 - [Workbox webpack Plugins](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#which_plugin_to_use)

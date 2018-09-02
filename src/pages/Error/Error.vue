@@ -1,11 +1,9 @@
 <template>
   <container>
     <row>
-      <c-col :options="{
-        sm: {
-          colspan: 8,
-          offset: 2
-        }
+      <c-col :options="{class:{
+        sm: { colspan: 8, offset: 2 }
+       }
       }">
         <c-modals :isShow="true" :title="title">
           <div slot="body" class="msg-wrapper" v-if="msg">
@@ -41,19 +39,8 @@ let components = {
 
 export default {
   name: "error",
-  metaInfo: {
-    title: "Error",
-    titleTemplate: "%s",
-    meta: [
-      { name: "keywords", content: "" },
-      {
-        name: "description",
-        content: ""
-      }
-    ]
-  },
   mounted() {
-    // console.log("Error mounted");
+    console.log("Error mounted");
   },
   beforeRouteEnter: (to, from, next) => {
     // console.log("Error: beforeRouteEnter");
@@ -68,7 +55,10 @@ export default {
         // console.log("Error: beforeRouteEnter next");
         vm.msg = query.msg;
         vm.waitTiem = query.waitTiem ? query.waitTiem : 5;
-        vm.fromPathName = from.name ? from.name : "login";
+        vm.fromPathName =
+          params.redirect && params.redirect.name
+            ? params.redirect.name
+            : from.name ? from.name : "login";
         vm.downC();
       });
     }
@@ -112,7 +102,7 @@ export default {
     downC() {
       this.dcTimer = setTimeout(() => {
         if (this.waitTiem === 0) {
-          this.$router.push({ name: "login" });
+          this.goBack();
         } else {
           this.waitTiem--;
           this.dcTimer = setTimeout(this.downC, 1000 * 1);

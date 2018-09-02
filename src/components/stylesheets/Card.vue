@@ -1,16 +1,13 @@
 <template>
-  <div class="card">
+  <div class="card" :class="options.class">
     <div class="header" v-if="$slots.header">
-      <h3>
-        <slot name="header">
-        </slot>
-      </h3>
-    </div>
-    <div class="body">
-      <slot>
+      <slot name="header">
       </slot>
     </div>
-    <div name="footer" class="footer" v-if="$slots.footer">
+    <slot>
+      <div class="body"></div>
+    </slot>
+    <div class="footer" name="footer" v-if="$slots.footer">
       <slot name="footer">
       </slot>
     </div>
@@ -33,6 +30,18 @@ export default {
         console.error(error);
       });
   },
+  props: {
+    options: {
+      type: Object,
+      default() {
+        return {
+          class: {
+            radius: false
+          }
+        };
+      }
+    }
+  },
   data() {
     return {};
   },
@@ -49,5 +58,8 @@ export default {
   @include elevation6();
   padding: 1rem;
   margin-top: 1rem;
+  &.radius {
+    border-radius: 1rem;
+  }
 }
 </style>

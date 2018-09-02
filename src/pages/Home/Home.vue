@@ -42,9 +42,11 @@ export default {
     return {
       transitionName: "fade",
       colOptions: {
-        md: {
-          colspan: 8,
-          offset: 2
+        class: {
+          md: {
+            colspan: 8,
+            offset: 2
+          }
         }
       }
     };
@@ -58,6 +60,20 @@ export default {
     showNav() {
       // 当滑动的时候有这一种情况还有其他的再说
       return this.movingDirectionY === -1;
+    }
+  },
+  watch: {
+    $route(to, from) {
+      const toDepth = to.path.split("/").length;
+      const fromDepth = from.path.split("/").length;
+      console.log("$route change", toDepth, fromDepth);
+      if (toDepth < fromDepth) {
+        // 往左：以后可以配置再说
+        this.transitionName = "back";
+      } else {
+        this.transitionName = "forward";
+      }
+      // 往右
     }
   },
   methods: {
