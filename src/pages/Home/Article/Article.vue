@@ -1,26 +1,24 @@
 <template>
   <transition name="fade">
-    <c-container class="article wrapper" :style="containerStyle">
-      <c-row>
-        <transition-group name="fade">
-          <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
-            <c-card class="article-card" :options="cardOptions">
-              <h3 slot="header" :class="['header',{'open':article.open},{'close':!article.open}]" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
-                {{article.title}}
-              </h3>
-              <div class="body">
-                {{article.desc}}
-                <div class="read-more-wrapper">
-                  <c-button @click="showDetail(article, index)">Read</c-button>
-                </div>
+    <c-container class="article wrapper" :style="containerStyle" @scroll="articleScroll">
+      <c-row class="article">
+        <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
+          <c-card class="article-card" :options="cardOptions">
+            <h3 slot="header" :class="['header',{'open':article.open},{'close':!article.open}]" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
+              {{article.title}}
+            </h3>
+            <div class="body">
+              {{article.desc}}
+              <div class="read-more-wrapper">
+                <c-button @click="showDetail(article, index)">Read</c-button>
               </div>
-              <div slot="footer">
-                <!-- {{(article.updated_at)}} -->
-                更新于： {{articleUpdatedAt(article.updated_at)}}
-              </div>
-            </c-card>
-          </c-col>
-        </transition-group>
+            </div>
+            <div slot="footer">
+              <!-- {{(article.updated_at)}} -->
+              更新于： {{articleUpdatedAt(article.updated_at)}}
+            </div>
+          </c-card>
+        </c-col>
         <c-col :options="colOptions" v-show="isBeforePullUp||isPullUpTrigger" :class="['pullup-wrapper',{'refresh':isPullUpTrigger}]">
           <c-card :options="cardOptions">
             <span>
@@ -53,8 +51,6 @@ import BScroll from "better-scroll";
 import { mapGetters, mapActions } from "vuex";
 import dayjs from "dayjs";
 
-let dateTest = 0;
-
 let TIPS_PULLDOWN_BEFORE = "继续下拉以刷新";
 let TIPS_PULLUP_BEFORE = "继续上拉以加载";
 let TIPS_PULLDOWN_TRIGGER = "正在刷新...";
@@ -86,7 +82,6 @@ export default {
   },
   mounted() {
     console.time("Article mounted");
-    dateTest = Date.now();
   },
   data() {
     return {
@@ -97,7 +92,6 @@ export default {
       isPullDownTrigger: false,
       msg: "",
       scroll: {},
-      containerStyle: { height: "550px", "margin-top": "50px" },
       colOptions: { class: { md: { colspan: 4 } } },
       cardOptions: { class: { radius: true } }
     };
@@ -110,7 +104,14 @@ export default {
       "navHeight",
       "isInitCompleted"
     ]),
-    ...mapGetters("article", ["articleList", "noMore"]),
+    ...mapGetters("article", ["articleList", "noMore", "articleScrollY"]),
+    containerStyle() {
+      return {
+        height: "100%",
+        "padding-top": `${this.toolHeight}px`,
+        "padding-bottom": `${this.navHeight}px`
+      };
+    },
     bubbleY() {
       if (this.scrollPos.y > 0) {
         // 在pullDown的范围内
@@ -141,8 +142,25 @@ export default {
     }
   },
   methods: {
-    ...mapActions("article", ["getArticleList", "setMovingDirectionY"]),
+    ...mapActions("article", [
+      "getArticleList",
+      "setMovingDirectionY",
+      "setArticleScroll"
+    ]),
+    articleScroll(event) {
+      let { scrollHeight, scrollLeft, scrollTop, scrollWidth } = event.target;
+      this.setArticleScroll({
+        scrollHeight,
+        scrollLeft,
+        scrollTop,
+        scrollWidth
+      });
+    },
     showDetail(article, index) {
+      /*       this.$el.scrollTo({
+        top: 500,
+        behavior: "smooth"
+      }); */
       article.open = !article.open;
       this.$set(this.articleList, index, article);
       this.$router.push({
@@ -173,97 +191,9 @@ export default {
         }, 30);
       }
     },
-    isInitCompleted(newV) {
-      if (newV) {
-        this.containerStyle = {
-          height:
-            parseInt(this.homeHeight - this.toolHeight - this.navHeight) + "px",
-          "margin-top": this.toolHeight + "px"
-        };
-
-        this.$set(
-          this,
-          "scroll",
-          new BScroll(this.$el, {
-            probeType: 1,
-            click: true,
-            bounce: {
-              top: true,
-              bottom: true
-            },
-            /* pullDownRefresh: {
-                  threshold: 50,
-                  stop: 50
-                }, */
-            pullUpLoad: {
-              threshold: -80
-            },
-            // observeDOM: true,
-            mouseWheel: {
-              speed: 10,
-              invert: false,
-              easeTime: 300
-            }
-          })
-        );
-        setTimeout(() => {
-          this.scroll.on("beforeScrollStart", pos => {
-            // console.log("beforeScrollStart", pos);
-          });
-          this.scroll.on("scrollStart", pos => {
-            // console.log("scrollStart", pos);
-          });
-          this.scroll.on("scroll", pos => {
-            this.scrollPos.x = parseInt(pos.x);
-            this.scrollPos.y = parseInt(pos.y);
-          });
-          this.scroll.on("touchEnd", () => {
-            this.setMovingDirectionY(this.scroll.movingDirectionY);
-          });
-          this.scroll.on("scrollCancel", pos => {
-            // console.log("scrollCancel", pos);
-          });
-          this.scroll.on("pullingDown", pos => {
-            // console.log("pullingDown", pos);
-          });
-          this.scroll.on("pullingUp", pos => {
-            // console.log("pullingUp", pos);
-          });
-          this.scroll.on("refresh", pos => {
-            // console.log("refresh", pos);
-          });
-          /*   this.scroll.on("pullingDown", pos => {
-              console.log("pullingDown", pos);
-              this.isPullDownTrigger = true;
-              this.pullDownTips = TIPS_PULLDOWN_TRIGGER;
-              // 在加载完成后需要初始化
-              this.scroll.finishPullDown();
-            }); */
-          this.scroll.on("pullingUp", pos => {
-            this.isPullUpTrigger = true;
-            console.log("this.noMore", this.noMore);
-            if (this.noMore) {
-              this.pullUpTips = TIPS_PULLUP_NOMORE;
-              // 模拟后台请求数据的时间3s
-              setTimeout(() => {
-                debugger;
-                this.scroll.finishPullUp();
-                this.isPullUpTrigger = false;
-                setTimeout(() => {
-                  this.scroll.refresh();
-                }, 30);
-              }, 1000 * 3);
-            } else {
-              this.pullUpTips = TIPS_PULLUP_TRIGGER;
-              this.getArticleList({
-                url: this.hostName,
-                sort: { updated_at: -1 }
-              });
-            }
-          });
-        }, 30);
-        console.timeEnd("Article mounted");
-      }
+    articleScrollY(newV, oldV) {
+      console.log("newV, oldV", newV, oldV);
+      this.setMovingDirectionY(newV - oldV > 0 ? 1 : -1);
     }
   },
   components
@@ -274,10 +204,11 @@ export default {
 @import "../../../components/stylesheets/vm";
 .article {
   &.wrapper {
-    // outline: 1px solid rebeccapurple;
+    // outline: 1rem solid rebeccapurple;
     position: relative;
-    height: 670px;
-    overflow: visible;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 1s;
     // color: #337ab7;
     .skeleton {
       &.row {

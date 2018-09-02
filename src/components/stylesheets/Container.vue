@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerClass">
+  <div :class="containerClass" @scroll="handlerScroll">
     <slot></slot>
   </div>
 </template>
@@ -8,15 +8,7 @@ export default {
   name: "c-container",
   mounted() {
     //某些需要在mounted之后完成的初始化
-    let vm = this;
-    this.$nextTick()
-      .then(() => {
-        vm.$emit("mounted", vm.$el);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    console.log("Container mounted");
+    this.$emit("mounted", this.$el);
   },
   components: {},
   props: {
@@ -37,7 +29,11 @@ export default {
       return "container";
     }
   },
-  methods: {}
+  methods: {
+    handlerScroll(event) {
+      this.$emit("scroll", event);
+    }
+  }
 };
 </script>
 

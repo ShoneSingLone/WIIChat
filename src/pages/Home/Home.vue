@@ -1,19 +1,15 @@
 <template>
-  <div class="home">
+  <div class="shell">
     <c-tool-bar v-on:mounted="toolMounted" v-show="showTool"></c-tool-bar>
     <c-bottom-nav-bar v-on:mounted="navMounted" v-show="showNav"></c-bottom-nav-bar>
     <!-- 以上position为absolute，不影响布局，但是会影响Vue初始化 -->
-    <c-container ref="main" class="home">
-      <c-row class="home">
-        <c-col :options="colOptions" class="home">
-          <transition :name="transitionName">
-            <keep-alive>
-              <router-view></router-view>
-            </keep-alive>
-          </transition>
-        </c-col>
-      </c-row>
-    </c-container>
+    <div class="main">
+      <transition :name="transitionName">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -80,7 +76,6 @@ export default {
     ...mapActions(["setThemeColor"]),
     ...mapActions("home", ["setHomeRect", "setToolBarRect", "setNavBarRect"]),
     toolMounted(toolEle) {
-      this.$store;
       this.setToolBarRect(toolEle.getBoundingClientRect());
     },
     navMounted(navEle) {
@@ -92,8 +87,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
+.shell {
   height: 100%;
   overflow: hidden;
+  .main {
+    height: 100%;
+    overflow: hidden;
+  }
 }
 </style>

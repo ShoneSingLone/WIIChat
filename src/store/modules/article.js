@@ -95,20 +95,34 @@ const state = {
   noMore: false,
   articleList: [],
   limit: 4,
-  movingDirectionY: -1
+  movingDirectionY: -1,
+  scroll: {
+    height: 0,
+    left: 0,
+    top: 0,
+    width: 0
+  }
 }
 const getters = {
   articleList(state) {
-    return state.articleList
+    return state.articleList;
   },
   noMore(state) {
-    return state.noMore
+    return state.noMore;
   },
   movingDirectionY(state) {
-    return state.movingDirectionY
+    return state.movingDirectionY;
+  },
+  articleScrollY(state) {
+    return state.scroll.top;
   },
 }
 const actions = {
+  async setArticleScroll({
+    commit
+  }, scroll) {
+    commit("setArticleScroll", scroll);
+  },
   async setMovingDirectionY({
     commit
   }, movingDirectionY) {
@@ -186,13 +200,24 @@ const actions = {
   }
 }
 const mutations = {
+  setArticleScroll(state, {
+    scrollHeight,
+    scrollLeft,
+    scrollTop,
+    scrollWidth
+  }) {
+    state.scroll.height = scrollHeight
+    state.scroll.left = scrollLeft
+    state.scroll.top = scrollTop
+    state.scroll.width = scrollWidth
+  },
+  setArticleNoMore(state) {
+    state.noMore = true;
+  },
   setMovingDirectionY(state,
     movingDirectionY
   ) {
     state.movingDirectionY = movingDirectionY
-  },
-  setArticleNoMore(state) {
-    state.noMore = true;
   },
   setArticleList(state,
     articleArray
