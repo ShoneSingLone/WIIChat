@@ -49,6 +49,7 @@ body,
   margin: 0;
   height: 100%;
   font-size: 16px;
+  overflow: hidden;
 }
 * {
   // outline: 1px solid rebeccapurple;

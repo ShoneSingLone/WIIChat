@@ -1,24 +1,8 @@
 <template>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" name="exampleInputEmail1" placeholder="Email" ref="input" v-model="inputValue" v-bind="$props" :disabled="disabled" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus" @focus="handleFocus" @blur="handleBlur" @change="changeHander">
+    <label :for="forNameId" :class="{'sr-only':labelOptions.class&&labelOptions.class['sr-only']}">{{labelOptions.text}}</label>
+    <input :type="type" class="form-control" :id="forNameId" :name="forNameId" :placeholder="placeholder" ref="input" v-model="inputValue" :disabled="disabled" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus" @focus="handleFocus" @blur="handleBlur" @change="changeHander">
   </div>
-
-  <!--   <div class="c-input" :class="{'c-input_active': isFocus}">
-    <div class="c-input-prepend" v-if="$slots.prepend">
-      <slot name="prepend"></slot>
-    </div>
-    <input class="c-input-field" ref="input" v-model="inputValue" v-bind="$props" :type="_type" :disabled="disabled" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus" @focus="handleFocus" @blur="handleBlur" @change="changeHander">
-    <div class="c-input-append" v-if="$slots.append || _showClear || _showPwdEye">
-      <div class="c-input-clear" v-if="_showClear" @click="handleClear">
-        <i class="cubeic-wrong"></i>
-      </div>
-      <div class="c-input-eye" v-if="_showPwdEye" @click="handlePwdEye">
-        <i :class="eyeClass"></i>
-      </div>
-      <slot name="append"></slot>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -30,6 +14,16 @@ const EVENT_FOCUS = "focus";
 export default {
   name: "c-input",
   props: {
+    labelOptions: {
+      text: {
+        type: String,
+        required: true
+      },
+      class: {
+        type: Object,
+        default: {}
+      }
+    },
     value: [String, Number],
     type: {
       type: String,
@@ -73,6 +67,7 @@ export default {
   },
   data() {
     return {
+      forNameId: String("fni" + new Date().getTime()),
       inputValue: this.value,
       isFocus: false,
       formatedEye: {

@@ -81,7 +81,10 @@ export default {
     }
   },
   mounted() {
-    console.time("Article mounted");
+    console.log("Article mounted");
+    setTimeout(() => {
+      this.$emit("mounted", this.$el);
+    }, 30);
   },
   data() {
     return {
@@ -219,7 +222,7 @@ export default {
       width: 100%;
       top: 0;
       left: 0;
-      z-index: 2;
+      z-index: 1;
       .card {
         background-color: white;
         div {

@@ -8,7 +8,7 @@
               <li :class="['item',{'active':currentItem===index}]" v-for="(item, index) in tabItems" :key="index">
                 <span class="glyphicon" :class="getIconClass(item.icon)"></span>
                 <span class="icon-label">{{item.label}}</span>
-                <a class="modals" href="javascript:void(0)" @click="navTo(item,index)"></a>
+                <a class="modals" href="javascript:void(0)" @click="(event)=>{handleTabClick(event,item,index)}"></a>
               </li>
             </ul>
           </nav>
@@ -33,6 +33,7 @@ const components = {
   "c-bottom-nav-bar": () =>
     import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
 };
+const EVENT_TAB_CLICK = "tabClick";
 const EVENT_INPUT = "input";
 const EVENT_CHANGE = "change";
 const EVENT_BLUR = "blur";
@@ -45,10 +46,18 @@ export default {
     console.log("BottomNavBar mounted");
     setTimeout(() => {
       this.$emit("mounted", this.$el);
-    }, 1000 * 1);
-    this.navTo(this.tabItems[0], 0);
+    }, 30);
   },
-  props: {},
+  props: {
+    tabItems: {
+      type: Array,
+      required: true
+    },
+    currentItem: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       transitionName: "out-up",
@@ -58,14 +67,7 @@ export default {
             colspan: 12
           }
         }
-      },
-      tabItems: [
-        { icon: "grain", label: "Chat" },
-        { icon: "list-alt", label: "Article" },
-        { icon: "edit", label: "Question" },
-        { icon: "user", label: "User" }
-      ],
-      currentItem: 0
+      }
     };
   },
   computed: {},
@@ -74,21 +76,6 @@ export default {
     ...mapActions(["setThemeColor"]),
     getIconClass(iconName) {
       return `glyphicon-${iconName}`;
-    },
-    navTo(item, index) {
-      console.log(item, index);
-      this.currentItem = index;
-      if (index === 3) {
-        this.setThemeColor("red");
-        // this.$router.push({ name: "error", query: { msg: "just a joke" } });
-      }
-      if (index === 1) {
-        this.setThemeColor("#337ab7");
-        console.log(
-          "this.$el.getBoundingClientRect",
-          this.$el.getBoundingClientRect()
-        );
-      }
     },
     changeHander(e) {
       this.$emit(EVENT_CHANGE, e);
@@ -114,6 +101,9 @@ export default {
     },
     handlePwdEye() {
       this.formatedEye.open = !this.formatedEye.open;
+    },
+    handleTabClick(event, item, index) {
+      this.$emit(EVENT_TAB_CLICK, { event, item, index });
     }
   }
 };

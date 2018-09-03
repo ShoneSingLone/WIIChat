@@ -74,6 +74,36 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 - [Mongoose 分页查询优化、获取数据总长度](https://www.cnblogs.com/fayin/p/7028466.html)
 - [MongoDB 分页查询的方法及性能](https://www.cnblogs.com/capqueen/p/MongoDBPagination.html)
 
+- vee-validate 一个轻量级的 vue表单验证插件
+
+```js
+npm install vee-validate --save
+
+import VeeValidate from 'vee-validate';
+
+const config = {
+  aria: true,
+  classNames: {},
+  classes: false,
+  delay: 0,
+  dictionary: null,
+  errorBagName: 'errors', // change if property conflicts
+  events: 'input|blur',
+  fieldsBagName: 'fields',
+  i18n: null, // the vue-i18n plugin instance
+  i18nRootKey: 'validations', // the nested key under which the validation messages will be located
+  inject: true,
+  locale: 'en',
+  strict: true,
+  validity: false,
+};
+
+Vue.use(VeeValidate, config);
+
+```
+
+几个关键点：什么时候触发验证？验证不通过，何时在何处显示何内容？如何customize？
+
 panel 用了 md 的 btn
 
 location.href 通常被用来跳转到指定页面地址;

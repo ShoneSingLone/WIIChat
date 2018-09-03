@@ -53,7 +53,7 @@ export default {
     } else {
       next(vm => {
         // console.log("Error: beforeRouteEnter next");
-        vm.msg = query.msg;
+        vm.msg = query.msg || query.error;
         vm.waitTiem = query.waitTiem ? query.waitTiem : 5;
         vm.fromPathName =
           params.redirect && params.redirect.name

@@ -1,7 +1,7 @@
 <template>
   <div class="shell">
     <c-tool-bar v-on:mounted="toolMounted" v-show="showTool"></c-tool-bar>
-    <c-bottom-nav-bar v-on:mounted="navMounted" v-show="showNav"></c-bottom-nav-bar>
+    <c-bottom-nav-bar v-on:mounted="navMounted" :tabItems="tabItems" :currentItem="currentItem" @tabClick="navTo" v-show="showNav"></c-bottom-nav-bar>
     <!-- 以上position为absolute，不影响布局，但是会影响Vue初始化 -->
     <div class="main">
       <transition :name="transitionName">
@@ -15,11 +15,9 @@
 
 <script>
 const components = {
-  "c-container": () =>
-    import(/* webpackChunkName: "c-container" */ "@cps/Container"),
+  "c-container": () => import(/* webpackChunkName: "c-container" */ "@cps/Container"),
   "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
   "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
-  "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input"),
   "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
   "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
   "c-tool-bar": () => import(/* webpackChunkName: "c-modals" */ "@cps/ToolBar"),
@@ -37,6 +35,13 @@ export default {
   data() {
     return {
       transitionName: "fade",
+      tabItems: [
+        { icon: "grain", label: "Chat" },
+        { icon: "list-alt", label: "Article" },
+        { icon: "edit", label: "Question" },
+        { icon: "user", label: "User" }
+      ],
+      currentItem: 0,
       colOptions: {
         class: {
           md: {
@@ -80,6 +85,25 @@ export default {
     },
     navMounted(navEle) {
       this.setNavBarRect(navEle.getBoundingClientRect());
+      this.navTo({ item: this.tabItems[1], index: 1 });
+    },
+    test(event) {
+      console.log(event);
+    },
+    navTo({ event, item, index }) {
+      console.log(item, index);
+      this.currentItem = index;
+      if (index === 3) {
+        this.setThemeColor("red");
+        // this.$router.push({ name: "error", query: { msg: "just a joke" } });
+      }
+      if (index === 1) {
+        this.setThemeColor("#337ab7");
+        console.log(
+          "this.$el.getBoundingClientRect",
+          this.$el.getBoundingClientRect()
+        );
+      }
     }
   },
   components

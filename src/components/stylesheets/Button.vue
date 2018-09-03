@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-default" :class="btnClass" :type="type" @click="handleClick">
+  <button class="btn btn-default" :class="btnClass" :type="type" @click="handleClick" :disabled="disabled">
     <slot></slot>
   </button>
 </template>
@@ -8,7 +8,7 @@
 export default {
   name: "c-button",
   mounted() {
-    console.log("mounted", this.options);
+    console.log("Button mounted", this.options);
   },
   props: {
     options: {
@@ -16,6 +16,10 @@ export default {
       default: function() {
         return {};
       }
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

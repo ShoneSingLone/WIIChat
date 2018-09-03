@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 let clientId = "de98ee996939961d39d9";
 let redirectUri = (location.port ? 'http://192.168.137.1:8080' : 'https://shonesinglone.github.io/brumaire');
 let hostName = (location.port ? 'http://192.168.137.1:3000' : 'https://shonesinglone.leanapp.cn') + '/n/wiichat';
@@ -92,6 +94,47 @@ const actions = {
       name,
       avatar
     })
+  },
+  async login({
+    commit
+  }, {
+    userName,
+    userPwd
+  }) {
+    try {
+      let result = await axios({
+        method: "post",
+        url,
+        data: {
+          endpoint: "article",
+          action: "loginByAccount",
+          userName,
+          userPwd
+        },
+      });
+      debugger;
+      localStorage.setItem("userToken", token);
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userAvatar", avatar);
+
+      return commit('setUserInfo', {
+        token,
+        name,
+        avatar
+      })
+    } catch (error) {
+
+    }
+  },
+  logOut({
+    commit
+  }, {
+    token,
+    name,
+    avatar
+  }) {
+    localStorage.clear()
+    return commit('setUserInfo', false)
   }
 }
 const mutations = {

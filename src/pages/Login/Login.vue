@@ -8,26 +8,13 @@
             <h1 class="title">Brumaire</h1>
           </div>
           <form class="form-wrapper">
-            <div class="line"></div>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <div class="line"></div>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-            <div class="line"></div>
-            <c-button :options="{
-                        class:{
-                          lg:true,
-                          primary:true,
-                          block:true
-                        },
-                        type:'submit'
-                      }" class="btn">Login in</c-button>
+            <c-input :labelOptions="{text:'E-mail',class:{'sr-only':true}}" :placeholder="'E-mail address'" v-model="userName"></c-input>
+            <c-input :labelOptions="{text:'E-mail',class:{'sr-only':true}}" :type="'password'" :placeholder="'Password'" v-model="userPwd"></c-input>
+            <c-button :options="{ class:{ lg:true, primary:true, block:true } }" class="btn" :disabled="isDisabled" @click="loginByAccount">{{buttonText}}</c-button>
           </form>
         </section>
         <section class="card">
           <span class="form-signin-heading">没开发注册功能，目前只能用GitHub授权登录</span>
-
           <div class="logo-wrapper">
             <a href="javascript:void(0);" class="github-logo circle" @click="getAuthorization"></a>
           </div>
@@ -41,20 +28,6 @@
 // const Button = () => import(/* webpackChunkName: "c-button" */ "@cps/button");
 
 import { mapGetters, mapActions } from "vuex";
-
-import Container from "@cps/Container";
-import Row from "@cps/Row";
-import Col from "@cps/Col";
-import Button from "@cps/Button";
-import SigIn from "./SigIn";
-
-let components = {
-  "c-container": Container,
-  "c-row": Row,
-  "c-col": Col,
-  "c-button": Button,
-  "sigin-form": SigIn
-};
 
 export default {
   name: "login",
@@ -101,6 +74,10 @@ export default {
   mounted() {},
   data() {
     return {
+      userName: "",
+      userPwd: "",
+      isDisabled: false,
+      buttonText: "登录",
       colOptions: {
         class: {
           md: {
@@ -114,9 +91,36 @@ export default {
   computed: {
     ...mapGetters(["userInfo", "redirectUri", "clientId", "githubAuthorizeUrl"])
   },
+  watch: {
+    userInfo(newV, oldV) {
+      if (userInfo) {
+        debugger;
+        vm.$router.push({ name: "home" });
+      }
+    },
+    userName(newV, oldV) {
+
+      console.log(newV, oldV);
+    },
+    userPwd(newV, oldV) {
+      console.log(newV, oldV);
+    }
+  },
   methods: {
-    ...mapActions([""]),
+    ...mapActions(["login"]),
     toggleRipple(event) {
+      console.log(event);
+    },
+    async loginByAccount(event) {
+      if (!(this.userName && this.userPwd)) return false;
+      this.isDisabled = true;
+      this.buttonText = "正在登录...";
+      let res = await this.login({
+        userName: this.userName,
+        userPwd: this.userPwd
+      });
+      debugger;
+      this.buttonText = "正在登录...";
       console.log(event);
     },
     async getAuthorization(event) {
@@ -127,7 +131,14 @@ export default {
       console.log("getAuthorization");
     }
   },
-  components
+  components: {
+    "c-container": () =>
+      import(/* webpackChunkName: "c-container" */ "@cps/Container"),
+    "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
+    "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
+    "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
+    "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input")
+  }
 };
 </script>
 
