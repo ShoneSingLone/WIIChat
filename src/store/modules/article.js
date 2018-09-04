@@ -116,6 +116,9 @@ const getters = {
   articleScrollY(state) {
     return state.scroll.top;
   },
+  articleScrollYMax(state) {
+    return state.scroll.height;
+  },
 }
 const actions = {
   async setArticleScroll({

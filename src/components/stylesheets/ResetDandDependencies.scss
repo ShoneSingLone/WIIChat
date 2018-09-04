@@ -4,8 +4,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 // Core variables and mixins
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+@import "vm";
 // Reset and dependencies
 // @import "bootstrap/normalize";
 @import "bootstrap/print";
@@ -21,6 +20,51 @@
 @import "bootstrap/progress-bars";
 // Components w/ JavaScript
 @import "bootstrap/modals";
+
+@keyframes bounceIn {
+
+    from,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+        @include elevation2();
+    }
+
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+        @include elevation10();
+    }
+
+    40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+        @include elevation4();
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+        @include elevation8();
+    }
+
+    80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+        @include elevation6();
+    }
+
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+        @include elevation10();
+    }
+}
 
 @keyframes zoomIn {
     from {
@@ -87,7 +131,7 @@
 
 .back {
     &-enter-active {
-        animation: fadeInLeft 1s;
+        animation: fadeInLeft 1s 1s;
     }
 
     &-leave-active {
@@ -97,6 +141,7 @@
     &-enter,
     &-leave-to {
         // transform: scale(0);
+        opacity: 0;
     }
 
     &-enter-to,
@@ -112,12 +157,13 @@
     }
 
     &-leave-active {
-        animation: fadeOutLeft 1s;
+        animation: fadeOutLeft 1s 1s;
     }
 
     &-enter,
     &-leave-to {
         // transform: scale(0);
+        opacity: 0;
     }
 
     &-enter-to,
@@ -152,12 +198,12 @@
 
 .fade-cross {
     &-enter-active {
-        transition: opacity 0.5s ease;
+        transition: opacity 0.5s 0.5s ease;
         opacity: 0;
     }
 
     &-leave-active {
-        transition: opacity 2s ease;
+        transition: opacity 0.5s ease;
         opacity: 1;
     }
 

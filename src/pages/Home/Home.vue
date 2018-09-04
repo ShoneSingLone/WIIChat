@@ -14,16 +14,6 @@
 </template>
 
 <script>
-const components = {
-  "c-container": () => import(/* webpackChunkName: "c-container" */ "@cps/Container"),
-  "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
-  "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
-  "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
-  "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
-  "c-tool-bar": () => import(/* webpackChunkName: "c-modals" */ "@cps/ToolBar"),
-  "c-bottom-nav-bar": () =>
-    import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
-};
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -53,6 +43,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["userInfo"]),
     ...mapGetters("article", ["movingDirectionY"]),
     showTool() {
       // 当滑动的时候有这一种情况还有其他的再说
@@ -64,6 +55,11 @@ export default {
     }
   },
   watch: {
+    userInfo(newV, oldV) {
+      if (!newV) {
+        this.$router.push({ name: "login" });
+      }
+    },
     $route(to, from) {
       const toDepth = to.path.split("/").length;
       const fromDepth = from.path.split("/").length;
@@ -106,7 +102,18 @@ export default {
       }
     }
   },
-  components
+  components: {
+    "c-container": () =>
+      import(/* webpackChunkName: "c-container" */ "@cps/Container"),
+    "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
+    "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
+    "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
+    "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
+    "c-tool-bar": () =>
+      import(/* webpackChunkName: "c-modals" */ "@cps/ToolBar"),
+    "c-bottom-nav-bar": () =>
+      import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
+  }
 };
 </script>
 

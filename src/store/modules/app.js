@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs from "dayjs";
 
 let clientId = "de98ee996939961d39d9";
 let redirectUri = (location.port ? 'http://192.168.137.1:8080' : 'https://shonesinglone.github.io/brumaire');
@@ -12,6 +13,17 @@ githubAuthorizeUrl.searchParams.append("client_id", clientId);
 githubAuthorizeUrl.searchParams.append("redirect_uri", redirectUri);
 githubAuthorizeUrl.searchParams.append("scope", "user");
 
+function setLocalStorage({
+  token,
+  name,
+  avatar
+}) {
+  localStorage.setItem("userToken", token);
+  localStorage.setItem("userName", name);
+  localStorage.setItem("userAvatar", avatar);
+}
+
+
 const state = {
   meta: {
     themeColor: '#337ab7',
@@ -19,12 +31,24 @@ const state = {
   isMobile: true,
   windowScrollY: 0,
   userInfo: false,
+  loginMsg: '',
   githubAuthorizeUrl,
   clientId,
   redirectUri,
-  hostName
-}
+  hostName,
+  appSize: {
+    height: 0,
+    width: 0
+  }
+};
+
 const getters = {
+  appHeight(state) {
+    return state.appSize.height;
+  },
+  appWidth(state) {
+    return state.appSize.width;
+  },
   metaThemeColor(state) {
     return state.meta.themeColor;
   },
@@ -42,6 +66,9 @@ const getters = {
   },
   githubAuthorizeUrl(state) {
     return state.githubAuthorizeUrl
+  },
+  loginMsg(state) {
+    return state.loginMsg;
   },
   userInfo(state) {
     if (!state.userInfo) {
@@ -73,27 +100,16 @@ const actions = {
     }
     return commit('setThemeColor', color)
   },
-  setWindowScrollY({
+  setAppSize({
     commit
-  }, y) {
-    return commit('setWindowScrollY', y)
+  }, rect) {
+    return commit('setAppSize', rect)
   },
   setUserInfo({
     commit
-  }, {
-    token,
-    name,
-    avatar
-  }) {
-    localStorage.setItem("userToken", token);
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userAvatar", avatar);
-
-    return commit('setUserInfo', {
-      token,
-      name,
-      avatar
-    })
+  }, userInfo) {
+    setLocalStorage(userInfo);
+    return commit('setUserInfo', userInfo)
   },
   async login({
     commit
@@ -102,37 +118,31 @@ const actions = {
     userPwd
   }) {
     try {
-      let result = await axios({
+      let {
+        status,
+        data: res
+      } = await axios({
         method: "post",
-        url,
+        url: hostName,
         data: {
-          endpoint: "article",
+          endpoint: "login",
           action: "loginByAccount",
           userName,
           userPwd
         },
       });
-      debugger;
-      localStorage.setItem("userToken", token);
-      localStorage.setItem("userName", name);
-      localStorage.setItem("userAvatar", avatar);
-
-      return commit('setUserInfo', {
-        token,
-        name,
-        avatar
-      })
+      if (!(status === 200 && res.success)) throw new Error(res.error);
+      setLocalStorage(res.data);
+      commit('setUserInfo', res.data)
     } catch (error) {
-
+      setTimeout(() => {
+        commit('setLoginMsg', `${error.message} #${dayjs(Date.now()).format("ss")}`);
+      }, 1000 * 1.5);
     }
   },
   logOut({
     commit
-  }, {
-    token,
-    name,
-    avatar
-  }) {
+  }, ) {
     localStorage.clear()
     return commit('setUserInfo', false)
   }
@@ -141,11 +151,25 @@ const mutations = {
   setThemeColor(state, color) {
     state.meta.themeColor = color
   },
-  setWindowScrollY(state, y) {
-    state.windowScrollY = y
+  setAppSize(state, {
+    height,
+    width,
+    top,
+    bottom,
+    right,
+    left,
+    x,
+    y
+  }) {
+    state.appSize.height = height;
+    state.appSize.width = width;
   },
   setUserInfo(state, userInfo) {
     state.userInfo = userInfo
+  },
+  setLoginMsg(state, msg) {
+    state.loginMsg = msg;
+    console.log(state.loginMsg);
   }
 }
 

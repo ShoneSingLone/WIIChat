@@ -82,14 +82,14 @@ const getters = {
   }
 }
 const actions = {
-  setWindowScrollY({
+  setAppSize({
     commit
   }, y) {
-    return commit('setWindowScrollY', y)
+    return commit('setAppSize', y)
   }
 }
 const mutations = {
-  setWindowScrollY(state, y) {
+  setAppSize(state, y) {
     state.windowScrollY = y
   }
 }

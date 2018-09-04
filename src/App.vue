@@ -2,19 +2,26 @@
   <div id="app">
     <!-- <c-button @click.native="to" :data-src="transitionName">{{transitionName}}</c-button> -->
     <transition :name="transitionName">
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <router-view></router-view>
     </transition>
   </div>
 </template>
 
 <script>
 import Button from "@cps/Button";
+import { mapActions } from "vuex";
 let count = 0;
 
 export default {
-  name: "root",
+  name: "app",
+  mounted() {
+    this.setAppSize(this.$el.getBoundingClientRect());
+    window.onresize = event => {
+      this.$nextTick(() => {
+        this.setAppSize(this.$el.getBoundingClientRect());
+      });
+    };
+  },
   data: function() {
     return {
       transitionName: "",
@@ -22,6 +29,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["setAppSize"]),
     to() {
       count++;
       // let routeNameArray = ["error", "components", "login"];

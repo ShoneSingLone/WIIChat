@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <c-container class="detail wrapper" :style="containerStyle">
+    <c-container class="detail" :style="detailStyle">
       <c-row>
         <c-col :options="colOptions">
           <div class="content" v-html="article.content"></div>
@@ -29,9 +29,10 @@ export default {
   name: "detail",
   created() {},
   mounted() {
-    console.log("Detail mounted");
+    this.$route.query.detail = this.article.id;
+    console.log("Detail mounted", this.$route);
   },
-  beforeRouteEnter: (to, from, next) => {
+  asdfasdfasdf: (to, from, next) => {
     next(vm => {
       if (to.params.article) {
         vm.article = to.params.article;
@@ -53,17 +54,23 @@ export default {
       }
     });
   },
-
+  props: {
+    article: Object
+  },
   data() {
     return {
-      article: {},
-      containerStyle: { height: "550px", "margin-top": "50px" },
       colOptions: { class: { md: { colspan: 4 } } },
       cardOptions: { class: { radius: true } }
     };
   },
   computed: {
-    ...mapGetters(["hostName"])
+    ...mapGetters(["hostName", "appHeight", "appWidth"]),
+    detailStyle() {
+      return {
+        height: `${this.appHeight}px`,
+        width: `${this.appWidth}px`
+      };
+    }
   },
   methods: {
     ...mapActions("article", ["getDetail"]),
@@ -91,9 +98,22 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "../../../components/stylesheets/vm";
-.content {
-  overflow: auto;
+.detail {
+  position: absolute;
+  outline: 1px solid rebeccapurple;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  p {
+    img {
+      display: inline-block;
+      width: 100%;
+    }
+  }
 }
 </style>

@@ -1,48 +1,60 @@
 <template>
   <transition name="fade">
-    <c-container class="article wrapper" :style="containerStyle" @scroll="articleScroll">
-      <c-row class="article">
-        <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
-          <c-card class="article-card" :options="cardOptions">
-            <h3 slot="header" :class="['header',{'open':article.open},{'close':!article.open}]" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
-              {{article.title}}
-            </h3>
-            <div class="body">
-              {{article.desc}}
-              <div class="read-more-wrapper">
-                <c-button @click="showDetail(article, index)">Read</c-button>
-              </div>
-            </div>
-            <div slot="footer">
-              <!-- {{(article.updated_at)}} -->
-              更新于： {{articleUpdatedAt(article.updated_at)}}
-            </div>
-          </c-card>
-        </c-col>
-        <c-col :options="colOptions" v-show="isBeforePullUp||isPullUpTrigger" :class="['pullup-wrapper',{'refresh':isPullUpTrigger}]">
-          <c-card :options="cardOptions">
-            <span>
-              {{pullUpTips}}
-            </span>
-          </c-card>
-        </c-col>
-      </c-row>
-      <transition name="fade-cross">
-        <!-- <c-row class="skeleton"> -->
-        <c-row class="skeleton" v-show="articleList&&articleList.length<1">
-          <c-col :options="colOptions" v-for="(item, index) in 4" :key="index">
-            <c-card :options="cardOptions">
-              <div class="header">
-              </div>
-              <div class="body">
-              </div>
-              <div class="footer">
-              </div>
-            </c-card>
-          </c-col>
-        </c-row>
-      </transition>
-    </c-container>
+    <div class="article-wrapper">
+      <c-container class="article hide" :style="containerStyle" @scroll="articleScroll">
+        <transition name="fade-cross">
+          <c-row class="article" v-show="articleList&&articleList.length>0">
+            <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
+              <c-card :options="cardOptions" class="article-card">
+                <h3 slot="header" :class="['header',{'open':article.open},{'close':!article.open}]" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
+                  {{article.title}}
+                </h3>
+                <div class="body">
+                  {{article.desc}}
+                  <div class="read-more-wrapper">
+                    <c-button :options="{class:{
+                  primary:true,
+                  elevation:true
+                }}" @click="showDetail(article, index)">Read</c-button>
+                  </div>
+                </div>
+                <div slot="footer">
+                  <!-- {{(article.updated_at)}} -->
+                  更新于： {{article.updated_at|articleUpdatedAt}}
+                </div>
+              </c-card>
+            </c-col>
+            <c-col :options="colOptions" class="pullup-wrapper">
+              <c-button :options="{class:{
+                              primary:true,
+                              elevation:true,
+                              block:true
+                }}" @click="getMoreArticle" :disabled="noMore" :class="[{'refresh':isPullUpTrigger}]">
+                {{pullUpTips}}
+              </c-button>
+            </c-col>
+          </c-row>
+        </transition>
+        <transition name="fade-cross">
+          <!-- <c-row class="skeleton"> -->
+          <c-row class="skeleton" v-show="articleList&&articleList.length<1">
+            <c-col :options="colOptions" v-for="(item, index) in 4" :key="index">
+              <c-card :options="cardOptions">
+                <div class="header">
+                </div>
+                <div class="body">
+                </div>
+                <div class="footer">
+                </div>
+              </c-card>
+            </c-col>
+          </c-row>
+        </transition>
+      </c-container>
+      <c-detail v-show="true" :article="detailArticle">
+        <!-- <c-detail v-show="isShowDetail"> -->
+      </c-detail>
+    </div>
   </transition>
 </template>
 
@@ -50,23 +62,13 @@
 import BScroll from "better-scroll";
 import { mapGetters, mapActions } from "vuex";
 import dayjs from "dayjs";
+let count = 0;
 
-let TIPS_PULLDOWN_BEFORE = "继续下拉以刷新";
-let TIPS_PULLUP_BEFORE = "继续上拉以加载";
-let TIPS_PULLDOWN_TRIGGER = "正在刷新...";
+// let TIPS_PULLDOWN_BEFORE = "继续下拉以刷新";
+let TIPS_PULLUP_BEFORE = "点击以加载更多内容";
+// let TIPS_PULLDOWN_TRIGGER = "正在刷新...";
 let TIPS_PULLUP_TRIGGER = "正在加载...";
 let TIPS_PULLUP_NOMORE = "没有更多数据了";
-
-const components = {
-  "c-container": () =>
-    import(/* webpackChunkName: "c-container" */ "@cps/Container"),
-  "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
-  "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
-  "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
-  "c-scroll": () => import(/* webpackChunkName: "c-scroll" */ "@cps/Scroll"),
-  "c-card": () => import(/* webpackChunkName: "c-card" */ "@cps/Card"),
-  "c-bubble": () => import(/* webpackChunkName: "c-bubble" */ "@cps/Bubble")
-};
 
 export default {
   name: "Article",
@@ -88,60 +90,43 @@ export default {
   },
   data() {
     return {
-      pullDownTips: TIPS_PULLDOWN_BEFORE,
-      pullUpTips: TIPS_PULLUP_BEFORE,
-      scrollPos: { x: 0, y: 0 },
+      isShowDetail: false,
+      detailArticle: {},
       isPullUpTrigger: false,
-      isPullDownTrigger: false,
       msg: "",
-      scroll: {},
       colOptions: { class: { md: { colspan: 4 } } },
-      cardOptions: { class: { radius: true } }
+      cardOptions: { class: { radius: true } },
+      containerStyle: {
+        height: "100%",
+        "padding-top": `${this.toolHeight}px`,
+        "padding-bottom": `${this.navHeight}px`
+      }
     };
   },
   computed: {
-    ...mapGetters(["hostName"]),
+    ...mapGetters(["hostName", "appHeight"]),
     ...mapGetters("home", [
       "homeHeight",
       "toolHeight",
       "navHeight",
       "isInitCompleted"
     ]),
-    ...mapGetters("article", ["articleList", "noMore", "articleScrollY"]),
-    containerStyle() {
-      return {
-        height: "100%",
-        "padding-top": `${this.toolHeight}px`,
-        "padding-bottom": `${this.navHeight}px`
-      };
-    },
-    bubbleY() {
-      if (this.scrollPos.y > 0) {
-        // 在pullDown的范围内
-        return Math.abs(this.scrollPos.y);
-      } else if (this.scrollPos.y < this.scroll.maxScrollY) {
-        //在pullUp的范围内
-        return Math.abs(parseInt(this.scroll.maxScrollY - this.scrollPos.y));
-      } else {
-        return 0;
-      }
-    },
-    isBeforePullUp() {
-      if (this.scrollPos.y < this.scroll.maxScrollY) {
-        //在pullUp的范围内
-        return true;
-      } else {
-        return false;
-      }
-    },
-    isBeforePullDown() {
-      console.log(this.scrollPos.y);
-      if (this.scrollPos.y > 0) {
-        // 在pullDown的范围内
-        return true;
-      } else {
-        return false;
-      }
+    ...mapGetters("article", [
+      "articleList",
+      "noMore",
+      "articleScrollY",
+      "articleScrollYMax",
+      "movingDirectionY"
+    ]),
+    pullUpTips() {
+      return this.noMore
+        ? TIPS_PULLUP_NOMORE
+        : this.isPullUpTrigger ? TIPS_PULLUP_TRIGGER : TIPS_PULLUP_BEFORE;
+    }
+  },
+  filters: {
+    articleUpdatedAt(updated) {
+      return dayjs(updated).format("YYYY年MM月DD日");
     }
   },
   methods: {
@@ -150,6 +135,13 @@ export default {
       "setMovingDirectionY",
       "setArticleScroll"
     ]),
+    getMoreArticle(event) {
+      this.isPullUpTrigger = true;
+      this.getArticleList({
+        url: this.hostName,
+        sort: { updated_at: -1 }
+      });
+    },
     articleScroll(event) {
       let { scrollHeight, scrollLeft, scrollTop, scrollWidth } = event.target;
       this.setArticleScroll({
@@ -160,53 +152,66 @@ export default {
       });
     },
     showDetail(article, index) {
+      this.isShowDetail = true;
       /*       this.$el.scrollTo({
         top: 500,
         behavior: "smooth"
       }); */
+
       article.open = !article.open;
-      this.$set(this.articleList, index, article);
-      this.$router.push({
-        name: "home.article.detail",
-        query: {
-          id: article.id
-        },
-        params: {
-          article
-        }
-      });
+      this.detailArticle = article;
       console.log("click", article, index);
-    },
-    articleUpdatedAt(updated) {
-      return dayjs(updated).format("YYYY年MM月DD日");
     }
   },
   watch: {
     articleList(newV, oldV) {
-      console.log("articleList", newV);
-      if (this.scroll && this.scroll.finishPullUp) {
-        // 已经至少初始化一次数据之后才有更新操作
-        this.scroll.finishPullUp();
-        this.isPullUpTrigger = false;
-        this.pullUpTips = TIPS_PULLUP_BEFORE;
-        setTimeout(() => {
-          this.scroll.refresh();
-        }, 30);
-      }
+      this.isPullUpTrigger = false;
+      console.log("模拟数据");
+      this.detailArticle = newV.length > 0 ? newV[0] : {};
     },
     articleScrollY(newV, oldV) {
-      console.log("newV, oldV", newV, oldV);
       this.setMovingDirectionY(newV - oldV > 0 ? 1 : -1);
+    },
+    movingDirectionY(newV, oldV) {
+      console.log("count", count++);
+      this.containerStyle =
+        newV === 1
+          ? {
+              height: "100%",
+              "padding-top": `1rem`,
+              "padding-bottom": `1rem`
+            }
+          : {
+              height: "100%",
+              "margin-top": `${this.toolHeight}px`,
+              "margin-bottom": `${this.navHeight}px`
+            };
     }
   },
-  components
+  components: {
+    "c-container": () =>
+      import(/* webpackChunkName: "c-container" */ "@cps/Container"),
+    "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
+    "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
+    "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
+    "c-scroll": () => import(/* webpackChunkName: "c-scroll" */ "@cps/Scroll"),
+    "c-card": () => import(/* webpackChunkName: "c-card" */ "@cps/Card"),
+    "c-bubble": () => import(/* webpackChunkName: "c-bubble" */ "@cps/Bubble"),
+    "c-detail": () => import(/* webpackChunkName: "c-bubble" */ "./Detail")
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../../components/stylesheets/vm";
-.article {
-  &.wrapper {
+.article-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  .hide {
+    display: none;
+  }
+  .article {
     // outline: 1rem solid rebeccapurple;
     position: relative;
     overflow-y: auto;
@@ -281,10 +286,11 @@ export default {
     .pullup-wrapper {
       // outline: 1px solid rebeccapurple;
       text-align: center;
-      transform: translateY(200%);
-      transition: transform 2s cubic-bezier(0.215, 0.61, 0.355, 1);
-      &.refresh {
-        transform: translateY(0%);
+      // transform: translateY(100%);
+      transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      margin: 2rem 0 2rem 0;
+      .refresh {
+        animation: bounceIn 2s infinite alternate;
       }
     }
   }

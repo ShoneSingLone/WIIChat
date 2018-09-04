@@ -89,17 +89,27 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["userInfo", "redirectUri", "clientId", "githubAuthorizeUrl"])
+    ...mapGetters([
+      "userInfo",
+      "loginMsg",
+      "redirectUri",
+      "clientId",
+      "githubAuthorizeUrl"
+    ])
   },
   watch: {
     userInfo(newV, oldV) {
-      if (userInfo) {
-        debugger;
-        vm.$router.push({ name: "home" });
+      if (newV) {
+        this.$router.push({ name: "home" });
       }
     },
+    loginMsg(newV, oldV) {
+      //account登录失败才会改变loginMsg的状态
+      // 漂浮一个提示框
+      this.isDisabled = false;
+      this.buttonText = "登录";
+    },
     userName(newV, oldV) {
-
       console.log(newV, oldV);
     },
     userPwd(newV, oldV) {
@@ -112,16 +122,14 @@ export default {
       console.log(event);
     },
     async loginByAccount(event) {
+      // validate userName and userPwd
       if (!(this.userName && this.userPwd)) return false;
       this.isDisabled = true;
       this.buttonText = "正在登录...";
-      let res = await this.login({
+      this.login({
         userName: this.userName,
         userPwd: this.userPwd
       });
-      debugger;
-      this.buttonText = "正在登录...";
-      console.log(event);
     },
     async getAuthorization(event) {
       console.log(event);
