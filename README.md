@@ -62,6 +62,17 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 - 数据库flag更新日期，client在有网情况下都会请求这个flag，如果不一致则请求数据库数据，否则使用本地缓存即可
   - 还要考虑请求数据后的用户更新：如何保证当前状态的平稳更新？
 
+### 状态管理
+
+- 状态管理，ToolBar根据HomeState 的currentShow，决定自身应该展示的menu
+  - HomeState根据各模块isShow决定 currentShow
+  - 各模块isShow是共享的状态
+  - ToolBar and NavBar 的显隐独立控制isShowToolBar、isShowNavBar
+  - 初始化的时候为“home.article"
+    - 在Home中监听$route的变化，to的name即为currentShow
+    - 各个Page监听currentShow的变化，切换各部分show状态
+  - Detail 如果是新的，就margin-top和scrollTop都要重置
+
 ### asdf
 
 ## 实现

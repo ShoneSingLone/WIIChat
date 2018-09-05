@@ -136,26 +136,4 @@ export default {
     }
   }
 }
-.detail-slide {
-  &-enter-active {
-    transition: all 0.5s 0.5s ease-in;
-    opacity: 0;
-  }
-
-  &-leave-active {
-    transition: all 0.5s ease-out;
-  }
-
-  &-enter,
-  &-leave-to {
-    transform: translate3d(0, 100%, 0);
-    opacity: 0;
-  }
-
-  &-enter-to,
-  &-leave {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
 </style>

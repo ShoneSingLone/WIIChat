@@ -1,12 +1,11 @@
 <template>
   <transition name="fade">
     <!-- <c-container class="article-wrapper" :style="containerStyle" @scroll="articleScroll"> -->
-    <c-container class="article-wrapper" :style="containerStyle" @scroll="articleScroll">
-
+    <c-container class="article-wrapper">
       <!-- Article Skeleton -->
       <transition name="fade-cross">
-        <c-row class="skeleton" v-show="!isShowArticleList">
-          <c-col :options="colOptions" v-for="(item, index) in 10" :key="index">
+        <c-row class="skeleton" :style="containerStyle" v-show="isShowArticleList" @scroll="articleScroll">
+          <c-col :options="colOptions" v-for="(item, index) in 100" :key="index">
             <c-card :options="cardOptions">
               <div class="header">
               </div>
@@ -19,54 +18,6 @@
         </c-row>
       </transition>
       <!-- Article Skeleton End-->
-
-      <!-- Article List-->
-      <transition name="fade-cross">
-        <c-row class="article" v-show="isShowArticleList">
-          <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
-            <c-card :options="cardOptions">
-              <h3 slot="header" :class="['header',{'open':article.open},{'close':!article.open}]" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
-                {{article.title}}
-              </h3>
-              <div class="body">
-                {{article.desc}}
-                <div class="read-more-wrapper">
-                  <c-button :options="{class:{
-                  primary:true,
-                  elevation:true
-                }}" @click="showDetail(article, index)">Read</c-button>
-                </div>
-              </div>
-              <div slot="footer">
-                <!-- {{(article.updated_at)}} -->
-                更新于： {{article.updated_at|articleUpdatedAt}}
-              </div>
-            </c-card>
-          </c-col>
-          <c-col :options="colOptions" class="pullup-wrapper">
-            <c-button :options="{class:{
-                              primary:true,
-                              elevation:true,
-                              block:true
-                }}" @click="getMoreArticle" :disabled="noMore" :class="[{'refresh':isPullUpTrigger}]">
-              {{pullUpTips}}
-            </c-button>
-          </c-col>
-        </c-row>
-      </transition>
-      <!-- Article List End-->
-
-      <!-- Article Detail -->
-      <transition name="fade-cross">
-        <c-row class="detail-wrapper" v-show="isShowDetail">
-          <c-col>
-            <c-card>
-            </c-card>
-          </c-col>
-        </c-row>
-      </transition>
-      <!-- Article Detail End-->
-
     </c-container>
   </transition>
 </template>
@@ -162,7 +113,6 @@ export default {
       });
     },
     articleScroll(event) {
-      debugger;
       console.log("articleScroll");
       let { scrollHeight, scrollLeft, scrollTop, scrollWidth } = event.target;
       this.setArticleScroll({
@@ -223,10 +173,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../components/stylesheets/vm";
-.article-wrapper {
+.article-wrapper,
+.skeleton {
   height: 100%;
-  width: 100%;
   overflow: hidden;
+}
+.article-wrapper {
   .hide {
     display: none;
   }
@@ -236,6 +188,7 @@ export default {
     left: 0;
     width: 100%;
     margin-left: 0; //因为absolute的关系,修复container padding 15 row margin -15的问题
+    overflow-y: scroll;
     z-index: 1;
 
     .card {

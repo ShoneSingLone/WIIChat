@@ -94,7 +94,6 @@ Marked.setOptions({
 const state = {
   noMore: false,
   articleList: [],
-  isShowDetail: false, //是否显示Detail，影响ToolBar的显示，在Home中处理
   limit: 4,
   movingDirectionY: -1,
   scroll: {
@@ -107,9 +106,6 @@ const state = {
 const getters = {
   articleList(state) {
     return state.articleList;
-  },
-  isShowDetail(state) {
-    return state.isShowDetail;
   },
   noMore(state) {
     return state.noMore;
@@ -134,11 +130,6 @@ const actions = {
     commit
   }, movingDirectionY) {
     commit("setMovingDirectionY", movingDirectionY);
-  },
-  async setShowDetail({
-    commit
-  }, isShow) {
-    commit("setShowDetail", isShow);
   },
   async getArticleList({
     commit
@@ -208,10 +199,12 @@ const mutations = {
     scrollTop,
     scrollWidth
   }) {
-    state.scroll.height = scrollHeight
-    state.scroll.left = scrollLeft
-    state.scroll.top = scrollTop
-    state.scroll.width = scrollWidth
+    state.scroll = {
+      height: scrollHeight,
+      left: scrollLeft,
+      top: scrollTop,
+      width: scrollWidth,
+    }
   },
   setArticleNoMore(state) {
     state.noMore = true;
@@ -225,11 +218,6 @@ const mutations = {
     articleArray
   ) {
     state.articleList = [...state.articleList, ...articleArray];
-  },
-  setShowDetail(state,
-    isShow
-  ) {
-    state.isShowDetail = isShow;
   },
 }
 

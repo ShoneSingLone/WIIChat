@@ -13,6 +13,6 @@ export default {
     path: 'article/detail',
     name: 'home.article.detail',
     component: () =>
-      import ( /* webpackChunkName: "article.detail" */ '@/pages/Home/Article/Detail')
+      import ( /* webpackChunkName: "article.detail" */ '@/pages/Home/Article/Article')
   }]
 }

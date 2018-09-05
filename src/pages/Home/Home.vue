@@ -1,7 +1,24 @@
 <template>
   <div class="shell">
-    <c-tool-bar v-on:mounted="toolMounted" v-show="showTool"></c-tool-bar>
-    <c-bottom-nav-bar v-on:mounted="navMounted" :tabItems="tabItems" :currentItem="currentItem" @tabClick="navTo" v-show="showNav"></c-bottom-nav-bar>
+    <c-tool-bar v-on:mounted="toolMounted" v-show="isShowToolBar">
+      <transition name="fade">
+        <div v-if="currentShow==='home.article'">
+          <c-button :options="{class:{
+                  elevation:true
+                }}">article</c-button>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div v-if="currentShow==='home.article.detail'">
+          <c-button :options="{class:{
+                  primary:true,
+                  elevation:true
+                }}" @click="goBackToArticleList()">GoBack</c-button>
+        </div>
+      </transition>
+    </c-tool-bar>
+
+    <c-bottom-nav-bar v-on:mounted="navMounted" :tabItems="tabItems" :currentItem="currentItem" @tabClick="navTo" v-show="isShowNavBar"></c-bottom-nav-bar>
     <!-- 以上position为absolute，不影响布局，但是会影响Vue初始化 -->
     <div class="main">
       <transition :name="transitionName">
@@ -24,7 +41,6 @@ export default {
   },
   data() {
     return {
-      showTool: true,
       showNav: true,
       transitionName: "fade",
       tabItems: [
@@ -46,12 +62,14 @@ export default {
   },
   computed: {
     ...mapGetters(["userInfo"]),
-    ...mapGetters("article", ["movingDirectionY", "isShowDetail"])
+    ...mapGetters("home", ["isShowToolBar", "isShowNavBar", "currentShow"]),
+    ...mapGetters("article", ["movingDirectionY"])
   },
   watch: {
-    movingDirectionY(newV, old) {
-      this.showTool = newV === -1 ? true : false;
-      this.showNav = newV === -1 ? true : false;
+    movingDirectionY(newY, oldY) {
+      console.log("newY, oldY", newY, oldY);
+      this.setShowToolBar(newY === -1 ? true : false);
+      this.setShowNavBar(newY === -1 ? true : false);
     },
     userInfo(newV, oldV) {
       if (!newV) {
@@ -61,19 +79,27 @@ export default {
     $route(to, from) {
       const toDepth = to.path.split("/").length;
       const fromDepth = from.path.split("/").length;
-      console.log("$route change", toDepth, fromDepth);
-      if (toDepth < fromDepth) {
+      this.setCurrentShow(to.name);
+      console.log("Home $route", to.name, toDepth, fromDepth);
+      /*     if (toDepth < fromDepth) {
         // 往左：以后可以配置再说
         this.transitionName = "back";
       } else {
+        // 往右
         this.transitionName = "forward";
-      }
-      // 往右
+      } */
     }
   },
   methods: {
     ...mapActions(["setThemeColor"]),
-    ...mapActions("home", ["setHomeRect", "setToolBarRect", "setNavBarRect"]),
+    ...mapActions("home", [
+      "setHomeRect",
+      "setToolBarRect",
+      "setNavBarRect",
+      "setShowToolBar",
+      "setShowNavBar",
+      "setCurrentShow"
+    ]),
     toolMounted(toolEle) {
       this.setToolBarRect(toolEle.getBoundingClientRect());
     },
@@ -83,6 +109,9 @@ export default {
     },
     test(event) {
       console.log(event);
+    },
+    goBackToArticleList() {
+      this.$router.go(-1);
     },
     navTo({ event, item, index }) {
       console.log(item, index);

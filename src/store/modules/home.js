@@ -16,7 +16,10 @@ const state = {
   }),
   navRect: Object.assign(rectDemo, {
     height: 70
-  })
+  }),
+  isShowToolBar: true,
+  isShowNavBar: true,
+  currentShow: "home.article"
 }
 
 const getters = {
@@ -31,7 +34,16 @@ const getters = {
   },
   isInitCompleted(state) {
     return state.initCompleteCounter === 3;
-  }
+  },
+  isShowToolBar(state) {
+    return state.isShowToolBar;
+  },
+  isShowNavBar(state) {
+    return state.isShowNavBar;
+  },
+  currentShow(state) {
+    return state.currentShow;
+  },
 }
 
 const actions = {
@@ -43,14 +55,29 @@ const actions = {
   async setToolBarRect({
     commit
   }, rect) {
-    return commit('setToolBarRect', rect)
+    return commit('setToolBarRect', rect);
   },
   async setNavBarRect({
     commit
   }, rect) {
-    return commit('setNavBarRect', rect)
-  }
+    return commit('setNavBarRect', rect);
+  },
   // 以上三者只应该在Home初始化各调用一次
+  async setShowToolBar({
+    commit
+  }, isShow) {
+    return commit('setShowToolBar', isShow);
+  },
+  async setShowNavBar({
+    commit
+  }, isShow) {
+    return commit('setShowNavBar', isShow);
+  },
+  async setCurrentShow({
+    commit
+  }, showModule) {
+    return commit('setCurrentShow', showModule);
+  }
 }
 
 const mutations = {
@@ -71,6 +98,21 @@ const mutations = {
   ) {
     state.initCompleteCounter++
     state.homeRect = rect;
+  },
+  setShowToolBar(state,
+    isShow
+  ) {
+    state.isShowToolBar = isShow;
+  },
+  setShowNavBar(state,
+    isShow
+  ) {
+    state.isShowNavBar = isShow;
+  },
+  setCurrentShow(state,
+    showModule
+  ) {
+    state.currentShow = showModule;
   }
 }
 

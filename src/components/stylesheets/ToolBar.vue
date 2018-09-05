@@ -3,12 +3,17 @@
     <c-container class="tool-bar" :options="{class:'fluid'}">
       <c-row>
         <c-col :options="colOptions">
-          <header>
-            <span class="label label-default">tool-bar</span>
-          </header>
-          <c-button @click="triggerLogout" v-show="userInfo">
-            logout
-          </c-button>
+          <slot>
+            <header>
+              <span class="label label-default">tool-bar</span>
+            </header>
+            <c-button :options="{class:{
+                  primary:true,
+                  elevation:true
+                }}" @click="triggerLogout">
+              logout
+            </c-button>
+          </slot>
         </c-col>
       </c-row>
     </c-container>
@@ -58,9 +63,11 @@ export default {
   watch: {},
   methods: {
     ...mapActions(["logOut"]),
+    ...mapActions("article", ["logOut"]),
     triggerLogout(e) {
       console.log("logOut");
-      this.logOut();
+      debugger;
+      // this.logOut();
     }
   }
 };
@@ -75,6 +82,9 @@ export default {
   width: 100%;
   z-index: 2;
   background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
   @include elevation8();
 }

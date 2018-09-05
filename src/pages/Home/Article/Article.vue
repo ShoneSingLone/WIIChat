@@ -1,11 +1,10 @@
 <template>
   <transition name="fade">
-    <!-- <c-container class="article-wrapper" :style="containerStyle" @scroll="articleScroll"> -->
     <c-container class="article-wrapper">
       <!-- Article Skeleton -->
       <transition name="fade-cross">
-        <c-row class="skeleton" :style="containerStyle" v-show="isShowArticleList" @scroll="articleScroll">
-          <c-col :options="colOptions" v-for="(item, index) in 100" :key="index">
+        <c-row class="skeleton" v-show="!isShowArticleList" :style="articleStyle">
+          <c-col :options="colOptions" v-for="(item, index) in 10" :key="index">
             <c-card :options="cardOptions">
               <div class="header">
               </div>
@@ -18,6 +17,55 @@
         </c-row>
       </transition>
       <!-- Article Skeleton End-->
+
+      <!-- Article List-->
+      <transition name="fade-cross">
+        <c-row class="article" v-show="isShowArticleList" :style="articleStyle" @scroll="articleScroll">
+          <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
+            <c-card :options="cardOptions" :class="[{'open':article.open}]">
+              <h3 slot="header" class="header" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
+                {{article.title}}
+              </h3>
+              <div class="body">
+                {{article.desc}}
+                <div class="read-more-wrapper">
+                  <c-button :options="{class:{
+                  primary:true,
+                  elevation:true
+                }}" @click="showDetail(article, index)">Read</c-button>
+                </div>
+              </div>
+              <div slot="footer">
+                <!-- {{(article.updated_at)}} -->
+                更新于： {{article.updated_at|articleUpdatedAt}}
+              </div>
+            </c-card>
+          </c-col>
+          <c-col :options="colOptions" class="pullup-wrapper">
+            <c-button :options="{class:{
+                              primary:true,
+                              elevation:true,
+                              block:true
+                }}" @click="getMoreArticle" :disabled="noMore" :class="[{'refresh':isPullUpTrigger}]">
+              {{pullUpTips}}
+            </c-button>
+          </c-col>
+        </c-row>
+      </transition>
+      <!-- Article List End-->
+
+      <!-- Article Detail -->
+      <transition name="detail-slide">
+        <c-row class="detail" :style="detailStyle" v-show="isShowDetail" @scroll="detailScroll" ref="detail">
+          <c-col :options=" { class: { md: { colspan: 8, offset: 2 } } }">
+            <c-card>
+              <div class="detail-content" v-html="detailArticle.content"></div>
+            </c-card>
+          </c-col>
+        </c-row>
+      </transition>
+      <!-- Article Detail End-->
+
     </c-container>
   </transition>
 </template>
@@ -52,6 +100,19 @@ export default {
       this.$emit("mounted", this.$el);
     }, 30);
   },
+  beforeRouteEnter: (to, from, next) => {
+    let { query, params } = to;
+    next(vm => {
+      vm.setArticleStyle(vm.movingDirectionY);
+      if (query.id && params.article && params.article.id === query.id) {
+        next();
+      } else {
+        vm.$router.push({
+          name: "home.article"
+        });
+      }
+    });
+  },
   data() {
     return {
       detailArticle: {},
@@ -59,30 +120,28 @@ export default {
       msg: "",
       colOptions: { class: { md: { colspan: 4 } } },
       cardOptions: { class: { radius: true } },
-      containerStyle: {
+      articleStyle: {
         "padding-top": 0,
         "padding-bottom": 0
       },
-      detailStyle: {
-        "margin-top": 0
-      }
+      isShowDetail: false
     };
   },
   computed: {
-    ...mapGetters(["hostName", "appHeight"]),
+    ...mapGetters(["hostName", "appHeight", "appWidth"]),
     ...mapGetters("home", [
       "homeHeight",
       "toolHeight",
       "navHeight",
-      "isInitCompleted"
+      "isInitCompleted",
+      "currentShow"
     ]),
     ...mapGetters("article", [
       "articleList",
       "noMore",
       "articleScrollY",
       "articleScrollYMax",
-      "movingDirectionY",
-      "isShowDetail"
+      "movingDirectionY"
     ]),
     pullUpTips() {
       return this.noMore
@@ -91,6 +150,14 @@ export default {
     },
     isShowArticleList() {
       return this.articleList && this.articleList.length > 0;
+    },
+    detailStyle() {
+      return {
+        height: `${this.appHeight}px`,
+        width: `${this.appWidth}px`,
+        "margin-top": `${this.toolHeight}px`,
+        "padding-bottom": `${this.toolHeight}px`
+      };
     }
   },
   filters: {
@@ -102,9 +169,32 @@ export default {
     ...mapActions("article", [
       "getArticleList",
       "setMovingDirectionY",
-      "setArticleScroll",
-      "setShowDetail"
+      "setArticleScroll"
     ]),
+    ...mapActions("home", [
+      "setCurrentShow",
+      "setShowToolBar",
+      "setShowNavBar"
+    ]),
+    detailScroll(event) {
+      // console.log(this.$refs.detail);
+    },
+    setArticleStyle(movingDirectionY) {
+      this.articleStyle =
+        movingDirectionY === 1
+          ? {
+              height: `${this.appHeight}px`,
+              width: `${this.appWidth}px`,
+              "padding-top": `1rem`,
+              "padding-bottom": `1rem`
+            }
+          : {
+              height: `${this.appHeight}px`,
+              width: `${this.appWidth}px`,
+              "margin-top": `${this.toolHeight}px`,
+              "margin-bottom": `${this.navHeight}px`
+            };
+    },
     getMoreArticle(event) {
       this.isPullUpTrigger = true;
       this.getArticleList({
@@ -123,38 +213,59 @@ export default {
       });
     },
     showDetail(article, index) {
-      this.setShowDetail(true);
-      /*       this.$el.scrollTo({
-        top: 500,
-        behavior: "smooth"
-      }); */
-
-      article.open = !article.open;
       this.detailArticle = article;
-      console.log("click", article, index);
+      // 只是一个专场动画
+      article.open = true;
+      this.$set(this.articleList, index, article);
+      setTimeout(() => {
+        article.open = false;
+        this.$set(this.articleList, index, article);
+      }, 1000 * 2);
+
+      setTimeout(() => {
+        this.$router.push({
+          name: "home.article.detail",
+          query: {
+            id: article.id
+          },
+          params: {
+            article
+          }
+        });
+      }, 30);
+      // this.setCurrentShow("home.article.detail");
     }
   },
   watch: {
+    detailArticle(newV, oldV) {
+      // 如果是新的，scrollTop=0
+      setTimeout(() => {
+        this.$refs.detail.$el.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, 30);
+    },
+    currentShow(currentShow, oldV) {
+      console.log(currentShow, oldV);
+      this.isShowDetail = currentShow === "home.article.detail";
+      if (this.isShowDetail) {
+        this.setShowToolBar(true);
+        this.setShowNavBar(false);
+      }
+    },
     articleList(newV, oldV) {
       this.isPullUpTrigger = false;
-      console.log("模拟数据");
-      this.detailArticle = newV.length > 0 ? newV[0] : {};
+      // console.log("模拟数据");
+      // this.detailArticle = newV.length > 0 ? newV[0] : {};
     },
     articleScrollY(newV, oldV) {
       this.setMovingDirectionY(newV - oldV > 0 ? 1 : -1);
     },
     movingDirectionY(newV, oldV) {
       console.log("count", count++, newV);
-      this.containerStyle =
-        newV === 1
-          ? {
-              "padding-top": `1rem`,
-              "padding-bottom": `1rem`
-            }
-          : {
-              "margin-top": `${this.toolHeight}px`,
-              "margin-bottom": `${this.navHeight}px`
-            };
+      // 1是向下滑动的意思
+      this.setArticleStyle(newV);
     }
   },
   components: {
@@ -171,10 +282,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "../../../components/stylesheets/vm";
 .article-wrapper,
-.skeleton {
+.skeleton,
+.detail {
   height: 100%;
   overflow: hidden;
 }
@@ -188,7 +300,6 @@ export default {
     left: 0;
     width: 100%;
     margin-left: 0; //因为absolute的关系,修复container padding 15 row margin -15的问题
-    overflow-y: scroll;
     z-index: 1;
 
     .card {
@@ -223,17 +334,18 @@ export default {
   .article {
     position: relative;
     height: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
-    transition: all 1s;
+    // transition: all 0.3s;
     background-color: white;
-    .pulldown-wrapper {
-      text-align: center;
-    }
+
     .card {
       background-color: white;
+      &.open {
+        animation: zoomOutDown 1s;
+      }
       .header {
-        margin: 0 0 1rem 0;
+        margin-top: 1rem;
         border-radius: 1rem 1rem 0 0;
         text-align: center;
         color: white;
@@ -241,20 +353,61 @@ export default {
         text-shadow: 0.1rem 0.1rem 0.1rem black;
         line-height: 5rem;
       }
-      .open {
-        animation: zoomIn 3s;
-      }
+
       .body {
         .read-more-wrapper {
           text-align: right;
         }
       }
-      .pullup-wrapper {
+    }
+    .pullup-wrapper {
+      margin-top: 1rem;
+      text-align: center;
+      transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+      .refresh {
+        animation: bounceIn 2s infinite alternate;
+      }
+    }
+  }
+
+  .detail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-left: 0; //因为absolute的关系,修复container padding 15 row margin -15的问题
+    z-index: 1;
+    overflow-y: scroll;
+    background-color: white;
+
+    .detail-content {
+      h1,
+      h2,
+      h3,
+      h4 {
         text-align: center;
-        transition: all 2s cubic-bezier(0.215, 0.61, 0.355, 1);
-        margin: 2rem 0 2rem 0;
-        .refresh {
-          animation: bounceIn 2s infinite alternate;
+      }
+      h2 {
+        font-size: 2rem;
+        ~ p {
+          @include elevation2();
+          padding: 1rem;
+          border-radius: 1rem;
+          text-indent: 2rem;
+          a[href^="htt"] {
+            display: inline-block;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          img {
+            display: inline-block;
+            margin-left: -2rem; //修复text-indent
+            border-radius: 1rem;
+            width: 100%;
+          }
         }
       }
     }
