@@ -16,7 +16,18 @@ if (process.env.NODE_ENV === 'production') {
       alert('Content has been cached for offline use.')
     },
     updated() {
-      alert('New content is available; please refresh.')
+      alert('New content is available; please refresh.');
+      if ('applicationCache' in window) {
+        let appCache = window.applicationCache;
+        appCache.addEventListener('updateready', () => {
+          appCache.swapCache();
+          if (confirm("Update now?")) {
+            window.location.reload();
+          }
+        })
+      }
+
+
     },
     offline() {
       alert('No internet connection found. App is running in offline mode.')

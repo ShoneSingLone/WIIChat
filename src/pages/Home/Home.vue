@@ -1,21 +1,17 @@
 <template>
   <div class="shell">
     <c-tool-bar v-on:mounted="toolMounted" v-show="isShowToolBar">
-      <transition name="fade">
-        <div v-if="currentShow==='home.article'">
-          <c-button :options="{class:{
+      <div v-if="currentShow==='home.article'">
+        <c-button :options="{class:{
                   elevation:true
                 }}">article</c-button>
-        </div>
-      </transition>
-      <transition name="fade">
-        <div v-if="currentShow==='home.article.detail'">
-          <c-button :options="{class:{
+      </div>
+      <div v-if="currentShow==='home.article.detail'">
+        <c-button :options="{class:{
                   primary:true,
                   elevation:true
                 }}" @click="goBackToArticleList()">GoBack</c-button>
-        </div>
-      </transition>
+      </div>
     </c-tool-bar>
 
     <c-bottom-nav-bar v-on:mounted="navMounted" :tabItems="tabItems" :currentItem="currentItem" @tabClick="navTo" v-show="isShowNavBar"></c-bottom-nav-bar>
