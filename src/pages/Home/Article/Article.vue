@@ -4,7 +4,7 @@
       <!-- Article Skeleton -->
       <transition name="fade-cross">
         <c-row class="skeleton" v-show="!isShowArticleList" :style="articleStyle">
-          <c-col :options="colOptions" v-for="(item, index) in 10" :key="index">
+          <c-col :options="colOptions" v-for="(item, index) in 15" :key="index">
             <c-card :options="cardOptions">
               <div class="header">
               </div>
@@ -154,7 +154,7 @@ export default {
     detailStyle() {
       return {
         height: `${this.appHeight}px`,
-        width: `${this.appWidth}px`,
+        // width: `${this.appWidth}px`,
         "margin-top": `${this.toolHeight}px`,
         "padding-bottom": `${this.toolHeight}px`
       };
@@ -184,13 +184,13 @@ export default {
         movingDirectionY === 1
           ? {
               height: `${this.appHeight}px`,
-              width: `${this.appWidth}px`,
+              // width: `${this.appWidth}px`,
               "padding-top": `1rem`,
               "padding-bottom": `1rem`
             }
           : {
               height: `${this.appHeight}px`,
-              width: `${this.appWidth}px`,
+              // width: `${this.appWidth}px`,
               "margin-top": `${this.toolHeight}px`,
               "margin-bottom": `${this.navHeight}px`
             };
@@ -295,13 +295,6 @@ export default {
     display: none;
   }
   .skeleton {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin-left: 0; //因为absolute的关系,修复container padding 15 row margin -15的问题
-    z-index: 1;
-
     .card {
       background-color: white;
       div {
