@@ -118,6 +118,10 @@ beforePullUp 和 beforePullDown流程是一样的
 - 进入触发区未触发 beforePullUp：true && pullUpTrigger：false
 - 触发 beforePullUp：true && pullUpTrigger：true
 
+- 点击read按钮，setDetail相关数据，转换open状态
+
+~ + 选择符的应用，羡慕玩转[禅意花园](http://www.csszengarden.com/tr/zh-cn/)的大师，看山不是山，随心所欲。（主要是指：一、设计不出漂亮的UI；二、不能根据已有结构设计出漂亮的UI；三、不能根据已有结构设计并实现漂亮的UI）
+
 ## ~~测试~~
 
 ## 部署

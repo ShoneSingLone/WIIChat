@@ -119,7 +119,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  z-index: 3;
+  z-index: 2;
   background: white;
   @include elevation8();
   .tab {

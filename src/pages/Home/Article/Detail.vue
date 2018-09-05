@@ -1,6 +1,6 @@
 <template>
-  <transition name="fade">
-    <c-container class="detail" :style="detailStyle">
+  <transition name="detail-slide">
+    <c-container class="article-detail" :style="detailStyle">
       <c-row>
         <c-col :options="colOptions">
           <div class="content" v-html="article.content"></div>
@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      colOptions: { class: { md: { colspan: 4 } } },
+      colOptions: { class: { md: { colspan: 8, offset: 2 } } },
       cardOptions: { class: { radius: true } }
     };
   },
@@ -100,20 +100,62 @@ export default {
 
 <style lang="scss" >
 @import "../../../components/stylesheets/vm";
-.detail {
+.article-detail {
   position: absolute;
-  outline: 1px solid rebeccapurple;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 1;//需要盖住
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: white;
-  p {
-    img {
-      display: inline-block;
-      width: 100%;
+  height:500px;
+  h1 {
+    text-align: center;
+  }
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    ~ p {
+      @include elevation2();
+      padding: 1rem;
+      border-radius: 1rem;
+      text-indent: 2rem;
+      a[href^="htt"] {
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      img {
+        display: inline-block;
+        margin-left: -2rem; //修复text-indent
+        border-radius: 1rem;
+        width: 100%;
+      }
     }
+  }
+}
+.detail-slide {
+  &-enter-active {
+    transition: all 0.5s 0.5s ease-in;
+    opacity: 0;
+  }
+
+  &-leave-active {
+    transition: all 0.5s ease-out;
+  }
+
+  &-enter,
+  &-leave-to {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+
+  &-enter-to,
+  &-leave {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
 </style>

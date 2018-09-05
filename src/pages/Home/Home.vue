@@ -24,6 +24,8 @@ export default {
   },
   data() {
     return {
+      showTool: true,
+      showNav: true,
       transitionName: "fade",
       tabItems: [
         { icon: "grain", label: "Chat" },
@@ -44,17 +46,13 @@ export default {
   },
   computed: {
     ...mapGetters(["userInfo"]),
-    ...mapGetters("article", ["movingDirectionY"]),
-    showTool() {
-      // 当滑动的时候有这一种情况还有其他的再说
-      return this.movingDirectionY === -1;
-    },
-    showNav() {
-      // 当滑动的时候有这一种情况还有其他的再说
-      return this.movingDirectionY === -1;
-    }
+    ...mapGetters("article", ["movingDirectionY", "isShowDetail"])
   },
   watch: {
+    movingDirectionY(newV, old) {
+      this.showTool = newV === -1 ? true : false;
+      this.showNav = newV === -1 ? true : false;
+    },
     userInfo(newV, oldV) {
       if (!newV) {
         this.$router.push({ name: "login" });
@@ -118,12 +116,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shell {
+.shell,
+.main {
   height: 100%;
   overflow: hidden;
-  .main {
-    height: 100%;
-    overflow: hidden;
-  }
 }
 </style>

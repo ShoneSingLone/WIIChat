@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" @scroll="handlerScroll">
     <slot></slot>
   </div>
 </template>
@@ -24,7 +24,11 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    handlerScroll(event) {
+      this.$emit("scroll", event);
+    }
+  },
   components
 };
 </script>
