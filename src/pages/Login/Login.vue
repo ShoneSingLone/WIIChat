@@ -106,6 +106,7 @@ export default {
     loginMsg(newV, oldV) {
       //account登录失败才会改变loginMsg的状态
       // 漂浮一个提示框
+      debugger;
       this.isDisabled = false;
       this.buttonText = "登录";
     },

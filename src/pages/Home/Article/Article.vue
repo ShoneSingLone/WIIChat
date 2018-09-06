@@ -20,7 +20,7 @@
 
       <!-- Article List-->
       <transition name="fade-cross">
-        <c-row class="article" v-show="isShowArticleList" :style="articleStyle" @scroll="articleScroll">
+        <c-row class="article" v-show="isShowArticleList" :style="articleStyle" @scroll="articleScroll" ref="article">
           <c-col :options="colOptions" v-for="(article, index) in articleList" :key="index">
             <c-card :options="cardOptions" :class="[{'open':article.open}]">
               <h3 slot="header" class="header" :style="{background:`url(${article.imgUrl}) center center /cover no-repeat`}">
@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import BScroll from "better-scroll";
 import { mapGetters, mapActions } from "vuex";
 import dayjs from "dayjs";
 let count = 0;
@@ -97,21 +96,46 @@ export default {
   mounted() {
     console.log("Article mounted");
     setTimeout(() => {
+      // window.article = this.$refs.article.$el;
       this.$emit("mounted", this.$el);
     }, 30);
   },
   beforeRouteEnter: (to, from, next) => {
+    console.warn("beforeRouteEnter Article");
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当守卫执行前，组件实例还没被创建
+
     let { query, params } = to;
     next(vm => {
       vm.setArticleStyle(vm.movingDirectionY);
+      let top = vm.articleScrollY;
+      setTimeout(() => {
+        vm.$refs.article.$el.scrollTo({ top, behavior: "smooth" });
+      }, 30);
       if (query.id && params.article && params.article.id === query.id) {
         next();
       } else {
+        this;
         vm.$router.push({
           name: "home.article"
         });
       }
     });
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.warn("beforeRouteUpdate Article");
+    next();
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+  },
+  beforeRouteLeave(to, from, next) {
+    console.warn("beforeRouteLeave Article");
+    next();
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
   },
   data() {
     return {
@@ -274,10 +298,7 @@ export default {
     "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
     "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
     "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
-    "c-scroll": () => import(/* webpackChunkName: "c-scroll" */ "@cps/Scroll"),
-    "c-card": () => import(/* webpackChunkName: "c-card" */ "@cps/Card"),
-    "c-bubble": () => import(/* webpackChunkName: "c-bubble" */ "@cps/Bubble"),
-    "c-detail": () => import(/* webpackChunkName: "c-bubble" */ "./Detail")
+    "c-card": () => import(/* webpackChunkName: "c-card" */ "@cps/Card")
   }
 };
 </script>

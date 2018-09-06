@@ -1,7 +1,6 @@
 export default {
   path: '/home',
   name: 'home',
-  redirect: '/home/article',
   component: () =>
     import ( /* webpackChunkName: "home" */ '@/pages/Home/Home'),
   children: [{
@@ -13,6 +12,21 @@ export default {
     path: 'article/detail',
     name: 'home.article.detail',
     component: () =>
-      import ( /* webpackChunkName: "article.detail" */ '@/pages/Home/Article/Article')
+      import ( /* webpackChunkName: "article" */ '@/pages/Home/Article/Article')
+  }, {
+    path: 'chat',
+    name: 'home.chat',
+    component: () =>
+      import ( /* webpackChunkName: "chat" */ '@/pages/Home/Chat/Chat')
+  }, {
+    path: 'question',
+    name: 'home.question',
+    component: () =>
+      import ( /* webpackChunkName: "question" */ '@/pages/Home/Question/Question')
+  }, {
+    path: 'user',
+    name: 'home.user',
+    component: () =>
+      import ( /* webpackChunkName: "user" */ '@/pages/Home/User/User')
   }]
 }

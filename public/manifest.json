@@ -1,8 +1,7 @@
 {
-  "name": "brumaire",
-  "short_name": "brumaire",
-  "icons": [
-    {
+  "name": "Brumaire",
+  "short_name": "Brumaire",
+  "icons": [{
       "src": "/img/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
@@ -13,7 +12,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/Brumaire",
+  "start_url": "/brumaire",
   "display": "standalone",
   "background_color": "#f0f0f0",
   "theme_color": "#337ab7"

@@ -156,7 +156,7 @@ const actions = {
         status,
         data: res
       } = result;
-      if (status === 200 && res.success) {
+      if (status === 200 && res.isSuccess) {
         let originArticles = res.data;
         if (originArticles.length === 0) {
           commit("setArticleNoMore");

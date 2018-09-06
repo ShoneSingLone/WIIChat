@@ -32,7 +32,7 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 - [ ] 感觉自己要撸一个搜索引擎似的，阔怕。反正需求放这儿，爱撸不撸
 - [ ] 后台总要有一个吧
 
-## 概要设计
+## 概要设计(功能-结构)
 
 就想做一个渐进式Web应用（喜欢渐进的理由：凡事，成，不可一蹴而就，完美更不可求，但要报以持之以恒不断改进臻至完美之志）。
 
@@ -57,7 +57,7 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 [仿微信IM软件的客户端数据库设计](https://segmentfault.com/q/1010000004294504)
 
-## 详细设计
+## 详细设计（流程）
 
 - 数据库flag更新日期，client在有网情况下都会请求这个flag，如果不一致则请求数据库数据，否则使用本地缓存即可
   - 还要考虑请求数据后的用户更新：如何保证当前状态的平稳更新？
@@ -68,6 +68,7 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
   - HomeState根据各模块isShow决定 currentShow
   - 各模块isShow是共享的状态
   - ToolBar and NavBar 的显隐独立控制isShowToolBar、isShowNavBar
+  - 只有在Home操作才带有状态（其他的是登录、错误、其他...） 
   - 初始化的时候为“home.article"
     - 在Home中监听$route的变化，to的name即为currentShow
     - 各个Page监听currentShow的变化，切换各部分show状态
@@ -77,6 +78,8 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
 
 ## 实现
 
+- [App-Shell](https://developers.google.cn/web/fundamentals/architecture/app-shell)
+  - ToolBar main-content NavBar 三个部分就是对应此部分
 - 组件首字母大写、驼峰
 - `c-button`c代表custom
 - UI 使用 `npm install @material -D`

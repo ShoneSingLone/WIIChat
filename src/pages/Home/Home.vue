@@ -1,6 +1,21 @@
 <template>
   <div class="shell">
     <c-tool-bar v-on:mounted="toolMounted" v-show="isShowToolBar">
+      <div v-if="currentShow==='home.chat'">
+        <c-button :options="{class:{
+                  elevation:true
+                }}">chat</c-button>
+      </div>
+      <div v-if="currentShow==='home.user'">
+        <c-button :options="{class:{
+                  elevation:true
+                }}">user</c-button>
+      </div>
+      <div v-if="currentShow==='home.question'">
+        <c-button :options="{class:{
+                  elevation:true
+                }}">question</c-button>
+      </div>
       <div v-if="currentShow==='home.article'">
         <c-button :options="{class:{
                   elevation:true
@@ -13,9 +28,9 @@
                 }}" @click="goBackToArticleList()">GoBack</c-button>
       </div>
     </c-tool-bar>
-
-    <c-bottom-nav-bar v-on:mounted="navMounted" :tabItems="tabItems" :currentItem="currentItem" @tabClick="navTo" v-show="isShowNavBar"></c-bottom-nav-bar>
+    <c-bottom-nav-bar v-on:mounted="navMounted" :currentItem="currentItem" :tabItems="tabItems" @tabClick="navTo" v-show="isShowNavBar"></c-bottom-nav-bar>
     <!-- 以上position为absolute，不影响布局，但是会影响Vue初始化 -->
+
     <div class="main">
       <transition :name="transitionName">
         <keep-alive>
@@ -39,13 +54,13 @@ export default {
     return {
       showNav: true,
       transitionName: "fade",
-      tabItems: [
-        { icon: "grain", label: "Chat" },
-        { icon: "list-alt", label: "Article" },
-        { icon: "edit", label: "Question" },
-        { icon: "user", label: "User" }
-      ],
       currentItem: 0,
+      tabItems: [
+        { icon: "grain", label: "Chat", routeName: "chat" },
+        { icon: "list-alt", label: "Article", routeName: "article" },
+        { icon: "edit", label: "Question", routeName: "question" },
+        { icon: "user", label: "User", routeName: "user" }
+      ],
       colOptions: {
         class: {
           md: {
@@ -59,11 +74,10 @@ export default {
   computed: {
     ...mapGetters(["userInfo"]),
     ...mapGetters("home", ["isShowToolBar", "isShowNavBar", "currentShow"]),
-    ...mapGetters("article", ["movingDirectionY"])
+    ...mapGetters("article", ["movingDirectionY", "articleScrollY"])
   },
   watch: {
     movingDirectionY(newY, oldY) {
-      console.log("newY, oldY", newY, oldY);
       this.setShowToolBar(newY === -1 ? true : false);
       this.setShowNavBar(newY === -1 ? true : false);
     },
@@ -76,6 +90,16 @@ export default {
       const toDepth = to.path.split("/").length;
       const fromDepth = from.path.split("/").length;
       this.setCurrentShow(to.name);
+      let item = this.tabItems[0],
+        index = 0;
+      for (let subIndex = 0; subIndex < this.tabItems.length; subIndex++) {
+        if (this.tabItems[subIndex].routeName === to.name.split(".")[1]) {
+          item = this.tabItems[subIndex];
+          index = subIndex;
+          break;
+        }
+      }
+      this.navTo({ item, index });
       console.log("Home $route", to.name, toDepth, fromDepth);
       /*     if (toDepth < fromDepth) {
         // 往左：以后可以配置再说
@@ -110,19 +134,20 @@ export default {
       this.$router.go(-1);
     },
     navTo({ event, item, index }) {
-      console.log(item, index);
+      // this.setThemeColor("red");
+      if (this.currentItem === index) return false;
       this.currentItem = index;
-      if (index === 3) {
-        this.setThemeColor("red");
-        // this.$router.push({ name: "error", query: { msg: "just a joke" } });
-      }
-      if (index === 1) {
+      this.$router.push({
+        name: `home.${item.routeName}`
+      });
+
+      /*  if (index === 1) {
         this.setThemeColor("#337ab7");
         console.log(
           "this.$el.getBoundingClientRect",
           this.$el.getBoundingClientRect()
         );
-      }
+      } */
     }
   },
   components: {

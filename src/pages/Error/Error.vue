@@ -12,7 +12,7 @@
             </h1>
           </div>
           <div slot="footer">
-            <c-button :options="{class:{primary:true}}" @click="goBack">哪里来哪里去({{waitTiem}}s)</c-button>
+            <c-button :options="{class:{primary:true}}" @click="goBack">哪里来哪里去({{waitTime}}s)</c-button>
           </div>
         </c-modals>
       </c-col>
@@ -54,7 +54,7 @@ export default {
       next(vm => {
         // console.log("Error: beforeRouteEnter next");
         vm.msg = query.msg || query.error;
-        vm.waitTiem = query.waitTiem ? query.waitTiem : 5;
+        vm.waitTime = query.waitTime ? query.waitTime : 5;
         vm.fromPathName =
           params.redirect && params.redirect.name
             ? params.redirect.name
@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       msg: "",
-      waitTiem: 5,
+      waitTime: 5,
       fromPathName: "login",
       dcTimer: {}
     };
@@ -101,10 +101,10 @@ export default {
     },
     downC() {
       this.dcTimer = setTimeout(() => {
-        if (this.waitTiem === 0) {
+        if (this.waitTime === 0) {
           this.goBack();
         } else {
-          this.waitTiem--;
+          this.waitTime--;
           this.dcTimer = setTimeout(this.downC, 1000 * 1);
         }
       }, 1000 * 1);

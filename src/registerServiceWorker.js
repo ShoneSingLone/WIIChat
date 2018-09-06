@@ -4,19 +4,19 @@ import {
   register
 } from 'register-service-worker'
 
-if (process.env.NODE_ENV === 'production') {
+/* if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready() {
-      alert(
+      console.warn(
         'App is being served from cache by a service worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
     },
     cached() {
-      alert('Content has been cached for offline use.')
+      console.warn('Content has been cached for offline use.')
     },
     updated() {
-      alert('New content is available; please refresh.');
+      console.warn('New content is available; please refresh.');
       if ('applicationCache' in window) {
         let appCache = window.applicationCache;
         appCache.addEventListener('updateready', () => {
@@ -30,10 +30,43 @@ if (process.env.NODE_ENV === 'production') {
 
     },
     offline() {
-      alert('No internet connection found. App is running in offline mode.')
+      console.warn('No internet connection found. App is running in offline mode.')
     },
     error(error) {
       console.error('Error during service worker registration:', error)
     }
   })
-}
+} */
+
+register(`${process.env.BASE_URL}service-worker.js`, {
+  ready() {
+    console.warn(
+      'App is being served from cache by a service worker.\n' +
+      'For more details, visit https://goo.gl/AFskqB'
+    )
+  },
+  cached() {
+    console.warn('Content has been cached for offline use.')
+  },
+  updated() {
+    console.warn('New content is available; please refresh.');
+  },
+  offline() {
+    console.warn('No internet connection found. App is running in offline mode.')
+  },
+  error(error) {
+    console.error('Error during service worker registration:', error)
+  }
+})
+
+
+window.addEventListener('beforeinstallprompt', function (e) {
+  // beforeinstallprompt event fired
+  e.userChoice.then(function (choiceResult) {
+    if (choiceResult.outcome === 'dismissed') {
+      console.warn('用户取消安装应用');
+    } else {
+      console.warn('用户安装了应用');
+    }
+  });
+});

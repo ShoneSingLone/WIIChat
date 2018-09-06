@@ -4,6 +4,13 @@
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
+
+    <div class="dialog-container">
+    </div>
+
+    <div class="loader">
+      <!-- Show a spinner or placeholders for content -->
+    </div>
   </div>
 </template>
 

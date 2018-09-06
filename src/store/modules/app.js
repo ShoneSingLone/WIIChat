@@ -131,7 +131,7 @@ const actions = {
           userPwd
         },
       });
-      if (!(status === 200 && res.success)) throw new Error(res.error);
+      if (!(status === 200 && res.isSuccess)) throw new Error(res.error);
       setLocalStorage(res.data);
       commit('setUserInfo', res.data)
     } catch (error) {

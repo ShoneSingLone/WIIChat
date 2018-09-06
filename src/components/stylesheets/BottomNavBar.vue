@@ -34,10 +34,6 @@ const components = {
     import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
 };
 const EVENT_TAB_CLICK = "tabClick";
-const EVENT_INPUT = "input";
-const EVENT_CHANGE = "change";
-const EVENT_BLUR = "blur";
-const EVENT_FOCUS = "focus";
 
 export default {
   name: "c-bottom-nav-bar",
@@ -76,31 +72,6 @@ export default {
     ...mapActions(["setThemeColor"]),
     getIconClass(iconName) {
       return `glyphicon-${iconName}`;
-    },
-    changeHander(e) {
-      this.$emit(EVENT_CHANGE, e);
-    },
-    formateEye() {
-      if (typeof this.eye === "boolean") {
-        this.formatedEye.open = this.eye;
-      } else {
-        Object.assign(this.formatedEye, this.eye);
-      }
-    },
-    handleFocus(e) {
-      this.$emit(EVENT_FOCUS, e);
-      this.isFocus = true;
-    },
-    handleBlur(e) {
-      this.$emit(EVENT_BLUR, e);
-      this.isFocus = false;
-    },
-    handleClear(e) {
-      this.inputValue = "";
-      this.$refs.input.focus();
-    },
-    handlePwdEye() {
-      this.formatedEye.open = !this.formatedEye.open;
     },
     handleTabClick(event, item, index) {
       this.$emit(EVENT_TAB_CLICK, { event, item, index });

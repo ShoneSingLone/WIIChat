@@ -1,14 +1,14 @@
 <template>
   <transition :name="transitionName">
-    here name required
+    question
   </transition>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
-  name: "here name required",
+  name: "question",
   mounted() {
     //某些需要在mounted之后完成的初始化
     let vm = this;
@@ -19,18 +19,21 @@ export default {
       .catch(error => {
         console.error(error);
       });
-    console.log("mounted");
+    console.log("ScrollY mounted");
   },
   beforeRouteEnter: (to, from, next) => {
-    console.warn("beforeRouteEnter Sample");
+    console.warn("beforeRouteEnter Question");
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
 
-    next(vm => {});
+    next(vm => {
+      vm.setShowToolBar(false);
+      vm.setShowNavBar(true);
+    });
   },
   beforeRouteUpdate(to, from, next) {
-    console.warn("beforeRouteUpdate Sample");
+    console.warn("beforeRouteUpdate Question");
     next();
     // 在当前路由改变，但是该组件被复用时调用
     // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
@@ -38,7 +41,7 @@ export default {
     // 可以访问组件实例 `this`
   },
   beforeRouteLeave(to, from, next) {
-    console.warn("beforeRouteLeave Sample");
+    console.warn("beforeRouteLeave Question");
     next();
     // 导航离开该组件的对应路由时调用
     // 可以访问组件实例 `this`
@@ -48,14 +51,14 @@ export default {
     return { transitionName: "" };
   },
   computed: {},
-  methods: {},
+  methods: {
+    ...mapActions("home", ["setShowToolBar", "setShowNavBar"])
+  },
   components: {
     "c-container": () =>
       import(/* webpackChunkName: "c-container" */ "@cps/Container"),
     "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
-    "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
-    "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
-    "c-card": () => import(/* webpackChunkName: "c-card" */ "@cps/Card")
+    "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col")
   }
 };
 </script>

@@ -33,13 +33,5 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-@import "vm";
-
-// Row
-//
-// Rows contain and clear the floats of your columns.
-.row {
-  @include make-row;
-}
+<style lang="scss" scoped>
 </style>
