@@ -138,10 +138,13 @@ const actions = {
     sort
   }) {
     let currentLength = state.articleList.length;
-
+    debugger;
     let skip = (currentLength / state.limit) * state.limit;
     try {
-      let result = await axios({
+      let {
+        status,
+        data: res
+      } = await axios({
         method: "post",
         url,
         data: {
@@ -152,10 +155,8 @@ const actions = {
           sort
         },
       });
-      let {
-        status,
-        data: res
-      } = result;
+      debugger;
+      console.log(res);
       if (status === 200 && res.isSuccess) {
         let originArticles = res.data;
         if (originArticles.length === 0) {

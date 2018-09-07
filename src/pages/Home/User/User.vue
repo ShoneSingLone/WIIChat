@@ -69,7 +69,7 @@ export default {
   data() {
     return {
       transitionName: "",
-      colOptions: { class: { md: { colspan: 4 } } },
+      colOptions: { class: { md: { colspan: 8, offset: 2 } } },
       cardOptions: { class: { radius: true } }
     };
   },
