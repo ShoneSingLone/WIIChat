@@ -135,6 +135,10 @@ location.href 通常被用来跳转到指定页面地址;
 location.replace 方法则可以实现用新的文档替换当前文档;
 location.replace 方法不会在 history 对象中生成一个新的记录。
 
+### Chat
+
+大致方向：发布订阅模式解决离线的消息推送问题
+
 ### Article
 
 beforePullUp 和 beforePullDown流程是一样的
