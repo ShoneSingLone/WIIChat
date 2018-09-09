@@ -1,23 +1,17 @@
 <template>
   <div id="app">
-    <!-- <c-button @click.native="to" :data-src="transitionName">{{transitionName}}</c-button> -->
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
-
     <div class="dialog-container">
     </div>
-
     <div class="loader">
-      <!-- Show a spinner or placeholders for content -->
     </div>
   </div>
 </template>
 
 <script>
-import Button from "@cps/Button";
 import { mapActions } from "vuex";
-let count = 0;
 
 export default {
   name: "app",
@@ -31,27 +25,13 @@ export default {
   },
   data: function() {
     return {
-      transitionName: "",
-      toggle: 0
+      transitionName: ""
     };
   },
   methods: {
-    ...mapActions(["setAppSize"]),
-    to() {
-      count++;
-      // let routeNameArray = ["error", "components", "login"];
-      let routeNameArray = ["components"];
-      let subIndex = count % routeNameArray.length;
-      this.$router.push({
-        name: routeNameArray[subIndex],
-        params: {},
-        query: { subIndex }
-      });
-    }
+    ...mapActions(["setAppSize"])
   },
-  components: {
-    "c-button": Button
-  }
+  components: {}
 };
 </script>
 
@@ -65,8 +45,5 @@ body,
   height: 100%;
   font-size: 16px;
   overflow: hidden;
-}
-* {
-  // outline: 1px solid rebeccapurple;
 }
 </style>

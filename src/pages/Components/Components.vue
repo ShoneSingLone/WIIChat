@@ -1,21 +1,16 @@
 <template>
-    <c-container class="components">
-        <c-row>
-            <c-col :options="{
-        xm: {
-          colspan: 8,
-          offset: 2
-        }
-      }">
-                <c-modals :isShow="true" title="正在处理登录相关信息，稍等...">
-                    <div slot="body" class="msg-wrapper">
-                        {{progressWidth}}
-                        <c-progress :width="progressWidth" :style="{width:width='%'}"/>
-                    </div>
-                </c-modals>
-            </c-col>
-        </c-row>
-    </c-container>
+  <table>
+    <tr>
+      <td>
+        <c-button :options="{class:{elevation:true,primary:true}}">GoTo</c-button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <router-view></router-view>
+      </td>
+    </tr>
+  </table>
 </template>
 
 <script>
@@ -27,7 +22,8 @@ let components = {
   "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input"),
   "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
   "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
-  "c-progress": () => import(/* webpackChunkName: "c-progress" */ "@cps/Progress")
+  "c-progress": () =>
+    import(/* webpackChunkName: "c-progress" */ "@cps/Progress")
 };
 
 export default {
@@ -52,4 +48,12 @@ export default {
   components
 };
 </script>
+<style lang="scss" scoped>
+table {
+  width: 100%;
+  tr {
+    text-align: center;
+  }
+}
+</style>
 
