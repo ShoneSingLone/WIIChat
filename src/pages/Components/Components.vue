@@ -4,9 +4,15 @@
       <td>
         <c-button :options="{class:{elevation:true,primary:true}}">GoTo</c-button>
       </td>
+      <td>
+        <c-md-input :labelOptions="{text:'test'}">GoTo</c-md-input>
+      </td>
+      <td>
+        <c-button :options="{class:{elevation:true,primary:true}}">GoTo</c-button>
+      </td>
     </tr>
     <tr>
-      <td>
+      <td colspan="3">
         <router-view></router-view>
       </td>
     </tr>
@@ -22,6 +28,8 @@ let components = {
   "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input"),
   "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
   "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
+  "c-md-input": () =>
+    import(/* webpackChunkName: "c-modals" */ "@cps/Input.md"),
   "c-progress": () =>
     import(/* webpackChunkName: "c-progress" */ "@cps/Progress")
 };

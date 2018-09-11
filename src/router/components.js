@@ -9,6 +9,6 @@ export default {
     path: 'button',
     name: 'c.button',
     component: () =>
-      import ( /* webpackChunkName: "button" */ '@cps/Input.md')
+      import ( /* webpackChunkName: "button" */ '@cps/Button')
   }]
 }
