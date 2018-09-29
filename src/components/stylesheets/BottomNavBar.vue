@@ -21,23 +21,10 @@
 <script>
 import { mapActions } from "vuex";
 
-const components = {
-  "c-container": () =>
-    import(/* webpackChunkName: "c-container" */ "@cps/Container"),
-  "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
-  "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
-  "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input"),
-  "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
-  "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
-  "c-tool-bar": () => import(/* webpackChunkName: "c-modals" */ "@cps/ToolBar"),
-  "c-bottom-nav-bar": () =>
-    import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
-};
 const EVENT_TAB_CLICK = "tabClick";
 
 export default {
   name: "c-bottom-nav-bar",
-  components,
   mounted() {
     console.log("BottomNavBar mounted");
     setTimeout(() => {
@@ -76,6 +63,19 @@ export default {
     handleTabClick(event, item, index) {
       this.$emit(EVENT_TAB_CLICK, { event, item, index });
     }
+  },
+  components: {
+    "c-container": () =>
+      import(/* webpackChunkName: "c-container" */ "@cps/Container"),
+    "c-row": () => import(/* webpackChunkName: "c-row" */ "@cps/Row"),
+    "c-col": () => import(/* webpackChunkName: "c-col" */ "@cps/Col"),
+    "c-input": () => import(/* webpackChunkName: "c-input" */ "@cps/Input"),
+    "c-button": () => import(/* webpackChunkName: "c-button" */ "@cps/Button"),
+    "c-modals": () => import(/* webpackChunkName: "c-modals" */ "@cps/Modals"),
+    "c-tool-bar": () =>
+      import(/* webpackChunkName: "c-modals" */ "@cps/ToolBar"),
+    "c-bottom-nav-bar": () =>
+      import(/* webpackChunkName: "c-modals" */ "@cps/BottomNavBar")
   }
 };
 </script>

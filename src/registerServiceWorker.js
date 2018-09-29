@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 
-import {
-  register
-} from 'register-service-worker'
+// import { register } from 'register-service-worker'
 
 /* if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
@@ -37,7 +35,7 @@ import {
     }
   })
 } */
-
+/* 
 register(`${process.env.BASE_URL}service-worker.js`, {
   ready() {
     console.warn(
@@ -69,4 +67,4 @@ window.addEventListener('beforeinstallprompt', function (e) {
       console.warn('用户安装了应用');
     }
   });
-});
+}); */

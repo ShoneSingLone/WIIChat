@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 const EVENT_INPUT = "input";
 const EVENT_CHANGE = "change";
@@ -62,12 +62,11 @@ export default {
   },
   watch: {},
   methods: {
-    ...mapActions(["logOut"]),
-    ...mapActions("article", ["logOut"]),
+    ...mapMutations(["logout"]),
     triggerLogout(e) {
-      console.log("logOut");
+      console.log("logout");
       debugger;
-      // this.logOut();
+      // this.logout();
     }
   }
 };

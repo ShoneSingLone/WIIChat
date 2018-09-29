@@ -98,7 +98,7 @@ export default {
     ])
   },
   watch: {
-    userInfo(newV, oldV) {
+    userInfo(newV) {
       if (newV) {
         this.$router.push({ name: "home" });
       }
@@ -132,9 +132,9 @@ export default {
         userPwd: this.userPwd
       });
     },
-    async getAuthorization(event) {
+    getAuthorization(event) {
       console.log(event);
-      location.href = this.githubAuthorizeUrl;
+      window.open(this.githubAuthorizeUrl);
     },
     clickSuccess() {
       console.log("getAuthorization");

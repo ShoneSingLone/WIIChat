@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
   name: "app",
@@ -22,6 +22,26 @@ export default {
         this.setAppSize(this.$el.getBoundingClientRect());
       });
     };
+    window.addEventListener("storage", event => {
+      try {
+        let { key, newValue, oldValue, url } = event;
+        let vm = this;
+        let strategy = {
+          userInfo: () => {
+            if (newValue && newValue.length > 0) {
+              vm.setUserInfo(JSON.parse(newValue));
+            }
+          }
+        };
+
+        console.warn(
+          `from ${url},new key is ${key}, newValue is ${newValue}, old value is ${oldValue}`
+        );
+        strategy[key]();
+      } catch (error) {
+        console.log(error);
+      }
+    });
   },
   data: function() {
     return {
@@ -29,7 +49,8 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setAppSize"])
+    ...mapActions(["setAppSize"]),
+    ...mapMutations(["setUserInfo"])
   },
   components: {}
 };

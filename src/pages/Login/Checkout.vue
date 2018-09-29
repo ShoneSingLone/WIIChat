@@ -46,7 +46,7 @@ let components = {
  *    If the states don't match, the request was created by
  *    a third party and the process should be aborted.
  */
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "checkout",
@@ -145,7 +145,7 @@ export default {
     ...mapGetters(["hostName"])
   },
   methods: {
-    ...mapActions(["setUserInfo"])
+    ...mapMutations(["setUserInfo"])
   }
 };
 </script>

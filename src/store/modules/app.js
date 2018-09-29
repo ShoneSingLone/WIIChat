@@ -2,7 +2,7 @@ import axios from 'axios';
 import dayjs from "dayjs";
 
 let clientId = "de98ee996939961d39d9";
-let redirectUri = (location.port ? 'http://192.168.137.1:8080' : 'https://shonesinglone.github.io/brumaire');
+let redirectUri = (location.port ? 'http://192.168.137.1:8080' : 'https://shonesinglone.github.io/oauth');
 let hostName = (location.port ? 'http://192.168.137.1:3000' : 'https://shonesinglone.leanapp.cn') + '/n/wiichat';
 let themeColorDOM = null;
 
@@ -13,15 +13,6 @@ githubAuthorizeUrl.searchParams.append("client_id", clientId);
 githubAuthorizeUrl.searchParams.append("redirect_uri", redirectUri);
 githubAuthorizeUrl.searchParams.append("scope", "user");
 
-function setLocalStorage({
-  token,
-  name,
-  avatar
-}) {
-  localStorage.setItem("userToken", token);
-  localStorage.setItem("userName", name);
-  localStorage.setItem("userAvatar", avatar);
-}
 
 
 const state = {
@@ -71,20 +62,7 @@ const getters = {
     return state.loginMsg;
   },
   userInfo(state) {
-    if (!state.userInfo) {
-      let token = localStorage.getItem("userToken");
-      let name = localStorage.getItem("userName");
-      let avatar = localStorage.getItem("userAvatar");
-
-      if (token && name && avatar) {
-        state.userInfo = {
-          token,
-          name,
-          avatar
-        }
-      }
-    }
-    return state.userInfo
+    return state.userInfo;
   }
 }
 const actions = {
@@ -104,12 +82,6 @@ const actions = {
     commit
   }, rect) {
     return commit('setAppSize', rect)
-  },
-  setUserInfo({
-    commit
-  }, userInfo) {
-    setLocalStorage(userInfo);
-    return commit('setUserInfo', userInfo)
   },
   async login({
     commit
@@ -132,19 +104,13 @@ const actions = {
         },
       });
       if (!(status === 200 && res.isSuccess)) throw new Error(res.error);
-      setLocalStorage(res.data);
-      commit('setUserInfo', res.data)
+      localStorage.setItem("userInfo", res.data);
+      commit('setUserInfo');
     } catch (error) {
       setTimeout(() => {
         commit('setLoginMsg', `${error.message} #${dayjs(Date.now()).format("ss")}`);
       }, 1000 * 1.5);
     }
-  },
-  logOut({
-    commit
-  }, ) {
-    localStorage.clear()
-    return commit('setUserInfo', false)
   }
 }
 const mutations = {
@@ -164,13 +130,38 @@ const mutations = {
     state.appSize.height = height;
     state.appSize.width = width;
   },
-  setUserInfo(state, userInfo) {
-    state.userInfo = userInfo
-  },
   setLoginMsg(state, msg) {
     state.loginMsg = msg;
     console.log(state.loginMsg);
-  }
+  },
+  logout(state) {
+    localStorage.setItem('userInfo', "");
+    state.userInfo = false;
+  },
+  setUserInfo(state) {
+    // localStorage是同步的
+    try {
+      let userInfoString = localStorage.getItem('userInfo');
+      let {
+        name,
+        token,
+        avatar
+      } = JSON.parse(userInfoString);
+      if (name && token && avatar) {
+        state.userInfo = {
+          name,
+          token,
+          avatar
+        };
+      } else {
+        throw new Error("Not Login");
+      }
+    } catch (error) {
+      console.log(error);
+      state.userInfo = false;
+    }
+  },
+
 }
 
 export default {

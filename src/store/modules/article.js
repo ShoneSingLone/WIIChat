@@ -138,7 +138,6 @@ const actions = {
     sort
   }) {
     let currentLength = state.articleList.length;
-    debugger;
     let skip = (currentLength / state.limit) * state.limit;
     try {
       let {
