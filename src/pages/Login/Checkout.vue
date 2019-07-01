@@ -9,13 +9,12 @@
       }">
         <c-modals :isShow="true" title="正在处理登录相关信息，稍等...">
           <div slot="body" class="msg-wrapper">
-            <c-progress :width="progressWidth" />
+            <c-progress :width="progressWidth"/>
           </div>
         </c-modals>
       </c-col>
-    </c-row>
+    </c-row>I
   </c-container>
-
 </template>
 
 <script>
@@ -65,7 +64,6 @@ export default {
   },
   created() {},
   mounted() {
-    debugger;
     let code = this.$route.params.code;
     if (!code) {
       this.$router.push({
