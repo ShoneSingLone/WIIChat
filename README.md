@@ -174,3 +174,6 @@ beforePullUp 和 beforePullDown流程是一样的
 ## TODO LIst
 
 - [ ] 如何让用户可以自己决定从服务器重新获取资源？(线上部署更新，有缓存，没有更新数据，手动设置浏览器一点都不友好，最好一键更新)
+
+- [登录注册的业务逻辑流程梳理](https://www.uisdc.com/login-registration-process)
+- [册、登录和 token 的安全之道](https://juejin.im/post/59cb4f49f265da0658153c9a)
