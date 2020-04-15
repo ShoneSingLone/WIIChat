@@ -2,6 +2,7 @@
 
 名字什么的真的很难想，要不就按星座来吧（略略略）。
 另外，协议不是乱选的。
+
 > [how_to_choose_free_software_licenses](http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html)
 
 ## 背景
@@ -27,8 +28,9 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
   - [ ] 在顶级时间线只能抛话题，在子话题可以再抛话题，也可以直接开聊。（哦，IM这个X真是装大发了，我觉得真的不好搞,要跪啊   囧rz...）
   - [ ] 直播你要不要啊，在线下活动有个什么直播来着（反正已经装大发了，也就无所谓了┓( ´∀` )┏）
 - [ ] 问答
+  - [ ] 激励机制？
   - [ ] 问题展示
-   - [ ] mindmap+tag+热力图 ：思维导图可以慢慢发展成学习路线，从0开始，再小白的问题都可以加进来，如果问题一样，只需要喜+1，可视化热力图效果就能找到问得最多的问题。
+    - [ ] mindmap+tag+热力图 ：思维导图可以慢慢发展成学习路线，从0开始，再小白的问题都可以加进来，如果问题一样，只需要喜+1，可视化热力图效果就能找到问得最多的问题。
   - [ ] 提问
   - [ ] 回答
 - [ ] 个人中心
@@ -93,7 +95,7 @@ A PWA base on VUE。源于社群里一句：需要规范提问的格式。可能
   - HomeState根据各模块isShow决定 currentShow
   - 各模块isShow是共享的状态
   - ToolBar and NavBar 的显隐独立控制isShowToolBar、isShowNavBar
-  - 只有在Home操作才带有状态（其他的是登录、错误、其他...） 
+  - 只有在Home操作才带有状态（其他的是登录、错误、其他...）
   - 初始化的时候为“home.article"
     - 在Home中监听$route的变化，to的name即为currentShow
     - 各个Page监听currentShow的变化，切换各部分show状态
@@ -153,7 +155,7 @@ location.replace 方法不会在 history 对象中生成一个新的记录。
 
 大致方向：发布订阅模式解决离线的消息推送问题
 
-### Article
+### mobile
 
 beforePullUp 和 beforePullDown流程是一样的
 

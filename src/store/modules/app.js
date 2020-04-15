@@ -6,14 +6,10 @@ let redirectUri = (location.port ? 'http://192.168.137.1:8080' : 'https://shones
 let hostName = (location.port ? 'http://192.168.137.1:3000' : 'https://shonesinglone.leanapp.cn') + '/n/wiichat';
 let themeColorDOM = null;
 
-let githubAuthorizeUrl = new URL(
-  "https://github.com/login/oauth/authorize"
-);
+let githubAuthorizeUrl = new URL("https://github.com/login/oauth/authorize");
 githubAuthorizeUrl.searchParams.append("client_id", clientId);
 githubAuthorizeUrl.searchParams.append("redirect_uri", redirectUri);
 githubAuthorizeUrl.searchParams.append("scope", "user");
-
-
 
 const state = {
   meta: {

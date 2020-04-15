@@ -6,14 +6,11 @@ import jquery from 'jquery';
 let imgUrlCache = []
 let imgUrlCacheIndex = 0;
 
-
 /*************对显示的数据做初始化的一些配置。主要是Markdown的处理 **/
 let renderer = new Marked.Renderer();
 renderer.headerIdPrefix = 0;
 renderer.heading = function (text, level, raw) {
-  return '<h' + level + ' id="' + (this.headerIdPrefix++) + this.options.headerPrefix + raw.toLowerCase().replace(/[^\w]+/g, '-') + '" class="content">' +
-    text +
-    '</h' + level + '>\n';
+  return '<h' + level + ' id="' + (this.headerIdPrefix++) + this.options.headerPrefix + raw.toLowerCase().replace(/[^\w]+/g, '-') + '" class="content">' + text + '</h' + level + '>\n';
 }
 renderer.link = function (href, title, text) {
   if (this.options.sanitize) {

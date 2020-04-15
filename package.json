@@ -1,5 +1,5 @@
 {
-  "name": "Brumaire",
+  "name": "brumaire",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -38,9 +38,7 @@
     "vue-template-compiler": "^2.5.17",
     "webpack-shell-plugin": "^0.5.0"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
+  "gitHooks": {},
   "lint-staged": {
     "*.js": [
       "vue-cli-service lint",
