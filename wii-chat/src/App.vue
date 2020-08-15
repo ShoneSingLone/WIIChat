@@ -1,9 +1,5 @@
 <template>
   <v-app>
-    <v-navigation-drawer app>
-      asdfsf
-    </v-navigation-drawer>
-
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -26,7 +22,7 @@
       <v-spacer></v-spacer>
       <v-btn text @click="changeTheme">
         <v-icon>mdi-open-in-new</v-icon>
-        <span class="mr-2">{{$vuetify.theme.dark?'light':'dark'}}</span>
+        <span class="mr-2">{{ $vuetify.theme.dark ? "light" : "dark" }}</span>
       </v-btn>
     </v-app-bar>
     <v-main>
@@ -53,6 +49,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      bottomNav: "nearby"
+    };
+  },
   methods: {
     changeTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;

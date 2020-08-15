@@ -2,7 +2,14 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
+        <v-btn @click="gotoHome" color="primary">gotoHome</v-btn>
+
+        <v-img
+          :src="require('../assets/logo.svg')"
+          class="my-3"
+          contain
+          height="200"
+        />
       </v-col>
 
       <v-col class="mb-4">
@@ -11,10 +18,9 @@
         <p class="subheading font-weight-regular">
           For help and collaboration with other Vuetify developers,
           <br />please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
+          <a href="https://community.vuetifyjs.com" target="_blank"
+            >Discord Community</a
+          >
         </p>
       </v-col>
 
@@ -28,7 +34,8 @@
             :href="next.href"
             class="subheading mx-3"
             target="_blank"
-          >{{ next.text }}</a>
+            >{{ next.text }}</a
+          >
         </v-row>
       </v-col>
 
@@ -42,7 +49,8 @@
             :href="link.href"
             class="subheading mx-3"
             target="_blank"
-          >{{ link.text }}</a>
+            >{{ link.text }}</a
+          >
         </v-row>
       </v-col>
 
@@ -56,7 +64,8 @@
             :href="eco.href"
             class="subheading mx-3"
             target="_blank"
-          >{{ eco.text }}</a>
+            >{{ eco.text }}</a
+          >
         </v-row>
       </v-col>
     </v-row>
@@ -66,7 +75,13 @@
 <script>
 export default {
   name: "HelloWorld",
-
+  methods: {
+    gotoHome() {
+      this.$router.push({
+        name: "Home"
+      });
+    }
+  },
   data: () => ({
     ecosystem: [
       {
