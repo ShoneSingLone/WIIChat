@@ -30,18 +30,14 @@
         <router-view></router-view>
       </v-container>
     </v-main>
-    <v-bottom-navigation v-model="bottomNav" app>
-      <v-btn value="recent">
-        <span>Recent</span>
-        <v-icon>mdi-history</v-icon>
-      </v-btn>
-      <v-btn value="favorites">
-        <span>Favorites</span>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn value="nearby">
-        <span>Nearby</span>
-        <v-icon>mdi-map-marker</v-icon>
+    <v-bottom-navigation v-model="currentNavigation" app>
+      <v-btn
+        :value="navigation.value"
+        v-for="navigation in navigations"
+        :key="navigation.value"
+      >
+        <span>{{ navigation.title }}</span>
+        <v-icon>{{ navigation.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
@@ -51,7 +47,12 @@
 export default {
   data() {
     return {
-      bottomNav: "nearby"
+      navigations: [
+        { value: "recent", title: "Recent", icon: "mdi-history" },
+        { value: "favorites", title: "Favorites", icon: "mdi-heart" },
+        { value: "nearby", title: "Nearby", icon: "mdi-map-marker" }
+      ],
+      currentNavigation: "nearby"
     };
   },
   methods: {
