@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1bb8f63e0472904748a6d0e55094833e.js"
+  "precache-manifest.b2fd369dd7adf6ca39cc782ec868998b.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "wii-chat"});

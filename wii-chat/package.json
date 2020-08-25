@@ -5,8 +5,7 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
