@@ -1,5 +1,12 @@
 <template>
   <v-app>
+    <v-system-bar dark color="primary">
+      <v-spacer></v-spacer>
+      <v-icon>mdi-wifi-strength-4</v-icon>
+      <v-icon>mdi-signal-cellular-outline</v-icon>
+      <v-icon>mdi-battery</v-icon>
+      <span>12:30</span>
+    </v-system-bar>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -30,7 +37,13 @@
         <router-view></router-view>
       </v-container>
     </v-main>
-    <v-bottom-navigation v-model="currentNavigation" app>
+    <v-bottom-navigation
+      grow
+      app
+      color="indigo darken-1"
+      :value="currentNavigation"
+      @change="handleNavigationChange"
+    >
       <v-btn
         :value="navigation.value"
         v-for="navigation in navigations"
@@ -44,20 +57,35 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
       navigations: [
-        { value: "recent", title: "Recent", icon: "mdi-history" },
-        { value: "favorites", title: "Favorites", icon: "mdi-heart" },
-        { value: "nearby", title: "Nearby", icon: "mdi-map-marker" }
+        { value: "Login", title: "tLogin", icon: "mdi-history" },
+        { value: "Home", title: "tHome", icon: "mdi-heart" },
+        { value: "About", title: "tAbout", icon: "mdi-map-marker" }
       ],
       currentNavigation: "nearby"
     };
   },
   methods: {
+    ...mapMutations(["setThemeColor"]),
+    handleNavigationChange(navigationName) {
+      this.setThemeColor("#f3f3f3");
+      this.currentNavigation = navigationName;
+      this.$router.push({
+        name: navigationName
+      });
+    },
     changeTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
+  },
+  watch: {
+    $route(route) {
+      console.log("route", route);
     }
   },
   mounted() {

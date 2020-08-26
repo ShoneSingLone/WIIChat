@@ -3,7 +3,6 @@
     <v-row class="text-center">
       <v-col cols="12">
         <v-btn @click="gotoHome" color="primary">gotoHome</v-btn>
-        <cube-button @click="gotoHome">show dialog</cube-button>
         <v-img
           :src="require('../assets/logo.svg')"
           class="my-3"

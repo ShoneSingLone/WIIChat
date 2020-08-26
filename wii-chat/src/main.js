@@ -12,7 +12,7 @@ Vue.prototype.$http = http;
 Vue.config.productionTip = false;
 Vue.use(window.cube);
 
-new Vue({
+export const APP = new Vue({
   router,
   store,
   vuetify,
