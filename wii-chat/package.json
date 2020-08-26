@@ -5,7 +5,8 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "git:pull": "git pull && git pull gitee master",
+    "git:push": "git push && git push gitee master"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",

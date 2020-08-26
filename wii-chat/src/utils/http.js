@@ -3,10 +3,11 @@ import Cookies from "js-cookie";
 import qs from "qs";
 import isPlainObject from "lodash/isPlainObject";
 
+const baseURL = /shonesinglone/gi.test(window.location.href)
+  ? "https://www.ventose.xyz"
+  : "http://localhost:7001";
 const http = axios.create({
-  baseURL: /shonesinglone/gi.test(window.location.href)
-    ? "https://www.ventose.xyz"
-    : "",
+  baseURL,
   timeout: 1000 * 180,
   withCredentials: true
 });
@@ -23,19 +24,16 @@ http.interceptors.request.use(
     var defaults = {};
     // 防止缓存，GET请求默认带_t参数
     if (config.method === "get") {
-      config.params = {
-        ...config.params,
-        ...{
-          _t: new Date().getTime()
-        }
-      };
+      config.params._t = Date.now();
     }
+
     if (isPlainObject(config.params)) {
       config.params = {
         ...defaults,
         ...config.params
       };
     }
+
     if (isPlainObject(config.data)) {
       config.data = {
         ...defaults,
@@ -66,11 +64,11 @@ http.interceptors.response.use(
       return Promise.reject(response.data.msg);
     }
     if (200 === response.status) {
-      return response.data.data;
+      return response.data?.data;
     }
     return response;
   },
-  error => Promise.reject(error.response.data.data)
+  error => Promise.reject(error.response?.data?.data || "no data")
 );
 
 export default http;
