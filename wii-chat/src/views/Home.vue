@@ -8,6 +8,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import { mapMutations } from "vuex";
 
 export default {
   name: "Home",
@@ -15,11 +16,14 @@ export default {
     HelloWorld
   },
   methods: {
-    gotoAbout(){
+    ...mapMutations(["setThemeColor"]),
+
+    gotoAbout() {
+      this.setThemeColor("#f2f2f2");
       this.$router.push({
-        name:"About"
-      })
+        name: "About"
+      });
     }
-  },
+  }
 };
 </script>
