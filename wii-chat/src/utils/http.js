@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import qs from "qs";
 import isPlainObject from "lodash/isPlainObject";
+import { ls } from "@/utils/localStorageHelper";
 
 const baseURL = /shonesinglone/gi.test(window.location.href)
   ? "https://www.ventose.xyz"
@@ -18,8 +19,7 @@ const http = axios.create({
 http.interceptors.request.use(
   config => {
     config.headers["Accept-Language"] = Cookies.get("language") || "zh-CN";
-    config.headers["token"] = Cookies.get("token") || "";
-
+    config.headers["token"] = ls.token || "";
     // 默认参数
     var defaults = {};
     // 防止缓存，GET请求默认带_t参数
@@ -68,7 +68,10 @@ http.interceptors.response.use(
     }
     return response;
   },
-  error => Promise.reject(error.response?.data?.data || "no data")
+  error => {
+    console.error(error);
+    return Promise.reject(error.response?.data?.data || "no data");
+  }
 );
 
 export default http;

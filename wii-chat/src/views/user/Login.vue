@@ -2,7 +2,7 @@
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="4">
-        <v-card class="elevation-12">
+        <v-card class="elevation-12" v-if="!$ls.token">
           <v-toolbar color="primary" dark flat>
             <v-toolbar-title>登录</v-toolbar-title>
             <v-spacer></v-spacer>
@@ -39,26 +39,25 @@
 </template>
 
 <script>
-import Cookies from "js-cookie";
-
 export default {
   name: "HelloWorld",
   methods: {
     async registe() {
       try {
-        let data = await this.$http.post("/reg", this.dataForm);
-        console.log("registe -> data", data);
+        let msg = await this.$http.post("/reg", this.dataForm);
+        this.$Snackbar.success(msg);
       } catch (error) {
-        console.log("submit -> error", error);
+        this.$Snackbar.error(error);
       }
     },
     async submit() {
       try {
-        let { token } = await this.$http.post("/login", this.dataForm);
-        localStorage.wiichatusertoken = token;
-        Cookies.set("token", token);
+        let data = await this.$http.post("/login", this.dataForm);
+        this.$ls.token = data.token;
+        this.$ls.user = data;
       } catch (error) {
-        console.log("submit -> error", error);
+        console.error(error);
+        this.$Snackbar.error(error);
       }
     },
     gotoHome() {

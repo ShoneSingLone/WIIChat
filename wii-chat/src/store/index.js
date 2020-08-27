@@ -1,10 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import { ls } from "@/utils/localStorageHelper";
 Vue.use(Vuex);
 let themeColorDOM;
 export default new Vuex.Store({
   state: {
+    token: ls.token,
+    user: ls.user,
     meta: {
       themeColor: "#337ab7"
     }

@@ -2,7 +2,6 @@
   <v-container>
     <v-row class="text-center">
       <Snackbar ref="Snackbar" />
-      <v-btn color="primary" @click="show">show</v-btn>
       <v-btn color="primary" @click="changeSnackbar">Snackbar</v-btn>
       <v-snackbar :value="true" absolute centered color="success" outlined
         >Lorem ipsum dolor sit amet consectetur.</v-snackbar
@@ -23,9 +22,6 @@ export default {
       this.$router.push({
         name: "Home"
       });
-    },
-    show(method, text) {
-      this.$Snackbar[method](text);
     },
     changeSnackbar() {
       this.$refs.Snackbar.show({ text: "success" });

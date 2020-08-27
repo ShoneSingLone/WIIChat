@@ -7,7 +7,7 @@
       <v-icon>mdi-battery</v-icon>
       <span>12:30</span>
     </v-system-bar>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="primary" id="app-bar">
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -17,18 +17,9 @@
           transition="scale-transition"
           width="40"
         />
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
       </div>
       <v-spacer></v-spacer>
       <v-btn text @click="changeTheme">
-        <v-icon>mdi-open-in-new</v-icon>
         <span class="mr-2">{{ $vuetify.theme.dark ? "light" : "dark" }}</span>
       </v-btn>
     </v-app-bar>
@@ -58,6 +49,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import { APP } from "@/main";
 
 export default {
   data() {
@@ -67,20 +59,20 @@ export default {
         { value: "Home", title: "tHome", icon: "mdi-heart" },
         { value: "About", title: "tAbout", icon: "mdi-map-marker" }
       ],
-      currentNavigation: "nearby"
+      currentNavigation: ""
     };
   },
   methods: {
     ...mapMutations(["setThemeColor"]),
     handleNavigationChange(navigationName) {
-      this.setThemeColor("#f3f3f3");
+      this.setThemeColor("#3567c0");
       this.currentNavigation = navigationName;
       this.$router.push({
         name: navigationName
       });
     },
     changeTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      APP.$emit("change-theme");
     }
   },
   watch: {
