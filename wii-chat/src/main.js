@@ -8,9 +8,19 @@ import "@babel/polyfill";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
 import http from "@/utils/http";
+import { createAPI } from "@/components/tools/createAPI";
+import Snackbar from "@/components/Snackbar";
+
 Vue.prototype.$http = http;
 Vue.config.productionTip = false;
-Vue.use(window.cube);
+Vue.createAPI = createAPI;
+
+Vue.prototype.$Snackbar = createAPI("Snackbar", Snackbar);
+Vue.prototype.$Snackbar.success = function(text) {
+  this.show({
+    text
+  });
+};
 
 export const APP = new Vue({
   router,
