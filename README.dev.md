@@ -1,0 +1,3 @@
+- npm i -D rollup-plugin-node-resolve:解决依赖库
+- rollup-plugin-vue
+- [rollup-plugin-postcss](https://www.npmjs.com/package/rollup-plugin-postcss)
