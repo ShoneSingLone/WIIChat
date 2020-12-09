@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev rollup -wc rollup.config.js",
-    "build": "cross-env NODE_ENV=prod rollup -c rollup.config.js"
+    "build": "cross-env NODE_ENV=prod rollup -c rollup.config.js",
+    "git:pull": "git pull && git pull gitee master",
+    "git:push": "git push && git push gitee master"
   },
   "repository": {
     "type": "git",
