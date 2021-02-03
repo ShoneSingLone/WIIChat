@@ -1,1 +1,0 @@
-#create-single-components .v-snack{display:flex;flex-flow:column nowrap;justify-content:flex-start;align-items:center}#create-single-components .v-snack__wrapper{transition:1s ease-in-out;overflow:hidden}#create-single-components .v-snack__wrapper.remove{transform:scale(0);min-height:0;height:0;margin:0}#create-single-components .v-snack__action{margin-right:8px}

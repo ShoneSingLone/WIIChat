@@ -1,0 +1,47 @@
+{
+  "name": "wiichat",
+  "version": "0.0.1",
+  "description": "Personal Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev rollup -wc rollup.config.js",
+    "build": "cross-env NODE_ENV=prod rollup -c rollup.config.js",
+    "git:pull": "git pull && git pull gitee master",
+    "git:push": "git push && git push gitee master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShoneSingLone/WIIChat.git"
+  },
+  "keywords": [
+    "mobile",
+    "chat"
+  ],
+  "author": "ShoneSingLone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShoneSingLone/WIIChat/issues"
+  },
+  "homepage": "https://github.com/ShoneSingLone/WIIChat#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.7",
+    "@vue/compiler-sfc": "^3.0.4",
+    "cross-env": "^5.1.5",
+    "less": "^3.12.2",
+    "postcss": "^8.2.1",
+    "rollup": "^2.34.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "sass": "^1.30.0"
+  },
+  "dependencies": {
+    "@ventose/utils-loadjs": "0.0.3",
+    "lodash": "^4.17.20",
+    "vue": "^3.0.4"
+  }
+}
